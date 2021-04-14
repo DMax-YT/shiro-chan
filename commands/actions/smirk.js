@@ -17,7 +17,6 @@ async function smirk(msg, [user]) {
     smirk(msg, [user]);
     return;
   }
-  console.log(imageUrl);
 
   await msg.channel.send({
     embed: {

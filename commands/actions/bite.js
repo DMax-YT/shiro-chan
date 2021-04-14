@@ -28,7 +28,6 @@ async function bite(msg, [user]) {
     bite(msg, [user]);
     return;
   }
-  console.log(imageUrl);
 
   await msg.channel.send({
     embed: {

@@ -17,7 +17,6 @@ async function happy(msg, [user]) {
     happy(msg, [user]);
     return;
   }
-  console.log(imageUrl);
 
   await msg.channel.send({
     embed: {

@@ -17,7 +17,6 @@ async function annoy(msg, [user]) {
     annoy(msg, [user]);
     return;
   }
-  console.log(imageUrl);
 
   await msg.channel.send({
     embed: {
