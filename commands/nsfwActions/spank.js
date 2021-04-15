@@ -63,4 +63,5 @@ module.exports = {
   argsRequired: 0,
   module: "Actions NSFW",
   isPrivate: false,
+  nsfw: true,
 };

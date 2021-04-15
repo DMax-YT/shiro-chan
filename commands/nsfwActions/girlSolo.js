@@ -65,4 +65,5 @@ async function analNekoChxdn() {
 //   argsRequired: 0,
 //   module: "Actions NSFW",
 //   isPrivate: false,
+//   nsfw: true,
 // };

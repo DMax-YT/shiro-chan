@@ -17,7 +17,15 @@ async function help(msg, args) {
       msg.client.commands.find((cmd) => cmd.alias.includes(name));
 
     if (!command || command.isPrivate) {
-      error(msg.channel, `The command \`${name}\` doesn't exist`);
+      error(msg.channel, `Команда \`${name}\` не существует`);
+      return;
+    }
+
+    if (!msg.channel.nsfw && command.nsfw) {
+      error(
+        msg.channel,
+        "Я не могу отправить помощь по этой команде в SFW канале."
+      );
       return;
     }
 
@@ -60,7 +68,11 @@ async function help(msg, args) {
     for (const module of modules) {
       const commands = msg.client.commands
         .filter((cmd) => cmd.module === module && !cmd.isPrivate)
-        .map((command) => `\`${prefix}${command.name}\``)
+        .map((command) =>
+          command.nsfw
+            ? `||\`${prefix}${command.name}\`||`
+            : `\`${prefix}${command.name}\``
+        )
         .join(" ");
 
       if (commands) {
@@ -90,7 +102,7 @@ module.exports = {
   description: "Показывает все команды или информацию о выбранной",
   execute: help,
   alias: ["h"],
-  usage: ["(command name)"],
+  usage: ["(название команды)"],
   examples: ["", "pet"],
   argsRequired: 0,
   module: "Misc",
