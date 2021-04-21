@@ -4,23 +4,23 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 
-async function happy(msg, [user]) {
+async function annoy(msg, [user]) {
   let imageUrl;
   try {
-    imageUrl = await happyNekoChxdn();
+    imageUrl = await annoyNekoChxdn();
   } catch {
-    happy(msg, [user]);
+    annoy(msg, [user]);
     return;
   }
 
   if (!imageUrl) {
-    happy(msg, [user]);
+    annoy(msg, [user]);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} чувствует себя счастливым(ой)`,
+      description: `${msg.member} раздражается`,
       image: {
         url: imageUrl,
       },
@@ -29,21 +29,21 @@ async function happy(msg, [user]) {
   });
 }
 
-async function happyNekoChxdn() {
+async function annoyNekoChxdn() {
   return await axios
-    .get("https://api.neko-chxn.xyz/v1/happy/img")
+    .get("https://api.neko-chxn.xyz/v1/annoy/img")
     .then((req) => req.data.url);
 }
 
 module.exports = {
-  name: "happy",
-  description: "Позволяет вам чувствовать себя счастливым(ой)",
-  execute: happy,
+  name: "annoy",
+  description: "Позволяет вам раздражаться",
+  execute: annoy,
   alias: [],
   usage: [""],
   examples: [""],
   argsRequired: 0,
-  module: "Actions",
+  module: "Emotes",
   isPrivate: false,
   nsfw: false,
 };

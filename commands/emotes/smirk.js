@@ -4,23 +4,23 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 
-async function pout(msg, [user]) {
+async function smirk(msg, [user]) {
   let imageUrl;
   try {
-    imageUrl = await poutNekoChxdn();
+    imageUrl = await smirkNekoChxdn();
   } catch {
-    pout(msg, [user]);
+    smirk(msg, [user]);
     return;
   }
 
   if (!imageUrl) {
-    pout(msg, [user]);
+    smirk(msg, [user]);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} надулся(ась)`,
+      description: `${msg.member} ухмыляется`,
       image: {
         url: imageUrl,
       },
@@ -29,21 +29,21 @@ async function pout(msg, [user]) {
   });
 }
 
-async function poutNekoChxdn() {
+async function smirkNekoChxdn() {
   return await axios
-    .get("https://api.neko-chxn.xyz/v1/pout/img")
+    .get("https://api.neko-chxn.xyz/v1/smirk/img")
     .then((req) => req.data.url);
 }
 
 module.exports = {
-  name: "pout",
-  description: "Позволяет вам надуться",
-  execute: pout,
+  name: "smirk",
+  description: "Позволяет вам ухмыльнуться",
+  execute: smirk,
   alias: [],
   usage: [""],
   examples: [""],
   argsRequired: 0,
-  module: "Actions",
+  module: "Emotes",
   isPrivate: false,
   nsfw: false,
 };

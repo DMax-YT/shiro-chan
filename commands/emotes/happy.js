@@ -4,23 +4,23 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 
-async function smirk(msg, [user]) {
+async function happy(msg, [user]) {
   let imageUrl;
   try {
-    imageUrl = await smirkNekoChxdn();
+    imageUrl = await happyNekoChxdn();
   } catch {
-    smirk(msg, [user]);
+    happy(msg, [user]);
     return;
   }
 
   if (!imageUrl) {
-    smirk(msg, [user]);
+    happy(msg, [user]);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} ухмыляется`,
+      description: `${msg.member} чувствует себя счастливым(ой)`,
       image: {
         url: imageUrl,
       },
@@ -29,21 +29,21 @@ async function smirk(msg, [user]) {
   });
 }
 
-async function smirkNekoChxdn() {
+async function happyNekoChxdn() {
   return await axios
-    .get("https://api.neko-chxn.xyz/v1/smirk/img")
+    .get("https://api.neko-chxn.xyz/v1/happy/img")
     .then((req) => req.data.url);
 }
 
 module.exports = {
-  name: "smirk",
-  description: "Позволяет вам ухмыльнуться",
-  execute: smirk,
+  name: "happy",
+  description: "Позволяет вам чувствовать себя счастливым(ой)",
+  execute: happy,
   alias: [],
   usage: [""],
   examples: [""],
   argsRequired: 0,
-  module: "Actions",
+  module: "Emotes",
   isPrivate: false,
   nsfw: false,
 };

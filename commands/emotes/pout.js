@@ -4,23 +4,23 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 
-async function nervous(msg, [user]) {
+async function pout(msg, [user]) {
   let imageUrl;
   try {
-    imageUrl = await nervousNekoChxdn();
+    imageUrl = await poutNekoChxdn();
   } catch {
-    nervous(msg, [user]);
+    pout(msg, [user]);
     return;
   }
 
   if (!imageUrl) {
-    nervous(msg, [user]);
+    pout(msg, [user]);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} нервничает`,
+      description: `${msg.member} надулся(ась)`,
       image: {
         url: imageUrl,
       },
@@ -29,21 +29,21 @@ async function nervous(msg, [user]) {
   });
 }
 
-async function nervousNekoChxdn() {
+async function poutNekoChxdn() {
   return await axios
-    .get("https://api.neko-chxn.xyz/v1/nervous/img")
+    .get("https://api.neko-chxn.xyz/v1/pout/img")
     .then((req) => req.data.url);
 }
 
 module.exports = {
-  name: "nervous",
-  description: "Позволяет вам занервничать",
-  execute: nervous,
+  name: "pout",
+  description: "Позволяет вам надуться",
+  execute: pout,
   alias: [],
   usage: [""],
   examples: [""],
   argsRequired: 0,
-  module: "Actions",
+  module: "Emotes",
   isPrivate: false,
   nsfw: false,
 };

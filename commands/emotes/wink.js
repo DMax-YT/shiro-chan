@@ -4,23 +4,23 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 
-async function sleep(msg, [user]) {
+async function wink(msg, [user]) {
   let imageUrl;
   try {
-    imageUrl = await sleepNekoChxdn();
+    imageUrl = await winkNekoChxdn();
   } catch {
-    sleep(msg, [user]);
+    wink(msg, [user]);
     return;
   }
 
   if (!imageUrl) {
-    sleep(msg, [user]);
+    wink(msg, [user]);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} спит`,
+      description: `${msg.member} подмигивает`,
       image: {
         url: imageUrl,
       },
@@ -29,21 +29,21 @@ async function sleep(msg, [user]) {
   });
 }
 
-async function sleepNekoChxdn() {
+async function winkNekoChxdn() {
   return await axios
-    .get("https://api.neko-chxn.xyz/v1/sleep/img")
-    .then((req) => req.data.url);
+    .get("https://some-random-api.ml/animu/wink")
+    .then((req) => req.data.link);
 }
 
 module.exports = {
-  name: "sleep",
-  description: "Позволяет вам поспать",
-  execute: sleep,
+  name: "wink",
+  description: "Позволяет вам подмигнуть",
+  execute: wink,
   alias: [],
   usage: [""],
   examples: [""],
   argsRequired: 0,
-  module: "Actions",
+  module: "Emotes",
   isPrivate: false,
   nsfw: false,
 };

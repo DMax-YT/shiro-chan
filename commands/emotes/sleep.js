@@ -4,23 +4,23 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 
-async function cry(msg, [user]) {
+async function sleep(msg, [user]) {
   let imageUrl;
   try {
-    imageUrl = await cryNekoChxdn();
+    imageUrl = await sleepNekoChxdn();
   } catch {
-    cry(msg, [user]);
+    sleep(msg, [user]);
     return;
   }
 
   if (!imageUrl) {
-    cry(msg, [user]);
+    sleep(msg, [user]);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} плачет`,
+      description: `${msg.member} спит`,
       image: {
         url: imageUrl,
       },
@@ -29,21 +29,21 @@ async function cry(msg, [user]) {
   });
 }
 
-async function cryNekoChxdn() {
+async function sleepNekoChxdn() {
   return await axios
-    .get("https://api.neko-chxn.xyz/v1/cry/img")
+    .get("https://api.neko-chxn.xyz/v1/sleep/img")
     .then((req) => req.data.url);
 }
 
 module.exports = {
-  name: "cry",
-  description: "Позволяет вам поплакать",
-  execute: cry,
+  name: "sleep",
+  description: "Позволяет вам поспать",
+  execute: sleep,
   alias: [],
   usage: [""],
   examples: [""],
   argsRequired: 0,
-  module: "Actions",
+  module: "Emotes",
   isPrivate: false,
   nsfw: false,
 };

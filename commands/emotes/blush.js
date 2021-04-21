@@ -4,23 +4,23 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 
-async function confused(msg, [user]) {
+async function blush(msg, [user]) {
   let imageUrl;
   try {
-    imageUrl = await confusedNekoChxdn();
+    imageUrl = await blushNekoChxdn();
   } catch {
-    confused(msg, [user]);
+    blush(msg, [user]);
     return;
   }
 
   if (!imageUrl) {
-    confused(msg, [user]);
+    blush(msg, [user]);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} запутался(-лась)`,
+      description: `${msg.member} смущается`,
       image: {
         url: imageUrl,
       },
@@ -29,21 +29,21 @@ async function confused(msg, [user]) {
   });
 }
 
-async function confusedNekoChxdn() {
+async function blushNekoChxdn() {
   return await axios
-    .get("https://api.neko-chxn.xyz/v1/confused/img")
+    .get("https://api.neko-chxn.xyz/v1/blush/img")
     .then((req) => req.data.url);
 }
 
 module.exports = {
-  name: "confused",
-  description: "Позволяет вам запутаться",
-  execute: confused,
+  name: "blush",
+  description: "Позволяет вам смутиться",
+  execute: blush,
   alias: [],
   usage: [""],
   examples: [""],
   argsRequired: 0,
-  module: "Actions",
+  module: "Emotes",
   isPrivate: false,
   nsfw: false,
 };

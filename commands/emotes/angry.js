@@ -4,23 +4,23 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 
-async function dance(msg, [user]) {
+async function angry(msg, [user]) {
   let imageUrl;
   try {
-    imageUrl = await danceNekoChxdn();
+    imageUrl = await angryNekoChxdn();
   } catch {
-    dance(msg, [user]);
+    angry(msg, [user]);
     return;
   }
 
   if (!imageUrl) {
-    dance(msg, [user]);
+    angry(msg, [user]);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} танцует`,
+      description: `${msg.member} злится`,
       image: {
         url: imageUrl,
       },
@@ -29,21 +29,21 @@ async function dance(msg, [user]) {
   });
 }
 
-async function danceNekoChxdn() {
+async function angryNekoChxdn() {
   return await axios
-    .get("https://api.neko-chxn.xyz/v1/dance/img")
+    .get("https://api.neko-chxn.xyz/v1/angry/img")
     .then((req) => req.data.url);
 }
 
 module.exports = {
-  name: "dance",
-  description: "Позволяет вам потанцевать",
-  execute: dance,
+  name: "angry",
+  description: "Позволяет вам разозлится",
+  execute: angry,
   alias: [],
   usage: [""],
   examples: [""],
   argsRequired: 0,
-  module: "Actions",
+  module: "Emotes",
   isPrivate: false,
   nsfw: false,
 };
