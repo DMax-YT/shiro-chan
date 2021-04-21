@@ -20,7 +20,7 @@ async function happy(msg, [user]) {
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} чувствует себя счастливым(ой)`,
+      description: `${msg.member} чувствует прилив счастья`,
       image: {
         url: imageUrl,
       },
@@ -37,7 +37,7 @@ async function happyNekoChxdn() {
 
 module.exports = {
   name: "happy",
-  description: "Позволяет вам чувствовать себя счастливым(ой)",
+  description: "Позволяет вам почувствовать прилив счастья",
   execute: happy,
   alias: [],
   usage: [""],

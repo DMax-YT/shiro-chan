@@ -20,7 +20,7 @@ async function confused(msg, [user]) {
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} запутался(-лась)`,
+      description: `${msg.member} в растерянности`,
       image: {
         url: imageUrl,
       },

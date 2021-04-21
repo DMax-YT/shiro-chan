@@ -20,7 +20,7 @@ async function pout(msg, [user]) {
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} надулся(ась)`,
+      description: `${msg.member} дуется`,
       image: {
         url: imageUrl,
       },
