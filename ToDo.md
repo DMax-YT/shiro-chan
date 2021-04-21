@@ -1,4 +1,5 @@
 # Actions:
+
 - [x] hug/cuddle (neko api, sra, neko-chxn)
 - [x] pat (neko api, sra, neko-chxn)
 - [x] feed (neko api, neko-chxn)
@@ -25,12 +26,18 @@
 - [x] smirk (neko-chxn)
 - [x] sleep (neko-chxn)
 - [x] wink (sra)
+
 # Actions NSFW:
+
 - [x] kuni (neko api, neko-chxn)
 - [x] cumsluts (neko api, neko-chxn)
 - [x] classic(fuck) (neko api, neko-chxn)
 - [x] anal (neko api, neko-chxn)
-- [?] solo (neko-chxn, neko api) 
+- [?] solo (neko-chxn, neko api)
 - [-] boobs (neko api)
 - [x] blowjob (neko api)
 - [x] spank (neko api)
+
+# Global:
+- [] Delete message after action/emote commands usage
+- [] Multi-language
