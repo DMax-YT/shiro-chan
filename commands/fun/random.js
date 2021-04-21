@@ -12,9 +12,6 @@ async function randomExecute(msg, args) {
   msg.channel.send(`Ваше случайное число это \`${random(min, max)}\``);
 }
 
-/**
- * @type {import("../utils/types").Command}
- */
 module.exports = {
   name: "random",
   description: "Выдаёт вам случайное число в заданном диапазоне",

@@ -48,9 +48,6 @@ async function dice(msg, args) {
   }
 }
 
-/**
- * @type {import("../utils/types").Command}
- */
 module.exports = {
   name: "dice",
   description: "Позволяет вам бросить кубик",
