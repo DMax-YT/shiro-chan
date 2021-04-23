@@ -1,6 +1,7 @@
 const sleep = require("../../helpers/sleep");
 const { random, randomFloat } = require("../../helpers/random");
 const { error } = require("../../helpers/result");
+const translate = require("../../helpers/locale");
 
 const randomDice = "<a:dice_random:812758540624068608>";
 const numToDice = [
@@ -16,6 +17,7 @@ const minTime = 0.25;
 const maxTime = 1.5;
 
 async function dice(msg, args) {
+  const locale = "ru-RU";
   const countOfRolls = parseInt(args[0]);
 
   if (countOfRolls && countOfRolls > 0 && countOfRolls < 10) {
@@ -28,8 +30,12 @@ async function dice(msg, args) {
         allDices.map((v) => numToDice[v] || randomDice).join("")
       );
     }
+
     msg.channel.send(
-      `${msg.member} выкинул(а): ${allDices.reduce((v, a) => v + a, 0)}`,
+      translate("dice.rolled", locale, {
+        user: msg.member,
+        sum: allDices.reduce((v, a) => v + 1 + a, 0),
+      }),
       {
         allowedMentions: {
           parse: [],
@@ -37,10 +43,7 @@ async function dice(msg, args) {
       }
     );
   } else if (countOfRolls && countOfRolls >= 10) {
-    error(
-      msg.channel,
-      "Максимальное кол-во кубиков за раз не должно быть больше 9"
-    );
+    error(msg.channel, translate("dice.maxDicesError", locale));
   } else {
     const rolling = await msg.channel.send(randomDice);
     await sleep(randomFloat(minTime, maxTime) * 1000);
@@ -50,11 +53,8 @@ async function dice(msg, args) {
 
 module.exports = {
   name: "dice",
-  description: "Позволяет вам бросить кубик",
   execute: dice,
   alias: [],
-  usage: ["(число кубиков)"],
-  examples: ["", "5"],
   argsRequired: 0,
   module: "Fun",
   isPrivate: false,

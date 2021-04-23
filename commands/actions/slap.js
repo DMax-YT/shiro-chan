@@ -5,15 +5,18 @@ const NekoClient = require("nekos.life");
 const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
 const getMemberByMention = require("../../helpers/getMemberByMention");
+const translate = require("../../helpers/locale");
 
 async function slap(msg, [user]) {
+  const locale = "ru-RU";
+
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
-    msg.channel.send("Укажите пользователя");
+    msg.channel.send(translate("specifyUser", locale));
     return;
   }
   if (userMention === msg.member) {
-    msg.channel.send("Ты не можешь дать пощечину сам(ой) себе...");
+    msg.channel.send(translate("slap.selfError", locale));
     return;
   }
 
@@ -32,7 +35,10 @@ async function slap(msg, [user]) {
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} даёт пощечину ${userMention}`,
+      description: translate("slap.action", locale, {
+        attacker: msg.member,
+        victim: userMention,
+      }),
       image: {
         url: imageUrl,
       },
@@ -47,11 +53,8 @@ async function slapNeko() {
 
 module.exports = {
   name: "slap",
-  description: "Позволяет вам дать пощёчину кому-либо",
   execute: slap,
   alias: [],
-  usage: ["[@user]"],
-  examples: ["@DMax"],
   argsRequired: 0,
   module: "Actions",
   isPrivate: false,

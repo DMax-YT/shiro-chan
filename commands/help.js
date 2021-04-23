@@ -1,13 +1,14 @@
 const { error } = require("../helpers/result");
+const translate = require("../helpers/locale");
 const { prefix } = require("../config.json");
 
-const baseEmbed = {
-  title: "Помощь",
-  color: 0x03c2fc,
-};
-
 async function help(msg, args) {
-  let helpEmbed;
+  const locale = "ru-RU";
+
+  let helpEmbed = {
+    title: translate("help.title", locale),
+    color: 0x03c2fc,
+  };
 
   if (args.length) {
     const name = args.join(" ").toLowerCase();
@@ -17,48 +18,50 @@ async function help(msg, args) {
       msg.client.commands.find((cmd) => cmd.alias.includes(name));
 
     if (!command || command.isPrivate) {
-      error(msg.channel, `Команда \`${name}\` не существует`);
-      return;
-    }
-
-    if (!msg.channel.nsfw && command.nsfw) {
       error(
         msg.channel,
-        "Я не могу отправить помощь по этой команде в SFW канале."
+        translate("help.command.notExist", locale, {
+          command: name,
+        })
       );
       return;
     }
 
+    if (!msg.channel.nsfw && command.nsfw) {
+      error(msg.channel, translate("help.command.nsfwError", locale));
+      return;
+    }
+
     helpEmbed = {
-      ...baseEmbed,
+      ...helpEmbed,
       fields: [
         {
-          name: "Описание",
-          value: command.description,
+          name: translate("help.command.description", locale),
+          value: translate(`${command.name}.description`, locale),
         },
         {
-          name: "Использование",
-          value: command.usage
-            .map((example) => prefix + name + " " + example)
+          name: translate("help.command.usage", locale),
+          value: translate(`${command.name}.usage`, locale)
+            .map((usage) => prefix + name + " " + usage)
             .join("\n"),
           inline: true,
         },
         {
-          name: "Псевдонимы",
+          name: translate("help.command.alias", locale),
           value: command.alias.length
             ? command.alias.map((alias) => `\`${alias}\``).join(" ")
-            : "Нет псевдонимов",
+            : translate("help.command.noAlias", locale),
           inline: true,
         },
         {
-          name: "Примеры использования",
-          value: command.examples
+          name: translate("help.command.examples", locale),
+          value: translate(`${command.name}.examples`, locale)
             .map((example) => prefix + name + " " + example)
             .join("\n"),
         },
       ],
       footer: {
-        text: "📌 Аргумент: [] - обязательный, () - опциональный",
+        text: translate("help.argsInfo", locale),
       },
     };
   } else {
@@ -84,10 +87,10 @@ async function help(msg, args) {
     }
 
     helpEmbed = {
-      ...baseEmbed,
+      ...helpEmbed,
       fields: fields.sort((a, b) => a.name.localeCompare(b.name)),
       footer: {
-        text: `📌 Больше информации: ${prefix}help (название команды)`,
+        text: translate("help.moreInfo", locale),
       },
     };
   }
@@ -99,11 +102,8 @@ async function help(msg, args) {
 
 module.exports = {
   name: "help",
-  description: "Показывает все команды или информацию о выбранной",
   execute: help,
   alias: ["h"],
-  usage: ["(название команды)"],
-  examples: ["", "pet"],
   argsRequired: 0,
   module: "Misc",
   isPrivate: false,

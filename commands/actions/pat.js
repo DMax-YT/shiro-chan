@@ -7,15 +7,18 @@ const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
+const translate = require("../../helpers/locale");
 
 async function pat(msg, [user]) {
+  const locale = "ru-RU";
+
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
-    msg.channel.send("Укажите пользователя");
+    msg.channel.send(translate("specifyUser", locale));
     return;
   }
   if (userMention === msg.member) {
-    msg.channel.send("Ты не можешь погладить сам(а) себя...");
+    msg.channel.send(translate("pat.selfError", locale));
     return;
   }
 
@@ -35,7 +38,10 @@ async function pat(msg, [user]) {
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} гладит ${userMention}`,
+      description: translate("pat.action", locale, {
+        attacker: msg.member,
+        victim: userMention,
+      }),
       image: {
         url: imageUrl,
       },
@@ -60,11 +66,8 @@ async function patSra() {
 
 module.exports = {
   name: "pat",
-  description: "Позволяет вам погладить кого-либо",
   execute: pat,
   alias: [],
-  usage: ["[@user]"],
-  examples: ["@DMax"],
   argsRequired: 0,
   module: "Actions",
   isPrivate: false,

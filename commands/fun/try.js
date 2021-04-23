@@ -1,6 +1,7 @@
 const sleep = require("../../helpers/sleep");
 const { randomFloat } = require("../../helpers/random");
 const { invalidUsage } = require("../../helpers/result");
+const translate = require("../../helpers/locale");
 
 const {
   Util: { resolveColor },
@@ -13,10 +14,17 @@ async function tryCommand(msg, args) {
     return;
   }
 
+  const locale = "ru-RU";
+
   const action = args.join(" ");
+  const embedDescription = translate("try.action", locale, {
+    caller: msg.member,
+    action,
+  });
+
   const tryMessage = await msg.channel.send({
     embed: {
-      description: `*${msg.member} пытается ${action}*`,
+      description: embedDescription,
       color: resolveColor(embedInvis),
     },
   });
@@ -25,8 +33,10 @@ async function tryCommand(msg, args) {
   const success = randomFloat(0, 100) >= 50 ? true : false;
   await tryMessage.edit({
     embed: {
-      description: `*${msg.member} пытается ${action}*\n${
-        success ? "Успешно" : "Неудачно"
+      description: `${embedDescription}\n\n${
+        success
+          ? translate("try.success", locale)
+          : translate("try.failure", locale)
       }`,
       color: resolveColor(embedInvis),
     },
@@ -35,11 +45,8 @@ async function tryCommand(msg, args) {
 
 module.exports = {
   name: "try",
-  description: "Позволяет вам попробавать выполнить действие",
   execute: tryCommand,
   alias: [],
-  usage: ["[действие]"],
-  examples: ["взять монетку с пола"],
   argsRequired: 1,
   module: "Fun",
   isPrivate: false,

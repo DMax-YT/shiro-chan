@@ -3,24 +3,27 @@ const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const translate = require("../../helpers/locale");
 
-async function sleep(msg, [user]) {
+async function sleep(msg, args) {
+  const locale = "ru-RU";
+
   let imageUrl;
   try {
     imageUrl = await sleepNekoChxdn();
   } catch {
-    sleep(msg, [user]);
+    sleep(msg, args);
     return;
   }
 
   if (!imageUrl) {
-    sleep(msg, [user]);
+    sleep(msg, args);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} спит`,
+      description: translate("sleep.action", locale, { caller: msg.member }),
       image: {
         url: imageUrl,
       },
@@ -37,11 +40,8 @@ async function sleepNekoChxdn() {
 
 module.exports = {
   name: "sleep",
-  description: "Позволяет вам поспать",
   execute: sleep,
   alias: [],
-  usage: [""],
-  examples: [""],
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

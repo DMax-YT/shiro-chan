@@ -3,24 +3,27 @@ const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const translate = require("../../helpers/locale");
 
-async function blush(msg, [user]) {
+async function blush(msg, args) {
+  const locale = "ru-RU";
+
   let imageUrl;
   try {
     imageUrl = await blushNekoChxdn();
   } catch {
-    blush(msg, [user]);
+    blush(msg, args);
     return;
   }
 
   if (!imageUrl) {
-    blush(msg, [user]);
+    blush(msg, args);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} смущается`,
+      description: translate("blush.action", locale, { caller: msg.member }),
       image: {
         url: imageUrl,
       },
@@ -37,11 +40,8 @@ async function blushNekoChxdn() {
 
 module.exports = {
   name: "blush",
-  description: "Позволяет вам смутиться",
   execute: blush,
   alias: [],
-  usage: [""],
-  examples: [""],
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

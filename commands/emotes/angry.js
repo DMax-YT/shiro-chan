@@ -3,8 +3,11 @@ const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const translate = require("../../helpers/locale");
 
 async function angry(msg, [user]) {
+  const locale = "ru-RU";
+
   let imageUrl;
   try {
     imageUrl = await angryNekoChxdn();
@@ -20,7 +23,7 @@ async function angry(msg, [user]) {
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} злится`,
+      description: translate("angry.action", locale, { caller: msg.member }),
       image: {
         url: imageUrl,
       },
@@ -37,11 +40,8 @@ async function angryNekoChxdn() {
 
 module.exports = {
   name: "angry",
-  description: "Позволяет вам разозлится",
   execute: angry,
   alias: [],
-  usage: [""],
-  examples: [""],
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

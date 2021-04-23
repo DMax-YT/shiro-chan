@@ -7,15 +7,18 @@ const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
+const translate = require("../../helpers/locale");
 
 async function poke(msg, [user]) {
+  const locale = "ru-RU";
+
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
-    msg.channel.send("Укажите пользователя");
+    msg.channel.send(translate("specifyUser", locale));
     return;
   }
   if (userMention === msg.member) {
-    msg.channel.send("Ты не можешь ткнуть сам(а) в себя...");
+    msg.channel.send(translate("poke.selfError", locale));
     return;
   }
 
@@ -35,7 +38,10 @@ async function poke(msg, [user]) {
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} тыкает в ${userMention}`,
+      description: translate("poke.action", locale, {
+        attacker: msg.member,
+        victim: userMention,
+      }),
       image: {
         url: imageUrl,
       },
@@ -55,11 +61,8 @@ async function pokeNekoChxdn() {
 
 module.exports = {
   name: "poke",
-  description: "Позволяет вам тыкнуть в кого-либо",
   execute: poke,
   alias: [],
-  usage: ["[@user]"],
-  examples: ["@DMax"],
   argsRequired: 0,
   module: "Actions",
   isPrivate: false,

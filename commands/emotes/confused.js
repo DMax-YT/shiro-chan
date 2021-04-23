@@ -3,24 +3,27 @@ const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const translate = require("../../helpers/locale");
 
-async function confused(msg, [user]) {
+async function confused(msg, args) {
+  const locale = "ru-RU";
+
   let imageUrl;
   try {
     imageUrl = await confusedNekoChxdn();
   } catch {
-    confused(msg, [user]);
+    confused(msg, args);
     return;
   }
 
   if (!imageUrl) {
-    confused(msg, [user]);
+    confused(msg, args);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} в растерянности`,
+      description: translate("confused.action", locale, { caller: msg.member }),
       image: {
         url: imageUrl,
       },
@@ -37,11 +40,8 @@ async function confusedNekoChxdn() {
 
 module.exports = {
   name: "confused",
-  description: "Позволяет вам запутаться",
   execute: confused,
   alias: [],
-  usage: [""],
-  examples: [""],
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

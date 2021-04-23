@@ -1,7 +1,10 @@
 const { random } = require("../../helpers/random");
 const { invalidUsage } = require("../../helpers/result");
+const translate = require("../../helpers/locale");
 
 async function randomExecute(msg, args) {
+  const locale = "ru-RU";
+
   const min = parseInt(args[0]);
   const max = parseInt(args[1]);
   if (isNaN(min) || isNaN(max)) {
@@ -9,7 +12,11 @@ async function randomExecute(msg, args) {
     return;
   }
 
-  msg.channel.send(`Ваше случайное число это \`${random(min, max)}\``);
+  msg.channel.send(
+    translate("random.result", locale, {
+      num: random(min, max),
+    })
+  );
 }
 
 module.exports = {

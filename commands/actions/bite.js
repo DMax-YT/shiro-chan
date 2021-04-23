@@ -4,15 +4,18 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 const getMemberByMention = require("../../helpers/getMemberByMention");
+const translate = require("../../helpers/locale");
 
 async function bite(msg, [user]) {
+  const locale = "ru-RU";
+
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
-    msg.channel.send("Укажите пользователя");
+    msg.channel.send(translate("specifyUser", locale));
     return;
   }
   if (userMention === msg.member) {
-    msg.channel.send("Ты не можешь укусить сам(а) себя...");
+    msg.channel.send(translate("bite.selfError", locale));
     return;
   }
 
@@ -31,7 +34,10 @@ async function bite(msg, [user]) {
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} кусает ${userMention}`,
+      description: translate("bite.action", locale, {
+        attacker: msg.member,
+        victim: userMention,
+      }),
       image: {
         url: imageUrl,
       },
@@ -48,11 +54,8 @@ async function biteNekoChxdn() {
 
 module.exports = {
   name: "bite",
-  description: "Позволяет вам укусить кого-либо",
   execute: bite,
   alias: [],
-  usage: ["[@user]"],
-  examples: ["@DMax"],
   argsRequired: 0,
   module: "Actions",
   isPrivate: false,

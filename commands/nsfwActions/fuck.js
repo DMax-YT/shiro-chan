@@ -7,8 +7,11 @@ const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
+const translate = require("../../helpers/locale");
 
 async function fuck(msg, [user]) {
+  const locale = "ru-RU";
+
   if (!msg.channel.nsfw) {
     msg.channel.send("Я не могу отправлять это в SFW канале");
     return;
@@ -16,11 +19,11 @@ async function fuck(msg, [user]) {
 
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
-    msg.channel.send("Укажите пользователя");
+    msg.channel.send(translate("specifyUser", locale));
     return;
   }
   if (userMention === msg.member) {
-    msg.channel.send("Ты не можешь заняться сексом сам(а) с собой...");
+    msg.channel.send(translate("fuck.selfError", locale));
     return;
   }
 
@@ -40,7 +43,10 @@ async function fuck(msg, [user]) {
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} занимается сексом с ${userMention}`,
+      description: translate("fuck.action", locale, {
+        attacker: msg.member,
+        victim: userMention,
+      }),
       image: {
         url: imageUrl,
       },
@@ -60,11 +66,8 @@ async function fuckNekoChxdn() {
 
 module.exports = {
   name: "fuck",
-  description: "Позволяет вам заняться сексом с кем-либо",
   execute: fuck,
   alias: [],
-  usage: ["[@user]"],
-  examples: ["@DMax"],
   argsRequired: 0,
   module: "Actions NSFW",
   isPrivate: false,

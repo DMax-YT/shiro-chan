@@ -4,10 +4,12 @@ const {
 const NekoClient = require("nekos.life");
 const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
-const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
+const translate = require("../../helpers/locale");
 
 async function spank(msg, [user]) {
+  const locale = "ru-RU";
+
   if (!msg.channel.nsfw) {
     msg.channel.send("Я не могу отправлять это в SFW канале");
     return;
@@ -15,11 +17,11 @@ async function spank(msg, [user]) {
 
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
-    msg.channel.send("Укажите пользователя");
+    msg.channel.send(translate("specifyUser", locale));
     return;
   }
   if (userMention === msg.member) {
-    msg.channel.send("Ты не можешь шлёпнуть сам(а) себе...");
+    msg.channel.send(translate("spank.selfError", locale));
     return;
   }
 
@@ -38,7 +40,10 @@ async function spank(msg, [user]) {
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} шлёпает ${userMention}`,
+      description: translate("spank.action", locale, {
+        attacker: msg.member,
+        victim: userMention,
+      }),
       image: {
         url: imageUrl,
       },
@@ -55,11 +60,8 @@ async function spankNeko() {
 
 module.exports = {
   name: "spank",
-  description: "Позволяет вам шлёпнуть кого-либо",
   execute: spank,
   alias: [],
-  usage: ["[@user]"],
-  examples: ["@DMax"],
   argsRequired: 0,
   module: "Actions NSFW",
   isPrivate: false,

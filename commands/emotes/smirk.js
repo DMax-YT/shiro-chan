@@ -3,24 +3,27 @@ const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const translate = require("../../helpers/locale");
 
-async function smirk(msg, [user]) {
+async function smirk(msg, args) {
+  const locale = "ru-RU";
+
   let imageUrl;
   try {
     imageUrl = await smirkNekoChxdn();
   } catch {
-    smirk(msg, [user]);
+    smirk(msg, args);
     return;
   }
 
   if (!imageUrl) {
-    smirk(msg, [user]);
+    smirk(msg, args);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} ухмыляется`,
+      description: translate("smirk.action", locale, { caller: msg.member }),
       image: {
         url: imageUrl,
       },
@@ -37,11 +40,8 @@ async function smirkNekoChxdn() {
 
 module.exports = {
   name: "smirk",
-  description: "Позволяет вам ухмыльнуться",
   execute: smirk,
   alias: [],
-  usage: [""],
-  examples: [""],
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

@@ -3,24 +3,27 @@ const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const translate = require("../../helpers/locale");
 
-async function dance(msg, [user]) {
+async function dance(msg, args) {
+  const locale = "ru-RU";
+
   let imageUrl;
   try {
     imageUrl = await danceNekoChxdn();
   } catch {
-    dance(msg, [user]);
+    dance(msg, args);
     return;
   }
 
   if (!imageUrl) {
-    dance(msg, [user]);
+    dance(msg, args);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} танцует`,
+      description: translate("dance.action", locale, { caller: msg.member }),
       image: {
         url: imageUrl,
       },
@@ -37,11 +40,8 @@ async function danceNekoChxdn() {
 
 module.exports = {
   name: "dance",
-  description: "Позволяет вам потанцевать",
   execute: dance,
   alias: [],
-  usage: [""],
-  examples: [""],
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

@@ -3,24 +3,27 @@ const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const translate = require("../../helpers/locale");
 
-async function pout(msg, [user]) {
+async function pout(msg, args) {
+  const locale = "ru-RU";
+
   let imageUrl;
   try {
     imageUrl = await poutNekoChxdn();
   } catch {
-    pout(msg, [user]);
+    pout(msg, args);
     return;
   }
 
   if (!imageUrl) {
-    pout(msg, [user]);
+    pout(msg, args);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} дуется`,
+      description: translate("pout.action", locale, { caller: msg.member }),
       image: {
         url: imageUrl,
       },
@@ -37,11 +40,8 @@ async function poutNekoChxdn() {
 
 module.exports = {
   name: "pout",
-  description: "Позволяет вам надуться",
   execute: pout,
   alias: [],
-  usage: [""],
-  examples: [""],
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

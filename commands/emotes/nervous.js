@@ -3,24 +3,27 @@ const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const translate = require("../../helpers/locale");
 
-async function nervous(msg, [user]) {
+async function nervous(msg, args) {
+  const locale = "ru-RU";
+
   let imageUrl;
   try {
     imageUrl = await nervousNekoChxdn();
   } catch {
-    nervous(msg, [user]);
+    nervous(msg, args);
     return;
   }
 
   if (!imageUrl) {
-    nervous(msg, [user]);
+    nervous(msg, args);
     return;
   }
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} нервничает`,
+      description: translate("nervous.action", locale, { caller: msg.member }),
       image: {
         url: imageUrl,
       },
@@ -37,11 +40,8 @@ async function nervousNekoChxdn() {
 
 module.exports = {
   name: "nervous",
-  description: "Позволяет вам занервничать",
   execute: nervous,
   alias: [],
-  usage: [""],
-  examples: [""],
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

@@ -4,15 +4,18 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 const getMemberByMention = require("../../helpers/getMemberByMention");
+const translate = require("../../helpers/locale");
 
 async function lick(msg, [user]) {
+  const locale = "ru-RU";
+
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
-    msg.channel.send("Укажите пользователя");
+    msg.channel.send(translate("specifyUser", locale));
     return;
   }
   if (userMention === msg.member) {
-    msg.channel.send("Ты не можешь облизать сам(а) себя...");
+    msg.channel.send(translate("lick.selfError", locale));
     return;
   }
 
@@ -31,7 +34,10 @@ async function lick(msg, [user]) {
 
   await msg.channel.send({
     embed: {
-      description: `${msg.member} облизывает ${userMention}`,
+      description: translate("lick.action", locale, {
+        attacker: msg.member,
+        victim: userMention,
+      }),
       image: {
         url: imageUrl,
       },
@@ -48,11 +54,8 @@ async function lickNekoChxdn() {
 
 module.exports = {
   name: "lick",
-  description: "Позволяет вам облизать кого-либо",
   execute: lick,
   alias: [],
-  usage: [""],
-  examples: [""],
   argsRequired: 0,
   module: "Actions",
   isPrivate: false,
