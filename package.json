@@ -11,6 +11,7 @@
     "axios": "^0.21.1",
     "bufferutil": "^4.0.2",
     "discord.js": "^12.5.1",
+    "enmap": "^5.8.4",
     "erlpack": "discord/erlpack",
     "nekos.life": "^2.0.7",
     "utf-8-validate": "^5.0.3",

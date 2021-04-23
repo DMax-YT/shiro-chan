@@ -106,3 +106,4 @@ dist
 config.json
 yarn.lock
 package-lock.json
+/db

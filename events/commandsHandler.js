@@ -4,10 +4,16 @@ async function messageHandler(msg) {
     client: {
       config: { prefix },
       commands,
+      server,
     },
   } = msg;
 
-  if (!msg.content.startsWith(prefix) || msg.webhookID) return;
+  const serverConfig = server.ensure(msg.guild.id, {
+    locale: "en-US",
+    prefix,
+  })
+
+  if (!msg.content.startsWith(serverConfig.prefix) || msg.webhookID) return;
 
   const args = msg.content.slice(prefix.length).split(/ +/);
   const cmd = args.shift().toLowerCase();
@@ -19,7 +25,7 @@ async function messageHandler(msg) {
   if (!command) return;
 
   try {
-    const executed = command.execute(msg, args);
+    const executed = command.execute(msg, args, locale);
     if (executed instanceof Promise) await executed;
   } catch (e) {
     console.error(e);

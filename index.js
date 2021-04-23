@@ -1,11 +1,16 @@
 const util = require("util");
 const { Client, Collection } = require("discord.js");
+const Enmap = require("enmap");
 const recursiveRead = require("./helpers/recursiveReader");
 
 const client = new Client();
 client.events = new Collection();
 client.commands = new Collection();
 
+client.server = new Enmap({
+  name: "serverSettings",
+  dataDir: "./db",
+});
 client.config = require("./config.json");
 const { owners, prefix, token } = client.config;
 
