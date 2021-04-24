@@ -6,7 +6,7 @@ const translate = (templatePath, locale = "ru-RU", data = {}) => {
     template = template?.[key] || localeTemplates[key];
   }
 
-  if (Array.isArray(template)) {
+  if (typeof template !== "string") {
     return template;
   }
 

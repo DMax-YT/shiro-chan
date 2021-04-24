@@ -2,9 +2,7 @@ const { error } = require("../helpers/result");
 const translate = require("../helpers/locale");
 const { prefix } = require("../config.json");
 
-async function help(msg, args) {
-  const locale = "ru-RU";
-
+async function help(msg, args, locale) {
   let helpEmbed = {
     title: translate("help.title", locale),
     color: 0x03c2fc,

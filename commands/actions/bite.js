@@ -6,9 +6,7 @@ const { embedInvis } = require("../../colors.json");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const translate = require("../../helpers/locale");
 
-async function bite(msg, [user]) {
-  const locale = "ru-RU";
-
+async function bite(msg, [user], locale) {
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
     msg.channel.send(translate("specifyUser", locale));
@@ -23,12 +21,12 @@ async function bite(msg, [user]) {
   try {
     imageUrl = await biteNekoChxdn();
   } catch {
-    bite(msg, [user]);
+    bite(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    bite(msg, [user]);
+    bite(msg, [user], locale);
     return;
   }
 

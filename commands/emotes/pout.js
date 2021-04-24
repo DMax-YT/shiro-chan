@@ -5,19 +5,17 @@ const {
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
-async function pout(msg, args) {
-  const locale = "ru-RU";
-
+async function pout(msg, args, locale) {
   let imageUrl;
   try {
     imageUrl = await poutNekoChxdn();
   } catch {
-    pout(msg, args);
+    pout(msg, args, locale);
     return;
   }
 
   if (!imageUrl) {
-    pout(msg, args);
+    pout(msg, args, locale);
     return;
   }
 

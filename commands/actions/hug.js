@@ -9,9 +9,7 @@ const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const translate = require("../../helpers/locale");
 
-async function hug(msg, [user]) {
-  const locale = "ru-RU";
-
+async function hug(msg, [user], locale) {
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
     msg.channel.send(translate("specifyUser", locale));
@@ -33,12 +31,12 @@ async function hug(msg, [user]) {
   try {
     imageUrl = await provider();
   } catch {
-    hug(msg, [user]);
+    hug(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    hug(msg, [user]);
+    hug(msg, [user], locale);
     return;
   }
 

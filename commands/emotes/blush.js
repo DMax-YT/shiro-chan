@@ -5,19 +5,17 @@ const {
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
-async function blush(msg, args) {
-  const locale = "ru-RU";
-
+async function blush(msg, args, locale) {
   let imageUrl;
   try {
     imageUrl = await blushNekoChxdn();
   } catch {
-    blush(msg, args);
+    blush(msg, args, locale);
     return;
   }
 
   if (!imageUrl) {
-    blush(msg, args);
+    blush(msg, args, locale);
     return;
   }
 

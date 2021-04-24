@@ -5,19 +5,17 @@ const {
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
-async function dance(msg, args) {
-  const locale = "ru-RU";
-
+async function dance(msg, args, locale) {
   let imageUrl;
   try {
     imageUrl = await danceNekoChxdn();
   } catch {
-    dance(msg, args);
+    dance(msg, args, locale);
     return;
   }
 
   if (!imageUrl) {
-    dance(msg, args);
+    dance(msg, args, locale);
     return;
   }
 

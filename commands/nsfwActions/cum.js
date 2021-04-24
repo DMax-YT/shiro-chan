@@ -9,9 +9,7 @@ const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const translate = require("../../helpers/locale");
 
-async function cum(msg, [user]) {
-  const locale = "ru-RU";
-
+async function cum(msg, [user], locale) {
   if (!msg.channel.nsfw) {
     msg.channel.send("Я не могу отправлять это в SFW канале");
     return;
@@ -32,12 +30,12 @@ async function cum(msg, [user]) {
   try {
     imageUrl = await provider();
   } catch {
-    cum(msg, [user]);
+    cum(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    cum(msg, [user]);
+    cum(msg, [user], locale);
     return;
   }
 

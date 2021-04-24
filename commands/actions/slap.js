@@ -7,9 +7,7 @@ const { embedInvis } = require("../../colors.json");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const translate = require("../../helpers/locale");
 
-async function slap(msg, [user]) {
-  const locale = "ru-RU";
-
+async function slap(msg, [user], locale) {
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
     msg.channel.send(translate("specifyUser", locale));
@@ -24,12 +22,12 @@ async function slap(msg, [user]) {
   try {
     imageUrl = await slapNeko();
   } catch {
-    slap(msg, [user]);
+    slap(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    slap(msg, [user]);
+    slap(msg, [user], locale);
     return;
   }
 

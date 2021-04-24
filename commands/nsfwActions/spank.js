@@ -7,9 +7,7 @@ const { embedInvis } = require("../../colors.json");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const translate = require("../../helpers/locale");
 
-async function spank(msg, [user]) {
-  const locale = "ru-RU";
-
+async function spank(msg, [user], locale) {
   if (!msg.channel.nsfw) {
     msg.channel.send("Я не могу отправлять это в SFW канале");
     return;
@@ -29,12 +27,12 @@ async function spank(msg, [user]) {
   try {
     imageUrl = await spankNeko();
   } catch {
-    spank(msg, [user]);
+    spank(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    spank(msg, [user]);
+    spank(msg, [user], locale);
     return;
   }
 

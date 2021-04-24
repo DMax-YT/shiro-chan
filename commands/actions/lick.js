@@ -6,9 +6,7 @@ const { embedInvis } = require("../../colors.json");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const translate = require("../../helpers/locale");
 
-async function lick(msg, [user]) {
-  const locale = "ru-RU";
-
+async function lick(msg, [user], locale) {
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
     msg.channel.send(translate("specifyUser", locale));
@@ -23,12 +21,12 @@ async function lick(msg, [user]) {
   try {
     imageUrl = await lickNekoChxdn();
   } catch {
-    lick(msg, [user]);
+    lick(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    lick(msg, [user]);
+    lick(msg, [user], locale);
     return;
   }
 

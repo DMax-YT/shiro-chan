@@ -9,9 +9,7 @@ const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const translate = require("../../helpers/locale");
 
-async function tickle(msg, [user]) {
-  const locale = "ru-RU";
-
+async function tickle(msg, [user], locale) {
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
     msg.channel.send(translate("specifyUser", locale));
@@ -27,12 +25,12 @@ async function tickle(msg, [user]) {
   try {
     imageUrl = await provider();
   } catch {
-    tickle(msg, [user]);
+    tickle(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    tickle(msg, [user]);
+    tickle(msg, [user], locale);
     return;
   }
 

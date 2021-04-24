@@ -5,19 +5,17 @@ const {
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
-async function confused(msg, args) {
-  const locale = "ru-RU";
-
+async function confused(msg, args, locale) {
   let imageUrl;
   try {
     imageUrl = await confusedNekoChxdn();
   } catch {
-    confused(msg, args);
+    confused(msg, args, locale);
     return;
   }
 
   if (!imageUrl) {
-    confused(msg, args);
+    confused(msg, args, locale);
     return;
   }
 

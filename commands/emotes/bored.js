@@ -5,19 +5,17 @@ const {
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
-async function bored(msg, args) {
-  const locale = "ru-RU";
-
+async function bored(msg, args, locale) {
   let imageUrl;
   try {
     imageUrl = await boredNekoChxdn();
   } catch {
-    bored(msg, args);
+    bored(msg, args, locale);
     return;
   }
 
   if (!imageUrl) {
-    bored(msg, args);
+    bored(msg, args, locale);
     return;
   }
 

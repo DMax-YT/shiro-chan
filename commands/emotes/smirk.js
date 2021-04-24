@@ -5,19 +5,17 @@ const {
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
-async function smirk(msg, args) {
-  const locale = "ru-RU";
-
+async function smirk(msg, args, locale) {
   let imageUrl;
   try {
     imageUrl = await smirkNekoChxdn();
   } catch {
-    smirk(msg, args);
+    smirk(msg, args, locale);
     return;
   }
 
   if (!imageUrl) {
-    smirk(msg, args);
+    smirk(msg, args, locale);
     return;
   }
 

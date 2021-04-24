@@ -5,19 +5,17 @@ const {
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
-async function nervous(msg, args) {
-  const locale = "ru-RU";
-
+async function nervous(msg, args, locale) {
   let imageUrl;
   try {
     imageUrl = await nervousNekoChxdn();
   } catch {
-    nervous(msg, args);
+    nervous(msg, args, locale);
     return;
   }
 
   if (!imageUrl) {
-    nervous(msg, args);
+    nervous(msg, args, locale);
     return;
   }
 

@@ -5,19 +5,17 @@ const {
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
-async function wink(msg, args) {
-  const locale = "ru-RU";
-
+async function wink(msg, args, locale) {
   let imageUrl;
   try {
     imageUrl = await winkNekoChxdn();
   } catch {
-    wink(msg, args);
+    wink(msg, args, locale);
     return;
   }
 
   if (!imageUrl) {
-    wink(msg, args);
+    wink(msg, args, locale);
     return;
   }
 

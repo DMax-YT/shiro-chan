@@ -5,19 +5,17 @@ const {
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
-async function angry(msg, [user]) {
-  const locale = "ru-RU";
-
+async function angry(msg, args, locale) {
   let imageUrl;
   try {
     imageUrl = await angryNekoChxdn();
   } catch {
-    angry(msg, [user]);
+    angry(msg, args, locale);
     return;
   }
 
   if (!imageUrl) {
-    angry(msg, [user]);
+    angry(msg, args, locale);
     return;
   }
 

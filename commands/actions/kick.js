@@ -6,9 +6,7 @@ const { embedInvis } = require("../../colors.json");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const translate = require("../../helpers/locale");
 
-async function kick(msg, [user]) {
-  const locale = "ru-RU";
-
+async function kick(msg, [user], locale) {
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
     msg.channel.send(translate("specifyUser", locale));
@@ -23,12 +21,12 @@ async function kick(msg, [user]) {
   try {
     imageUrl = await kickNekoChxdn();
   } catch {
-    kick(msg, [user]);
+    kick(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    kick(msg, [user]);
+    kick(msg, [user], locale);
     return;
   }
 

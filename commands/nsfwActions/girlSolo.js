@@ -8,7 +8,7 @@ const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 
-async function anal(msg, [user]) {
+async function anal(msg, [user], locale) {
   const userMention = await getMemberByMention(msg.guild, user);
   if (!userMention) {
     msg.channel.send("Укажите пользователя");
@@ -24,12 +24,12 @@ async function anal(msg, [user]) {
   try {
     imageUrl = await provider();
   } catch {
-    anal(msg, [user]);
+    anal(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    anal(msg, [user]);
+    anal(msg, [user], locale);
     return;
   }
 

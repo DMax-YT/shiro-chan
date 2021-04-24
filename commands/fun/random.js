@@ -2,9 +2,7 @@ const { random } = require("../../helpers/random");
 const { invalidUsage } = require("../../helpers/result");
 const translate = require("../../helpers/locale");
 
-async function randomExecute(msg, args) {
-  const locale = "ru-RU";
-
+async function randomExecute(msg, args, locale) {
   const min = parseInt(args[0]);
   const max = parseInt(args[1]);
   if (isNaN(min) || isNaN(max)) {

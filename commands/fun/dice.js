@@ -16,8 +16,8 @@ const numToDice = [
 const minTime = 0.25;
 const maxTime = 1.5;
 
-async function dice(msg, args) {
-  const locale = "ru-RU";
+async function dice(msg, args, locale) {
+
   const countOfRolls = parseInt(args[0]);
 
   if (countOfRolls && countOfRolls > 0 && countOfRolls < 10) {

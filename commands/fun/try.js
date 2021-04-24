@@ -8,13 +8,13 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 
-async function tryCommand(msg, args) {
+async function tryCommand(msg, args, locale) {
   if (!args.length) {
     invalidUsage(msg.channel, this.name, this.usage);
     return;
   }
 
-  const locale = "ru-RU";
+
 
   const action = args.join(" ");
   const embedDescription = translate("try.action", locale, {
