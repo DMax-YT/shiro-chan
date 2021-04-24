@@ -14,8 +14,6 @@ async function tryCommand(msg, args, locale) {
     return;
   }
 
-
-
   const action = args.join(" ");
   const embedDescription = translate("try.action", locale, {
     caller: msg.member,
@@ -33,7 +31,7 @@ async function tryCommand(msg, args, locale) {
   const success = randomFloat(0, 100) >= 50 ? true : false;
   await tryMessage.edit({
     embed: {
-      description: `${embedDescription}\n\n${
+      description: `${embedDescription} \\| ${
         success
           ? translate("try.success", locale)
           : translate("try.failure", locale)
