@@ -40,4 +40,4 @@
 
 # Global:
 - [] Delete message after action/emote commands usage
-- [] Multi-language
+- [x] Multi-language
