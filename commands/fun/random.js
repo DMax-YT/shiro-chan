@@ -12,7 +12,7 @@ async function randomExecute(msg, args, locale) {
 
   msg.channel.send(
     translate("random.result", locale, {
-      num: random(min, max),
+      number: random(min, max),
     })
   );
 }
