@@ -1,4 +1,4 @@
-const { error } = require("../../helpers/result");
+const { error, success } = require("../../helpers/result");
 const translate = require("../../helpers/locale");
 
 async function prefix(msg, args, locale) {
