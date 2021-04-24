@@ -8,7 +8,7 @@ const getSubCommand = (command, [commandName, ...args]) => {
   const subCommand = command.subCommands.find(
     (command) =>
       command.name === commandNamelowerCase ||
-      command.alias.includes(commandNamelowerCase)
+      command.alias?.includes(commandNamelowerCase)
   );
   if (!subCommand)
     return {
@@ -42,7 +42,7 @@ async function messageHandler(msg) {
 
   let command =
     commands.get(cmd) ||
-    commands.find((command) => command.alias && command.alias.includes(cmd));
+    commands.find((command) => command.alias?.includes(cmd));
 
   if (!command) return;
 

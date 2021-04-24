@@ -1,0 +1,309 @@
+{
+  "bite": {
+    "action": "{attacker} bites {victim}",
+    "selfError": "You can't bite yourself...",
+
+    "description": "Allows you to bite someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "feed": {
+    "action": "{attacker} feeds {victim}",
+    "selfError": "You can't feed yourself...",
+
+    "description": "Allows you to feed someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "hug": {
+    "action": "{attacker} hugs {victim}",
+    "selfError": "You can't hug yourself...",
+
+    "description": "Allows you to hug someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "kick": {
+    "action": "{attacker} kicks {victim}",
+    "selfError": "You can't kick yourself...",
+
+    "description": "Allows you to kick someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "kiss": {
+    "action": "{attacker} kisses {victim}",
+    "selfError": "You can't kiss yourself...",
+
+    "description": "Allows you to kiss someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "lick": {
+    "action": "{attacker} licks {victim}",
+    "selfError": "You can't lick yourself...",
+
+    "description": "Allows you to lick someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "look": {
+    "action": "{attacker} looks at {victim}",
+    "selfError": "You can't look at yourself...",
+
+    "description": "Allows you to look at someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "pat": {
+    "action": "{attacker} pats {victim}",
+    "selfError": "You can't pat yourself...",
+
+    "description": "Allows you to pat someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "poke": {
+    "action": "{attacker} pokes {victim}",
+    "selfError": "You can't poke yourself...",
+
+    "description": "Allows you to poke someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "tickle": {
+    "action": "{attacker} tickles {victim}",
+    "selfError": "You can't tickle yourself...",
+
+    "description": "Allows you to tickle someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "slap": {
+    "action": "{attacker} slaps {victim}",
+    "selfError": "You can't slap yourself...",
+
+    "description": "Allows you to slap someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+
+  "anal": {
+    "action": "{attacker} has anal sex with {victim}",
+    "selfError": "You can't have anal sex with yourself...",
+
+    "description": "Allows you to have anal sex with someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "blowjob": {
+    "action": "{attacker} gives {victim} a blowjob",
+    "selfError": "You can't give yourself a blowjob...",
+
+    "description": "Allows you to give blowjob someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "cum": {
+    "action": "{attacker} cums into {victim}",
+    "selfError": "You can't cum into yourself...",
+
+    "description": "Allows you to cum into someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "fuck": {
+    "action": "{attacker} fucks {victim}",
+    "selfError": "You can't fuck yourself...",
+
+    "description": "Allows you to fuck someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "kuni": {
+    "action": "{attacker} makes kuni {victim}",
+    "selfError": "You can't make yourself kuni...",
+
+    "description": "Allows you to make kuni someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+  "spank": {
+    "action": "{attacker} spanks {victim}",
+    "selfError": "You can't spank yourself...",
+
+    "description": "Allows you to spank someone",
+    "usage": ["[@user]"],
+    "examples": ["@DMax"]
+  },
+
+  "angry": {
+    "action": "{caller} is angry",
+
+    "description": "Allows you to be angry",
+    "usage": [""],
+    "examples": [""]
+  },
+  "annoy": {
+    "action": "{caller} is annoyed",
+
+    "description": "Allows you to be annoyed",
+    "usage": [""],
+    "examples": [""]
+  },
+  "blush": {
+    "action": "{caller} is blushing",
+
+    "description": "Allows you to blush",
+    "usage": [""],
+    "examples": [""]
+  },
+  "bored": {
+    "action": "{caller} is bored",
+
+    "description": "Allows you to be bored",
+    "usage": [""],
+    "examples": [""]
+  },
+  "confused": {
+    "action": "{caller} is confused",
+
+    "description": "Allows you to be confused",
+    "usage": [""],
+    "examples": [""]
+  },
+  "cry": {
+    "action": "{caller} is crying",
+
+    "description": "Allows you to cry",
+    "usage": [""],
+    "examples": [""]
+  },
+  "dance": {
+    "action": "{caller} is dancing",
+
+    "description": "Allows you to dance",
+    "usage": [""],
+    "examples": [""]
+  },
+  "happy": {
+    "action": "{caller} is happy",
+
+    "description": "Allows you to be happy",
+    "usage": [""],
+    "examples": [""]
+  },
+  "laugh": {
+    "action": "{caller} is laughing",
+
+    "description": "Allows you to laugh",
+    "usage": [""],
+    "examples": [""]
+  },
+  "nervous": {
+    "action": "{caller} is nervous",
+
+    "description": "Allows you to be nervous",
+    "usage": [""],
+    "examples": [""]
+  },
+  "pout": {
+    "action": "{caller} is sulking",
+
+    "description": "Allows you to pout",
+    "usage": [""],
+    "examples": [""]
+  },
+  "sleep": {
+    "action": "{caller} is sleeping",
+
+    "description": "Allows you to sleep",
+    "usage": [""],
+    "examples": [""]
+  },
+  "smirk": {
+    "action": "{caller} is grinning",
+
+    "description": "Allows you to smirk",
+    "usage": [""],
+    "examples": [""]
+  },
+  "wink": {
+    "action": "{caller} is winking",
+
+    "description": "Allows you to wink",
+    "usage": [""],
+    "examples": [""]
+  },
+
+  "try": {
+    "action": "*{caller} trying {action}*",
+    "success": "Success",
+    "failure": "Failure",
+
+    "description": "Allows you to try do the action",
+    "usage": ["[action]"],
+    "examples": ["take a coin from the floor"]
+  },
+  "dice": {
+    "rolled": "{user} rolled: {sum}",
+    "maxDicesError": "The maximum number of dice at a time shouldn't be more than 9",
+
+    "description": "Allows you to roll the dice",
+    "usage": ["(dices count)"],
+    "examples": ["", "2"]
+  },
+  "random": {
+    "result": "Your random number is `{number}`",
+
+    "description": "Gives you a random number in a given range",
+    "usage": ["[min] [max]"],
+    "examples": ["0 100"]
+  },
+
+  "help": {
+    "title": "Help",
+    "moreInfo": "📌 More info: {prefix}help (command name)",
+    "argsInfo": "📌 Argument: [] - required, () - optional",
+    "command": {
+      "description": "Description",
+      "usage": "Usage",
+      "alias": "Alias",
+      "noAlias": "No alias",
+      "examples": "Examples",
+
+      "nsfwError": "I can't send help about this command is SFW channel",
+      "notExist": "Command `{command}` doesn't exist"
+    },
+
+    "description": "Shows all bot commands or info about the specified",
+    "usage": ["(command name)"],
+    "examples": ["", "pet"]
+  },
+
+  "prefix": {
+    "current": "My current prefix here is **`{prefix}`**",
+    "change": "Prefix was successfully changed to **`{prefix}`**",
+    "tooLong": "Prefix can't be longer than 5 characters",
+
+    "description": "Allows you to change or view the current prefix",
+    "usage": ["(new prefix)"],
+    "examples": ["", "r!"]
+  },
+  "locale": {
+    "current": "Current language on server — **{locale}**",
+    "change": "Language was successfully changed to **{locale}**",
+    "unknown": "Unknown language",
+
+    "id": "ID",
+    "name": "Name",
+
+    "description": "Allows you to change or view the current language",
+    "usage": ["show", "(new language)"],
+    "examples": ["", "ru-RU", "show"]
+  },
+
+  "nsfwError": "I can't send this in SFW channel",
+  "specifyUser": "Specify a user, please",
+  "permsError": "You haven't enough permissions to use this command"
+}
