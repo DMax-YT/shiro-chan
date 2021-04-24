@@ -71,6 +71,14 @@
     "usage": ["[@пользователь]"],
     "examples": ["@DMax"]
   },
+  "tickle": {
+    "action": "{attacker} щекочет {victim}",
+    "selfError": "Ты не можешь защекотать сам(а) себе...",
+
+    "description": "Позволяет вам защекотать кого-либо",
+    "usage": ["[@пользователь]"],
+    "examples": ["@DMax"]
+  },
   "slap": {
     "action": "{attacker} даёт пощечину {victim}",
     "selfError": "Ты не можешь дать пощечину сам(а) себе...",
