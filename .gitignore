@@ -104,6 +104,7 @@ dist
 .tern-port
 
 config.json
+tokens.json
 yarn.lock
 package-lock.json
 /db
