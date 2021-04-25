@@ -7,7 +7,7 @@ async function prefix(msg, args, locale) {
   if (!newPrefix) {
     msg.channel.send(
       translate("prefix.current", locale, {
-        prefix: msg.client.server.get(msg.guild.id).prefix,
+        prefix: msg.client.server.get(msg.guild.id, "prefix"),
       })
     );
     return;
