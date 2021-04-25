@@ -280,6 +280,14 @@
     "usage": ["(command name)"],
     "examples": ["", "pet"]
   },
+  "ping": {
+    "pinging": "Pinging...",
+    "pong": "🏓: {ws} ms\n\n⏱️: {loopback} ms",
+
+    "description": "Shows bot ping",
+    "usage": [""],
+    "examples": [""]
+  },
 
   "prefix": {
     "current": "My current prefix here is **`{prefix}`**",
