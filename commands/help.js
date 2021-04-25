@@ -1,8 +1,8 @@
 const { error } = require("../helpers/result");
 const translate = require("../helpers/locale");
-const { prefix } = require("../config.json");
 
 async function help(msg, args, locale) {
+  const prefix = msg.client.server.get(msg.guild.id, "prefix");
   let helpEmbed = {
     title: translate("help.title", locale),
     color: 0x03c2fc,
@@ -88,7 +88,9 @@ async function help(msg, args, locale) {
       ...helpEmbed,
       fields: fields.sort((a, b) => a.name.localeCompare(b.name)),
       footer: {
-        text: translate("help.moreInfo", locale),
+        text: translate("help.moreInfo", locale, {
+          prefix,
+        }),
       },
     };
   }
