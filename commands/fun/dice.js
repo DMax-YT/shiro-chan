@@ -17,7 +17,6 @@ const minTime = 0.25;
 const maxTime = 1.5;
 
 async function dice(msg, args, locale) {
-
   const countOfRolls = parseInt(args[0]);
 
   if (countOfRolls && countOfRolls > 0 && countOfRolls < 10) {
@@ -43,7 +42,7 @@ async function dice(msg, args, locale) {
       }
     );
   } else if (countOfRolls && countOfRolls >= 10) {
-    error(msg.channel, translate("dice.maxDicesError", locale));
+    error(msg.channel, translate("dice.maxDicesError", locale), locale);
   } else {
     const rolling = await msg.channel.send(randomDice);
     await sleep(randomFloat(minTime, maxTime) * 1000);

@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { prefix } = require("../config.json");
+const translate = require("./locale");
 
 //#region Images
 const errorImage = fs.readFileSync(
@@ -11,7 +12,7 @@ const successImage = fs.readFileSync(
 );
 //#endregion
 
-const error = (channel, text) =>
+const error = (channel, text, locale) =>
   channel.send({
     files: [
       {
@@ -21,7 +22,7 @@ const error = (channel, text) =>
     ],
     embed: {
       author: {
-        name: "Ошибка",
+        name: translate("error", locale),
         icon_url: "attachment://error.png",
       },
       description: text,
@@ -29,8 +30,8 @@ const error = (channel, text) =>
     },
   });
 
-const invalidUsage = async (channel, commandName, usages) => {
-  return channel.send({
+const invalidUsage = async (channel, commandName, locale) =>
+  channel.send({
     files: [
       {
         name: "error.png",
@@ -39,18 +40,17 @@ const invalidUsage = async (channel, commandName, usages) => {
     ],
     embed: {
       author: {
-        name: "Неверное использование",
+        name: translate("invalidUsage", locale),
         icon_url: "attachment://error.png",
       },
-      description: usages
-        .map((example) => prefix + commandName + " " + example)
+      description: translate(`${commandName}.usage`, locale)
+        .map((usage) => prefix + commandName + " " + usage)
         .join("\n"),
       color: 0xd24a43,
     },
   });
-};
 
-const success = (channel, text) =>
+const success = (channel, text, locale) =>
   channel.send({
     files: [
       {
@@ -60,7 +60,7 @@ const success = (channel, text) =>
     ],
     embed: {
       author: {
-        name: "Успех",
+        name: translate("success", locale),
         icon_url: "attachment://success.png",
       },
       description: text,

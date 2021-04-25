@@ -57,7 +57,8 @@ async function localeExecute(msg, args, locale) {
     msg.channel,
     translate("locale.change", newLocale, {
       locale: locales[newLocale],
-    })
+    }),
+    locale
   );
 }
 

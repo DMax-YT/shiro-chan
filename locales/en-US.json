@@ -323,5 +323,9 @@
   "specifyUser": "Specify a user, please",
   "permsError": "You haven't enough permissions to use this command",
 
+  "error": "Error",
+  "success": "Success",
+  "invalidUsage": "Invalid Usage",
+
   "hello": "Hello! I am {me}, roleplay bot.\n\n`-` You can see all my commands by using `{prefix}help`\n`-` My prefix here is **`{prefix}`**\nIt can be changed by using `{prefix}prefix new_prefix`\n`-` More info and help in my support server: <{serverInvite}>"
 }

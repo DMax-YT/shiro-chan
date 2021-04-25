@@ -10,7 +10,7 @@ const { embedInvis } = require("../../colors.json");
 
 async function tryCommand(msg, args, locale) {
   if (!args.length) {
-    invalidUsage(msg.channel, this.name, this.usage);
+    invalidUsage(msg.channel, this.name, locale);
     return;
   }
 

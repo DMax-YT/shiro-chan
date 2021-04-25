@@ -20,13 +20,14 @@ async function help(msg, args, locale) {
         msg.channel,
         translate("help.command.notExist", locale, {
           command: name,
-        })
+        }),
+        locale
       );
       return;
     }
 
     if (!msg.channel.nsfw && command.nsfw) {
-      error(msg.channel, translate("help.command.nsfwError", locale));
+      error(msg.channel, translate("help.command.nsfwError", locale), locale);
       return;
     }
 

@@ -22,7 +22,7 @@ class BasePoster {
       await axios.post(url, body, { headers });
       this.availableQueries -= 1;
     } catch (e) {
-      console.error(`Failed to post to "${url}"`);
+      console.error(`Failed to post to "${url}"`, e.response?.data);
     }
   }
 }

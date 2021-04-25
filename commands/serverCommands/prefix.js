@@ -28,7 +28,8 @@ async function prefix(msg, args, locale) {
     msg.channel,
     translate("prefix.change", locale, {
       prefix: newPrefix,
-    })
+    }),
+    locale
   );
 }
 
