@@ -16,6 +16,10 @@ const { owners, prefix, token } = client.config;
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
+  client.user.setActivity({
+    name: `@${client.user.username}`,
+    type: "LISTENING",
+  });
 });
 
 //#region eval
