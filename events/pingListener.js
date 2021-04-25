@@ -1,4 +1,5 @@
 const translate = require("../helpers/locale");
+const { server: serverInvite } = require("../invites.json");
 
 let mentions = [];
 
@@ -24,9 +25,9 @@ async function messageHandler(msg) {
 
   msg.channel.send(
     translate("hello", locale, {
-      serverInvite: "https://discord.gg/Hr6Z9nNE2d",
       prefix: serverPrefix,
       me: msg.guild.me,
+      serverInvite,
     })
   );
 }

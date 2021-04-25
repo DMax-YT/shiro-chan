@@ -1,11 +1,7 @@
 const translate = require("../helpers/locale");
+const { bot: botInvite, server: serverInvite } = require("../invites.json");
 
-const serverInvite = "https://discord.gg/Hr6Z9nNE2d";
 async function invite(msg, args, locale) {
-  const botInvite = await msg.client.generateInvite({
-    permissions: 321608,
-  });
-
   msg.channel.send({
     embed: {
       title: translate("invite.title", locale),
