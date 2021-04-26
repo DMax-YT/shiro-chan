@@ -66,7 +66,7 @@ async function blowjobNeko2() {
 module.exports = {
   name: "blowjob",
   execute: blowjob,
-  alias: [],
+  alias: ["bj"],
   argsRequired: 0,
   module: "Actions NSFW",
   isPrivate: false,
