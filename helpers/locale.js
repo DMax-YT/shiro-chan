@@ -10,9 +10,8 @@ const translate = (templatePath, locale = "ru-RU", data = {}) => {
     return template;
   }
 
-  return template.replace(
-    /{([\w\d_]*?)}/gm,
-    (match, key) => data[key] || match
+  return template.replace(/{([\w\d_]*?)}/gm, (match, key) =>
+    data.hasOwnProperty(key) ? data[key] : match
   );
 };
 
