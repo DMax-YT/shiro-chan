@@ -11,7 +11,7 @@ const translate = require("../../helpers/locale");
 
 async function anal(msg, [user], locale) {
   if (!msg.channel.nsfw) {
-    msg.channel.send("Я не могу отправлять это в SFW канале");
+    msg.channel.send(translate("nsfwError", locale));
     return;
   }
 
