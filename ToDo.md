@@ -21,7 +21,7 @@
 - [x] confused (neko-chxn)
 - [x] dance (neko-chxn)
 - [x] happy (neko-chxn)
-- [?] love (neko-chxn)
+- [ ] love (neko-chxn)
 - [x] pout (neko-chxn)
 - [x] smirk (neko-chxn)
 - [x] sleep (neko-chxn)
@@ -33,11 +33,11 @@
 - [x] cumsluts (neko api, neko-chxn)
 - [x] classic(fuck) (neko api, neko-chxn)
 - [x] anal (neko api, neko-chxn)
-- [?] solo (neko-chxn, neko api)
-- [-] boobs (neko api)
+- [ ] solo (neko-chxn, neko api)
+- [ ] boobs (neko api)
 - [x] blowjob (neko api)
 - [x] spank (neko api)
 
 # Global:
-- [] Delete message after action/emote commands usage
+- [ ] Delete message after action/emote commands usage
 - [x] Multi-language
