@@ -24,7 +24,12 @@ async function blowjob(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([blowjobNeko, blowjobNeko2]);
+  const provider = getRandomItem([
+    blowjobNeko,
+    blowjobNeko2,
+    blowjobNekosFun,
+    blowjobNekosFun2,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -61,6 +66,16 @@ async function blowjobNeko2() {
   return await neko.nsfw
     .bJ()
     .then((r) => (r.url.endsWith(".gif") ? r.url : blowjobNeko2()));
+}
+async function blowjobNekosFun() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/blowjob")
+    .then((req) => req.data.image);
+}
+async function blowjobNekosFun2() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/bj")
+    .then((req) => req.data.image);
 }
 
 module.exports = {

@@ -4,6 +4,7 @@ const {
 const NekoClient = require("nekos.life");
 const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
+const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const translate = require("../../helpers/locale");
 
@@ -23,6 +24,7 @@ async function spank(msg, [user], locale) {
     return;
   }
 
+  const provider = getRandomItem([spankNeko, spankNekosFun]);
   let imageUrl;
   try {
     imageUrl = await spankNeko();
@@ -54,6 +56,11 @@ async function spankNeko() {
   return await neko.nsfw
     .spank()
     .then((r) => (r.url.endsWith(".gif") ? r.url : spankNeko()));
+}
+async function spankNekosFun() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/spank")
+    .then((req) => req.data.image);
 }
 
 module.exports = {

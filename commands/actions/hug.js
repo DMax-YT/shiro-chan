@@ -23,10 +23,12 @@ async function hug(msg, [user], locale) {
   const provider = getRandomItem([
     hugNeko,
     hugNekoChxdn,
+    hugNekosFun,
     hugSra,
     hugShiro,
     cuddleNeko,
     cuddleNekoChxdn,
+    cuddleNekosFun,
   ]);
   let imageUrl;
   try {
@@ -68,6 +70,11 @@ async function hugSra() {
     .get("https://some-random-api.ml/animu/hug")
     .then((req) => req.data.link);
 }
+async function hugNekosFun() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/hug")
+    .then((req) => req.data.image);
+}
 async function hugShiro() {
   return await axios
     .get("https://shiro.gg/api/images/hug")
@@ -81,6 +88,11 @@ async function cuddleNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/cuddle/img")
     .then((req) => req.data.url);
+}
+async function cuddleNekosFun() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/cuddle")
+    .then((req) => req.data.image);
 }
 
 module.exports = {

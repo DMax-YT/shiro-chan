@@ -20,7 +20,12 @@ async function kiss(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([kissNeko, kissNekoChxdn, kissShiro]);
+  const provider = getRandomItem([
+    kissNeko,
+    kissNekoChxdn,
+    kissShiro,
+    kissNekosFun,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -55,6 +60,11 @@ async function kissNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/kiss/img")
     .then((req) => req.data.url);
+}
+async function kissNekosFun() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/kiss")
+    .then((req) => req.data.image);
 }
 async function kissShiro() {
   return await axios

@@ -8,7 +8,6 @@ const translate = require("../../helpers/locale");
 
 async function blush(msg, args, locale) {
   const provider = getRandomItem([blushShiro, blushNekoChxdn]);
-
   let imageUrl;
   try {
     imageUrl = await provider();

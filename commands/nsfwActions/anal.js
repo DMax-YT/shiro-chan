@@ -25,7 +25,7 @@ async function anal(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([analNeko, analNekoChxdn]);
+  const provider = getRandomItem([analNeko, analNekoChxdn, analNekosFun]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -62,6 +62,11 @@ async function analNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/anal/img")
     .then((req) => req.data.url);
+}
+async function analNekosFun() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/anal")
+    .then((req) => req.data.image);
 }
 
 module.exports = {

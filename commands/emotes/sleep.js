@@ -8,7 +8,6 @@ const translate = require("../../helpers/locale");
 
 async function sleep(msg, args, locale) {
   const provider = getRandomItem([sleepNekoChxdn, sleepShiro]);
-
   let imageUrl;
   try {
     imageUrl = await sleepNekoChxdn();

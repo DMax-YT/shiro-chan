@@ -8,7 +8,6 @@ const translate = require("../../helpers/locale");
 
 async function cry(msg, args, locale) {
   const provider = getRandomItem([cryNekoChxdn, cryShiro]);
-
   let imageUrl;
   try {
     imageUrl = await provider();

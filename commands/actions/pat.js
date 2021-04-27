@@ -20,7 +20,13 @@ async function pat(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([patNeko, patNekoChxdn, patSra, patShiro]);
+  const provider = getRandomItem([
+    patNeko,
+    patNekoChxdn,
+    patNekosFun,
+    patSra,
+    patShiro,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -55,6 +61,11 @@ async function patNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/pat/img")
     .then((req) => req.data.url);
+}
+async function patNekosFun() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/pat")
+    .then((req) => req.data.image);
 }
 async function patSra() {
   return await axios

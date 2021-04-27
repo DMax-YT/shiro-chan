@@ -20,7 +20,12 @@ async function tickle(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([tickleNeko, tickleNekoChxdn, tickleShiro]);
+  const provider = getRandomItem([
+    tickleNeko,
+    tickleNekoChxdn,
+    tickleNekosFun,
+    tickleShiro,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -55,6 +60,11 @@ async function tickleNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/tickle/img")
     .then((req) => req.data.url);
+}
+async function tickleNekosFun() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/tickle")
+    .then((req) => req.data.image);
 }
 async function tickleShiro() {
   return await axios

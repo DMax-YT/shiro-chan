@@ -8,7 +8,6 @@ const translate = require("../../helpers/locale");
 
 async function pout(msg, args, locale) {
   const provider = getRandomItem([poutNekoChxdn, poutShiro]);
-
   let imageUrl;
   try {
     imageUrl = await provider();

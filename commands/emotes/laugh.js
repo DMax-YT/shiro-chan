@@ -3,12 +3,14 @@ const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const getRandomItem = require("../../helpers/getRandomItem");
 const translate = require("../../helpers/locale");
 
 async function laugh(msg, args, locale) {
+  const provider = getRandomItem([laughNekoChxdn, laughNekosFun]);
   let imageUrl;
   try {
-    imageUrl = await laughNekoChxdn();
+    imageUrl = await provider();
   } catch {
     laugh(msg, args, locale);
     return;
@@ -34,6 +36,11 @@ async function laughNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/laugh/img")
     .then((req) => req.data.url);
+}
+async function laughNekosFun() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/laugh")
+    .then((req) => req.data.image);
 }
 
 module.exports = {

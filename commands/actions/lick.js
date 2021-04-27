@@ -18,8 +18,7 @@ async function lick(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([lickNekoChxdn, lickShiro]);
-
+  const provider = getRandomItem([lickNekoChxdn, lickShiro, lickNekosFun]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -51,6 +50,11 @@ async function lickNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/lick/img")
     .then((req) => req.data.url);
+}
+async function lickNekosFun() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/lick")
+    .then((req) => req.data.image);
 }
 async function lickShiro() {
   return await axios

@@ -20,7 +20,12 @@ async function poke(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([pokeNeko, pokeNekoChxdn, pokeShiro]);
+  const provider = getRandomItem([
+    pokeNeko,
+    pokeNekoChxdn,
+    pokeNekosFun,
+    pokeShiro,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -60,6 +65,11 @@ async function pokeShiro() {
   return await axios
     .get("https://shiro.gg/api/images/poke")
     .then((req) => (req.data.fileType === "gif" ? req.data.url : pokeShiro()));
+}
+async function pokeNekosFun() {
+  return await axios
+    .get("http://api.nekos.fun:8080/api/poke")
+    .then((req) => req.data.image);
 }
 
 module.exports = {
