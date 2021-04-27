@@ -24,6 +24,7 @@ async function hug(msg, [user], locale) {
     hugNeko,
     hugNekoChxdn,
     hugSra,
+    hugShiro,
     cuddleNeko,
     cuddleNekoChxdn,
   ]);
@@ -66,6 +67,11 @@ async function hugSra() {
   return await axios
     .get("https://some-random-api.ml/animu/hug")
     .then((req) => req.data.link);
+}
+async function hugShiro() {
+  return await axios
+    .get("https://shiro.gg/api/images/hug")
+    .then((req) => (req.data.fileType === "gif" ? req.data.url : hugShiro()));
 }
 
 async function cuddleNeko() {

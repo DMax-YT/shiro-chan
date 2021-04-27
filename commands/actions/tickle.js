@@ -20,7 +20,7 @@ async function tickle(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([tickleNeko, tickleNekoChxdn]);
+  const provider = getRandomItem([tickleNeko, tickleNekoChxdn, tickleShiro]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -55,6 +55,13 @@ async function tickleNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/tickle/img")
     .then((req) => req.data.url);
+}
+async function tickleShiro() {
+  return await axios
+    .get("https://shiro.gg/api/images/tickle")
+    .then((req) =>
+      req.data.fileType === "gif" ? req.data.url : tickleShiro()
+    );
 }
 
 module.exports = {

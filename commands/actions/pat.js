@@ -20,7 +20,7 @@ async function pat(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([patNeko, patNekoChxdn, patSra]);
+  const provider = getRandomItem([patNeko, patNekoChxdn, patSra, patShiro]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -60,6 +60,11 @@ async function patSra() {
   return await axios
     .get("https://some-random-api.ml/animu/pat")
     .then((req) => req.data.link);
+}
+async function patShiro() {
+  return await axios
+    .get("https://shiro.gg/api/images/pat")
+    .then((req) => (req.data.fileType === "gif" ? req.data.url : patShiro()));
 }
 
 module.exports = {

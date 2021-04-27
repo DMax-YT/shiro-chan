@@ -2,13 +2,16 @@ const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
+const getRandomItem = require("../../helpers/getRandomItem");
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
 async function blush(msg, args, locale) {
+  const provider = getRandomItem([blushShiro, blushNekoChxdn]);
+
   let imageUrl;
   try {
-    imageUrl = await blushNekoChxdn();
+    imageUrl = await provider();
   } catch {
     blush(msg, args, locale);
     return;
@@ -34,6 +37,12 @@ async function blushNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/blush/img")
     .then((req) => req.data.url);
+}
+
+async function blushShiro() {
+  return await axios
+    .get("https://shiro.gg/api/images/blush")
+    .then((req) => (req.data.fileType === "gif" ? req.data.url : blushShiro()));
 }
 
 module.exports = {

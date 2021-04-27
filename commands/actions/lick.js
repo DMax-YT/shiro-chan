@@ -3,6 +3,7 @@ const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const translate = require("../../helpers/locale");
 
@@ -17,9 +18,11 @@ async function lick(msg, [user], locale) {
     return;
   }
 
+  const provider = getRandomItem([lickNekoChxdn, lickShiro]);
+
   let imageUrl;
   try {
-    imageUrl = await lickNekoChxdn();
+    imageUrl = await provider();
   } catch {
     lick(msg, [user], locale);
     return;
@@ -48,6 +51,11 @@ async function lickNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/lick/img")
     .then((req) => req.data.url);
+}
+async function lickShiro() {
+  return await axios
+    .get("https://shiro.gg/api/images/lick")
+    .then((req) => (req.data.fileType === "gif" ? req.data.url : lickShiro()));
 }
 
 module.exports = {

@@ -2,13 +2,16 @@ const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
+const getRandomItem = require("../../helpers/getRandomItem");
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
 async function cry(msg, args, locale) {
+  const provider = getRandomItem([cryNekoChxdn, cryShiro]);
+
   let imageUrl;
   try {
-    imageUrl = await cryNekoChxdn();
+    imageUrl = await provider();
   } catch {
     cry(msg, args, locale);
     return;
@@ -34,6 +37,12 @@ async function cryNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/cry/img")
     .then((req) => req.data.url);
+}
+
+async function cryShiro() {
+  return await axios
+    .get("https://shiro.gg/api/images/cry")
+    .then((req) => (req.data.fileType === "gif" ? req.data.url : cryShiro()));
 }
 
 module.exports = {
