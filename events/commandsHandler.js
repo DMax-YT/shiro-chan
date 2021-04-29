@@ -1,3 +1,5 @@
+const mentions = [];
+
 const getSubCommand = (command, [commandName, ...args]) => {
   if (!command.subCommands?.length)
     return {
@@ -30,14 +32,21 @@ async function messageHandler(msg) {
     },
   } = msg;
 
+  if (!mentions.length) {
+    mentions.push(`<@${msg.guild.me.id}> `, `<@!${msg.guild.me.id}> `);
+  }
   const serverConfig = server.ensure(msg.guild.id, {
     locale: "en-US",
     prefix,
   });
 
-  if (!msg.content.startsWith(serverConfig.prefix) || msg.webhookID) return;
+  const currentPrefix = mentions.reduce(
+    (a, v) => (msg.content.startsWith(v) ? v : a),
+    serverConfig.prefix
+  );
+  if (!msg.content.startsWith(currentPrefix) || msg.webhookID) return;
 
-  let args = msg.content.slice(serverConfig.prefix.length).split(/ +/);
+  let args = msg.content.slice(currentPrefix.length).split(/ +/);
   const cmd = args.shift().toLowerCase();
 
   let command =
