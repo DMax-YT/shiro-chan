@@ -1,6 +1,7 @@
 const DBLPoster = require("../botlistapi/DiscordBotListPoster");
 const FateslistPoster = require("../botlistapi/FateslistPoster");
-const { discordbotlist, fateslist } = require("../tokens.json");
+const ListcordPoster = require("../botlistapi/ListcordPoster");
+const tokens = require("../tokens.json");
 
 const posters = [];
 const setPosters = (id) => {
@@ -8,11 +9,17 @@ const setPosters = (id) => {
     posters.push(
       new DBLPoster({
         id,
-        token: discordbotlist,
+        token: tokens.discordbotlist,
       }),
       new FateslistPoster({
         id,
-        token: fateslist,
+        token: tokens.fateslist,
+      }),
+      new ListcordPoster({
+        id,
+        token: tokens.listcord,
+        availableQueries: 1,
+        ratelimit: 120000,
       })
     );
   }
