@@ -22,6 +22,7 @@ async function poke(msg, [user], locale) {
 
   const provider = getRandomItem([
     pokeNeko,
+    pokeNekosBest,
     pokeNekoChxdn,
     pokeNekosFun,
     pokeShiro,
@@ -70,6 +71,11 @@ async function pokeNekosFun() {
   return await axios
     .get("http://api.nekos.fun:8080/api/poke")
     .then((req) => req.data.image);
+}
+async function pokeNekosBest() {
+  return await axios
+    .get("https://nekos.best/poke")
+    .then((req) => req.data.url);
 }
 
 module.exports = {

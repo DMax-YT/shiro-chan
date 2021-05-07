@@ -20,7 +20,12 @@ async function feed(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([feedNeko, feedNekoChxdn, feedNekosFun]);
+  const provider = getRandomItem([
+    feedNeko,
+    feedNekoChxdn,
+    feedNekosFun,
+    feedNekosBest,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -54,6 +59,11 @@ async function feedNeko() {
 async function feedNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/feed/img")
+    .then((req) => req.data.url);
+}
+async function feedNekosBest() {
+  return await axios
+    .get("https://nekos.best/feed")
     .then((req) => req.data.url);
 }
 async function feedNekosFun() {

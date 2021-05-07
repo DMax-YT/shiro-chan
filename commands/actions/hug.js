@@ -22,11 +22,13 @@ async function hug(msg, [user], locale) {
 
   const provider = getRandomItem([
     hugNeko,
+    hugNekosBest,
     hugNekoChxdn,
     hugNekosFun,
     hugSra,
     hugShiro,
     cuddleNeko,
+    cuddleNekosBest,
     cuddleNekoChxdn,
     cuddleNekosFun,
   ]);
@@ -60,6 +62,9 @@ async function hug(msg, [user], locale) {
 async function hugNeko() {
   return await neko.sfw.hug().then((r) => r.url);
 }
+async function hugNekosBest() {
+  return await axios.get("https://nekos.best/hug").then((req) => req.data.url);
+}
 async function hugNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/hug/img")
@@ -83,6 +88,11 @@ async function hugShiro() {
 
 async function cuddleNeko() {
   return await neko.sfw.cuddle().then((r) => r.url);
+}
+async function cuddleNekosBest() {
+  return await axios
+    .get("https://nekos.best/cuddle")
+    .then((req) => req.data.url);
 }
 async function cuddleNekoChxdn() {
   return await axios

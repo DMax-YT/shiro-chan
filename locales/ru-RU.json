@@ -228,6 +228,13 @@
     "usage": [""],
     "examples": [""]
   },
+  "smug": {
+    "action": "{caller} выглядит самодовольно",
+
+    "description": "Позволяет вам выглядеть самодовольно",
+    "usage": [""],
+    "examples": [""]
+  },
   "wink": {
     "action": "{caller} подмигивает",
 

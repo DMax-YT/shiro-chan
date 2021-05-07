@@ -22,6 +22,7 @@ async function kiss(msg, [user], locale) {
 
   const provider = getRandomItem([
     kissNeko,
+    kissNekosBest,
     kissNekoChxdn,
     kissShiro,
     kissNekosFun,
@@ -59,6 +60,11 @@ async function kissNeko() {
 async function kissNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/kiss/img")
+    .then((req) => req.data.url);
+}
+async function kissNekosBest() {
+  return await axios
+    .get("https://nekos.best/kiss")
     .then((req) => req.data.url);
 }
 async function kissNekosFun() {

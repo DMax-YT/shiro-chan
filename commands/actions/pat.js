@@ -22,6 +22,7 @@ async function pat(msg, [user], locale) {
 
   const provider = getRandomItem([
     patNeko,
+    patNekosBest,
     patNekoChxdn,
     patNekosFun,
     patSra,
@@ -71,6 +72,9 @@ async function patSra() {
   return await axios
     .get("https://some-random-api.ml/animu/pat")
     .then((req) => req.data.link);
+}
+async function patNekosBest() {
+  return await axios.get("https://nekos.best/pat").then((req) => req.data.url);
 }
 async function patShiro() {
   return await axios

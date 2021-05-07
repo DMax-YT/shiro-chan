@@ -4,11 +4,13 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
+const getRandomItem = require("../../helpers/getRandomItem");
 
 async function dance(msg, args, locale) {
+  const provider = getRandomItem([danceNekoChxdn, danceNekosBest]);
   let imageUrl;
   try {
-    imageUrl = await danceNekoChxdn();
+    imageUrl = await provider();
   } catch {
     dance(msg, args, locale);
     return;
@@ -33,6 +35,12 @@ async function dance(msg, args, locale) {
 async function danceNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/dance/img")
+    .then((req) => req.data.url);
+}
+
+async function danceNekosBest() {
+  return await axios
+    .get("https://nekos.best/dance")
     .then((req) => req.data.url);
 }
 

@@ -7,7 +7,11 @@ const getRandomItem = require("../../helpers/getRandomItem");
 const translate = require("../../helpers/locale");
 
 async function laugh(msg, args, locale) {
-  const provider = getRandomItem([laughNekoChxdn, laughNekosFun]);
+  const provider = getRandomItem([
+    laughNekosBest,
+    laughNekoChxdn,
+    laughNekosFun,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -41,6 +45,11 @@ async function laughNekosFun() {
   return await axios
     .get("http://api.nekos.fun:8080/api/laugh")
     .then((req) => req.data.image);
+}
+async function laughNekosBest() {
+  return await axios
+    .get("https://nekos.best/laugh")
+    .then((req) => req.data.url);
 }
 
 module.exports = {

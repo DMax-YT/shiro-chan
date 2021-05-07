@@ -228,6 +228,13 @@
     "usage": [""],
     "examples": [""]
   },
+  "smug": {
+    "action": "{caller} looks smug",
+
+    "description": "Allows you to look smug",
+    "usage": [""],
+    "examples": [""]
+  },
   "wink": {
     "action": "{caller} is winking",
 

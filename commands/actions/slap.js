@@ -19,7 +19,12 @@ async function slap(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([slapNeko, slapNekosFun, slapShiro]);
+  const provider = getRandomItem([
+    slapNeko,
+    slapNekosBest,
+    slapNekosFun,
+    slapShiro,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -49,6 +54,11 @@ async function slap(msg, [user], locale) {
 
 async function slapNeko() {
   return await neko.sfw.slap().then((r) => r.url);
+}
+async function slapNekosBest() {
+  return await axios
+    .get("https://nekos.best/slap")
+    .then((req) => req.data.url);
 }
 async function slapShiro() {
   return await axios

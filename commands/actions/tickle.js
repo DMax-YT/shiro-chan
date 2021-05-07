@@ -22,6 +22,7 @@ async function tickle(msg, [user], locale) {
 
   const provider = getRandomItem([
     tickleNeko,
+    tickleNekosBest,
     tickleNekoChxdn,
     tickleNekosFun,
     tickleShiro,
@@ -55,6 +56,11 @@ async function tickle(msg, [user], locale) {
 
 async function tickleNeko() {
   return await neko.sfw.tickle().then((r) => r.url);
+}
+async function tickleNekosBest() {
+  return await axios
+    .get("https://nekos.best/tickle")
+    .then((req) => req.data.url);
 }
 async function tickleNekoChxdn() {
   return await axios
