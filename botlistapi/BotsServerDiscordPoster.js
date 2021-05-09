@@ -3,7 +3,7 @@ const BasePoster = require("./BasePoster");
 class DiscordBotListPoster extends BasePoster {
   post({ guilds, shards }) {
     const headers = {
-      Authorization: this.token,
+      Authorization: `SDC ${this.token}`,
     };
 
     const body = {

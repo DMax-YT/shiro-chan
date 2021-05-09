@@ -43,10 +43,8 @@ const initPosters = (clientId) => {
 //#endregion Stats posters
 
 const postStats = async (clientId, shardId) => {
-  console.log(ready);
   if (beta || !ready) return;
 
-  console.log("Fetching values");
   const guilds = await manager
     .fetchClientValues("guilds.cache.size")
     .then((vals) => vals.reduce((acc, guilds) => acc + guilds, 0));

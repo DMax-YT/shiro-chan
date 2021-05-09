@@ -2,7 +2,7 @@ async function guildChange(guild) {
   guild.client.shard.send({
     type: "guildsUpdate",
     data: {
-      clientId: guild.me.id,
+      clientId: guild.client.user.id,
     },
   });
 }
