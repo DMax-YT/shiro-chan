@@ -43,8 +43,10 @@ const initPosters = (clientId) => {
 //#endregion Stats posters
 
 const postStats = async (clientId, shardId) => {
+  console.log(ready);
   if (beta || !ready) return;
 
+  console.log("Fetching values");
   const guilds = await manager
     .fetchClientValues("guilds.cache.size")
     .then((vals) => vals.reduce((acc, guilds) => acc + guilds, 0));
@@ -78,6 +80,6 @@ manager.on("shardCreate", (shard) => {
 });
 
 manager.spawn("auto", 1000).then(async (shards) => {
-  console.log(`\nSpawned ${shards.size} shards`);
   ready = true;
+  console.log(`\nSpawned ${shards.size} shards`);
 });
