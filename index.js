@@ -12,6 +12,7 @@ const FateslistPoster = require("./botlistapi/FateslistPoster");
 const ListcordPoster = require("./botlistapi/ListcordPoster");
 const BotsServerDiscordPoster = require("./botlistapi/BotsServerDiscordPoster");
 const tokens = require("./tokens.json");
+const BotsForDiscordPoster = require("./botlistapi/BotsForDiscordPoster");
 
 const posters = [];
 const initPosters = (clientId) => {
@@ -36,6 +37,10 @@ const initPosters = (clientId) => {
         token: tokens.botsServerDiscord,
         availableQueries: 1,
         ratelimit: 2000,
+      }),
+      new BotsForDiscordPoster({
+        id: clientId,
+        token: tokens.botsfordiscord,
       })
     );
   }
