@@ -43,10 +43,8 @@ const initPosters = (clientId) => {
 //#endregion Stats posters
 
 const postStats = async (clientId, shardId) => {
-  if (beta || !ready) return;
-
   const guilds = await manager
-    .fetchClientValues("this.guilds.cache.size")
+    .fetchClientValues("guilds.cache.size")
     .then((vals) => vals.reduce((acc, guilds) => acc + guilds, 0));
   const users = await manager
     .broadcastEval(
@@ -56,6 +54,7 @@ const postStats = async (clientId, shardId) => {
 
   const shards = manager.shards.size;
 
+  if (beta || !ready) return;
   if (!posters.length) initPosters(clientId);
 
   posters.map((poster) =>
