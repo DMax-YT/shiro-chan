@@ -11,8 +11,9 @@ const DBLPoster = require("./botlistapi/DiscordBotListPoster");
 const FateslistPoster = require("./botlistapi/FateslistPoster");
 const ListcordPoster = require("./botlistapi/ListcordPoster");
 const BotsServerDiscordPoster = require("./botlistapi/BotsServerDiscordPoster");
-const tokens = require("./tokens.json");
 const BotsForDiscordPoster = require("./botlistapi/BotsForDiscordPoster");
+const BoticordPoster = require("./botlistapi/BoticordPoster");
+const tokens = require("./tokens.json");
 
 const posters = [];
 const initPosters = (clientId) => {
