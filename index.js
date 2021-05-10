@@ -41,6 +41,10 @@ const initPosters = (clientId) => {
       new BotsForDiscordPoster({
         id: clientId,
         token: tokens.botsfordiscord,
+      }),
+      new BoticordPoster({
+        id: clientId,
+        token: tokens.boticord,
       })
     );
   }
