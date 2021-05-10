@@ -12,7 +12,7 @@ class BoticordPoster extends BasePoster {
       users,
     };
 
-    super.post(body, headers, "https://boticord.top/api/v1/stats");
+    super.post(body, headers, "https://boticord.top/api/stats");
   }
 }
 
