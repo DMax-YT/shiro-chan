@@ -1,5 +1,51 @@
-# Roleplay Discord Bot
+# Roleplay
 
-This is a roleplay discord bot with many commands.
+This is a roleplay bot for discord. It is created for roleplay servers, that needs some gifs to make RP easier; "turn off" your imagination for a second.
 
-Special for [ALT+F4](https://discord.gg/wvPK7KJkMc) discord server by DMax#3317 
+## Useful links
+
+[Invite bot](https://discord.com/oauth2/authorize?client_id=784465336899862559&permissions=321608&scope=bot) | [Join support server](https://discord.gg/Hr6Z9nNE2d)
+
+- [Upvote bot on discordbotlist.com](https://discord.ly/roleplay/upvote)
+- [Upvote bot on botsfordiscord.com](https://botsfordiscord.com/bot/784465336899862559/vote)
+
+## Features
+
+This bot has next features:
+
+- Multilanguage
+- Customizable prefix
+- Many roleplay commands
+
+Hope that bot will have more needing features.
+
+## Commands
+
+You can check it with with `./help`
+
+![Help menu command](https://cdn.discordapp.com/attachments/835192624427958313/835594485378318346/unknown.png)
+
+## Multilanguage
+
+Current supported languages:
+
+![Supported languages](https://cdn.discordapp.com/attachments/835192624427958313/835592118738354187/unknown.png)
+
+You can become a bot translator by contributing this repository.
+
+## More info
+
+If you have any ideas or you want to contribute this bot, join my [support server](https://discord.gg/Hr6Z9nNE2d). Also you can become my patron [here](https://patreon.com/dmax_programmer).
+
+## How can I contribute?
+
+You can contribute project to add some cool features to the bot or create a translation for new language.
+
+All you need to do this is just:
+
+1. Fork the repository
+2. Clone your fork: `git clone https://github.com/your-username/roleplay-bot.git`
+3. Create your feature branch: `git checkout -b my-new-feature`
+4. Commit your changes: `git commit -am 'uwu new feature'`
+5. Push to the branch: `git push origin my-new-feature`
+6. Submit a pull request
