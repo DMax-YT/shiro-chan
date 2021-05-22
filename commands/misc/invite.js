@@ -1,15 +1,18 @@
+const {
+  Util: { resolveColor },
+} = require("discord.js");
 const translate = require("../../helpers/locale");
 const { bot: botInvite, server: serverInvite } = require("../../invites.json");
+const { embedInvis } = require("../../colors.json");
 
 async function invite(msg, args, locale) {
   msg.channel.send({
     embed: {
-      title: translate("invite.title", locale),
       description: translate("invite.links", locale, {
         serverInvite,
         botInvite,
       }),
-      color: 0x00ff00,
+      color: resolveColor(embedInvis),
     },
   });
 }

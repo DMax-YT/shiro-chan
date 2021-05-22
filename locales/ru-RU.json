@@ -296,8 +296,7 @@
     "examples": [""]
   },
   "invite": {
-    "title": "Пригласить бота",
-    "links": "[Инвайт бота]({botInvite})\n[Сервер поддержки]({serverInvite})",
+    "links": "**[Инвайт бота]({botInvite})**\n**[Сервер поддержки]({serverInvite})**",
 
     "description": "Даёт приглашения для бота и на сервер поддержки",
     "usage": [""],

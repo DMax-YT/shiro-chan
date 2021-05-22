@@ -296,8 +296,7 @@
     "examples": [""]
   },
   "invite": {
-    "title": "Invite bot",
-    "links": "[Bot Invite]({botInvite})\n[Support Server]({serverInvite})",
+    "links": "**[Bot Invite]({botInvite})**\n**[Support Server]({serverInvite})**",
 
     "description": "Gives you links to bot and server invite",
     "usage": [""],
