@@ -1,5 +1,5 @@
-const translate = require("../helpers/locale");
-const { bot: botInvite, server: serverInvite } = require("../invites.json");
+const translate = require("../../helpers/locale");
+const { bot: botInvite, server: serverInvite } = require("../../invites.json");
 
 async function invite(msg, args, locale) {
   msg.channel.send({

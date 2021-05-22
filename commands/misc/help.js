@@ -1,5 +1,5 @@
-const { error } = require("../helpers/result");
-const translate = require("../helpers/locale");
+const { error } = require("../../helpers/result");
+const translate = require("../../helpers/locale");
 
 async function help(msg, args, locale) {
   const prefix = msg.client.server.get(msg.guild.id, "prefix");

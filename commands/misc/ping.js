@@ -1,4 +1,4 @@
-const translate = require("../helpers/locale");
+const translate = require("../../helpers/locale");
 
 async function ping(msg, args, locale) {
   const m = await msg.channel.send(translate("ping.pinging", locale));
