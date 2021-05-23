@@ -78,7 +78,22 @@ client.on("message", async (msg) => {
 });
 //#endregion
 
-const registerCommands = async () => {
+const requestLocales = () => {
+  client.shard.send({ type: "updateLocales" });
+};
+
+client.updateLocales = async () => {
+  const locales = await recursiveRead("./locales").then((files) =>
+    files.filter((file) => file.endsWith(".json"))
+  );
+
+  for (const file of locales) {
+    delete require.cache[require.resolve(file)];
+    require(file);
+  }
+};
+
+client.registerCommands = async () => {
   let error = "";
   try {
     const commands = await recursiveRead("./commands");
@@ -111,7 +126,7 @@ const registerCommands = async () => {
   }
 };
 
-const registerEvents = async () => {
+client.registerEvents = async () => {
   let error = "";
   try {
     const files = await recursiveRead("./events");
@@ -142,7 +157,7 @@ const registerEvents = async () => {
 };
 
 (async () => {
-  console.log(await registerCommands());
-  console.log(await registerEvents());
+  console.log(await client.registerCommands());
+  console.log(await client.registerEvents());
   client.login(token);
 })();

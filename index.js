@@ -80,9 +80,11 @@ const postStats = async (clientId, shardId) => {
 
 manager.on("shardCreate", (shard) => {
   console.log(`Spawning shard #${shard.id}`);
-  shard.on("message", (message) => {
+  shard.on("message", async (message) => {
     if (message.type === "guildsUpdate") {
-      postStats(message.data.clientId, shard.id);
+      await postStats(message.data.clientId, shard.id);
+    } else if (message.type === "updateLocales") {
+      await manager.broadcastEval("this.updateLocales()");
     }
   });
 });
