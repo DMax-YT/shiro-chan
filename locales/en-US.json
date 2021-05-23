@@ -298,7 +298,14 @@
   "invite": {
     "links": "**[Bot Invite]({botInvite})**\n**[Support Server]({serverInvite})**",
 
-    "description": "Gives you links to bot and server invite",
+    "description": "Gives links to the bot and server invite",
+    "usage": [""],
+    "examples": [""]
+  },
+  "donate": {
+    "support": "Support the creator",
+
+    "description": "Gives links to donate to the bot",
     "usage": [""],
     "examples": [""]
   },
