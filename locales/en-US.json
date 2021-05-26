@@ -309,6 +309,13 @@
     "usage": [""],
     "examples": [""]
   },
+  "vote": {
+    "request": "Vote for the bot please!!!",
+
+    "description": "Gives links to vote the bot",
+    "usage": [""],
+    "examples": [""]
+  },
 
   "prefix": {
     "current": "My current prefix here is **`{prefix}`**",
