@@ -4,7 +4,7 @@
     "selfError": "You can't bite yourself...",
 
     "description": "Allows you to bite someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "feed": {
@@ -12,7 +12,7 @@
     "selfError": "You can't feed yourself...",
 
     "description": "Allows you to feed someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "hug": {
@@ -20,7 +20,7 @@
     "selfError": "You can't hug yourself...",
 
     "description": "Allows you to hug someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "kick": {
@@ -28,7 +28,7 @@
     "selfError": "You can't kick yourself...",
 
     "description": "Allows you to kick someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "kiss": {
@@ -36,7 +36,7 @@
     "selfError": "You can't kiss yourself...",
 
     "description": "Allows you to kiss someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "lick": {
@@ -44,7 +44,7 @@
     "selfError": "You can't lick yourself...",
 
     "description": "Allows you to lick someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "look": {
@@ -52,7 +52,7 @@
     "selfError": "You can't look at yourself...",
 
     "description": "Allows you to look at someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "pat": {
@@ -60,7 +60,7 @@
     "selfError": "You can't pat yourself...",
 
     "description": "Allows you to pat someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "poke": {
@@ -68,7 +68,7 @@
     "selfError": "You can't poke yourself...",
 
     "description": "Allows you to poke someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "tickle": {
@@ -76,7 +76,7 @@
     "selfError": "You can't tickle yourself...",
 
     "description": "Allows you to tickle someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "slap": {
@@ -84,7 +84,7 @@
     "selfError": "You can't slap yourself...",
 
     "description": "Allows you to slap someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
 
@@ -93,7 +93,7 @@
     "selfError": "You can't have anal sex with yourself...",
 
     "description": "Allows you to have anal sex with someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "blowjob": {
@@ -101,7 +101,7 @@
     "selfError": "You can't give yourself a blowjob...",
 
     "description": "Allows you to give blowjob someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "cum": {
@@ -109,7 +109,7 @@
     "selfError": "You can't cum into yourself...",
 
     "description": "Allows you to cum into someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "fuck": {
@@ -117,7 +117,7 @@
     "selfError": "You can't fuck yourself...",
 
     "description": "Allows you to fuck someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "kuni": {
@@ -125,7 +125,7 @@
     "selfError": "You can't make yourself kuni...",
 
     "description": "Allows you to make kuni someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "spank": {
@@ -133,7 +133,7 @@
     "selfError": "You can't spank yourself...",
 
     "description": "Allows you to spank someone",
-    "usage": ["[@user]"],
+    "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
 

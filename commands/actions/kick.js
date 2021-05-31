@@ -4,10 +4,13 @@ const {
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
 const getMemberByMention = require("../../helpers/getMemberByMention");
+const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
 
 async function kick(msg, [user], locale) {
-  const userMention = await getMemberByMention(msg.guild, user);
+  const userMention = msg.reference?.messageID
+    ? await getMemberByReply(msg)
+    : await getMemberByMention(msg.guild, user);
   if (!userMention) {
     msg.channel.send(translate("specifyUser", locale));
     return;
