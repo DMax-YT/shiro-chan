@@ -17,6 +17,7 @@ const tokens = require("./tokens.json");
 
 const posters = [];
 const initPosters = (clientId) => {
+  return;
   if (!posters.length) {
     posters.push(
       new DBLPoster({
