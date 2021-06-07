@@ -4,7 +4,7 @@ const translate = require("../../helpers/locale");
 const {
   Util: { resolveColor },
 } = require("discord.js");
-const { embedInvis } = require("../../colors.json");
+const { botOfficial } = require("../../colors.json");
 
 const locales = {
   "en-US": "🇺🇸 American English",
@@ -26,7 +26,7 @@ async function showLocales(msg, args, locale) {
           inline: true,
         },
       ],
-      color: resolveColor(embedInvis),
+      color: resolveColor(botOfficial),
     },
   });
 }

@@ -1,11 +1,16 @@
 const { error } = require("../../helpers/result");
 const translate = require("../../helpers/locale");
 
+const {
+  Util: { resolveColor },
+} = require("discord.js");
+const { botOfficial } = require("../../colors.json");
+
 async function help(msg, args, locale) {
   const prefix = msg.client.server.get(msg.guild.id, "prefix");
   let helpEmbed = {
     title: translate("help.title", locale),
-    color: 0x03c2fc,
+    color: resolveColor(botOfficial),
   };
 
   if (args.length) {

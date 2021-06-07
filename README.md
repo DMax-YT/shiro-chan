@@ -1,13 +1,10 @@
-# Roleplay
+# Shiro Chan
 
 This is a roleplay bot for discord. It is created for roleplay servers, that needs some gifs to make RP easier; "turn off" your imagination for a second.
 
 ## Useful links
 
-[Invite bot](https://discord.com/oauth2/authorize?client_id=784465336899862559&permissions=321608&scope=bot) | [Join support server](https://discord.gg/Hr6Z9nNE2d)
-
-- [Upvote bot on discordbotlist.com](https://discord.ly/roleplay/upvote)
-- [Upvote bot on botsfordiscord.com](https://botsfordiscord.com/bot/784465336899862559/vote)
+[Invite bot](https://discord.com/oauth2/authorize?client_id=793544441863471134&permissions=321608&scope=bot) | [Join support server](https://discord.gg/Hr6Z9nNE2d)
 
 ## Features
 
@@ -21,15 +18,15 @@ Hope that bot will have more needing features.
 
 ## Commands
 
-You can check it with with `./help`
+You can check them with with `./help`
 
-![Help menu command](https://cdn.discordapp.com/attachments/835192624427958313/835594485378318346/unknown.png)
+![Help menu command](https://dmax.discowd.com/kpml1gdbe9a)
 
 ## Multilanguage
 
 Current supported languages:
 
-![Supported languages](https://cdn.discordapp.com/attachments/835192624427958313/835592118738354187/unknown.png)
+![Supported languages](https://dmax.discowd.com/kpml1oep49a)
 
 You can become a bot translator by contributing this repository.
 
