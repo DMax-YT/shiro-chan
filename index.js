@@ -17,12 +17,18 @@ const tokens = require("./tokens.json");
 
 const posters = [];
 const initPosters = (clientId) => {
-  return;
   if (!posters.length) {
     posters.push(
       new DBLPoster({
         id: clientId,
         token: tokens.discordbotlist,
+      })
+      /*
+      new BotsServerDiscordPoster({
+        id: clientId,
+        token: tokens.botsServerDiscord,
+        availableQueries: 1,
+        ratelimit: 2000,
       }),
       new FateslistPoster({
         id: clientId,
@@ -34,12 +40,6 @@ const initPosters = (clientId) => {
         availableQueries: 1,
         ratelimit: 120000,
       }),
-      new BotsServerDiscordPoster({
-        id: clientId,
-        token: tokens.botsServerDiscord,
-        availableQueries: 1,
-        ratelimit: 2000,
-      }),
       new BotsForDiscordPoster({
         id: clientId,
         token: tokens.botsfordiscord,
@@ -48,6 +48,7 @@ const initPosters = (clientId) => {
         id: clientId,
         token: tokens.boticord,
       })
+      */
     );
   }
 };
