@@ -21,7 +21,12 @@ async function lick(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([lickNekoChxdn, lickShiro, lickNekosFun]);
+  const provider = getRandomItem([
+    lickNekoChxdn,
+    lickShiro,
+    lickNekosFun,
+    lickPurrbot,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -63,6 +68,11 @@ async function lickShiro() {
   return await axios
     .get("https://shiro.gg/api/images/lick")
     .then((req) => (req.data.fileType === "gif" ? req.data.url : lickShiro()));
+}
+async function lickPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/lick/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

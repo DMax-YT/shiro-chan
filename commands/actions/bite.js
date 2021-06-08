@@ -3,6 +3,7 @@ const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
@@ -20,9 +21,10 @@ async function bite(msg, [user], locale) {
     return;
   }
 
+  const provider = getRandomItem([biteNekoChxdn, bitePurrbot]);
   let imageUrl;
   try {
-    imageUrl = await biteNekoChxdn();
+    imageUrl = await provider();
   } catch {
     bite(msg, [user], locale);
     return;
@@ -51,6 +53,11 @@ async function biteNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/bite/img")
     .then((req) => req.data.url);
+}
+async function bitePurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/bite/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

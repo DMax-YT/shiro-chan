@@ -32,6 +32,7 @@ async function blowjob(msg, [user], locale) {
     blowjobNeko2,
     blowjobNekosFun,
     blowjobNekosFun2,
+    blowjobPurrbot,
   ]);
   let imageUrl;
   try {
@@ -79,6 +80,11 @@ async function blowjobNekosFun2() {
   return await axios
     .get("http://api.nekos.fun:8080/api/bj")
     .then((req) => req.data.image);
+}
+async function blowjobPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/nsfw/blowjob/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

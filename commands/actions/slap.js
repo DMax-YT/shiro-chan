@@ -27,6 +27,7 @@ async function slap(msg, [user], locale) {
     slapNekosBest,
     slapNekosFun,
     slapShiro,
+    slapPurrbot,
   ]);
   let imageUrl;
   try {
@@ -59,9 +60,7 @@ async function slapNeko() {
   return await neko.sfw.slap().then((r) => r.url);
 }
 async function slapNekosBest() {
-  return await axios
-    .get("https://nekos.best/slap")
-    .then((req) => req.data.url);
+  return await axios.get("https://nekos.best/slap").then((req) => req.data.url);
 }
 async function slapShiro() {
   return await axios
@@ -72,6 +71,11 @@ async function slapNekosFun() {
   return await axios
     .get("http://api.nekos.fun:8080/api/slap")
     .then((req) => req.data.image);
+}
+async function slapPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/slap/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

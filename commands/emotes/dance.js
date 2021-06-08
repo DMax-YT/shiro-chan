@@ -7,7 +7,11 @@ const translate = require("../../helpers/locale");
 const getRandomItem = require("../../helpers/getRandomItem");
 
 async function dance(msg, args, locale) {
-  const provider = getRandomItem([danceNekoChxdn, danceNekosBest]);
+  const provider = getRandomItem([
+    danceNekoChxdn,
+    danceNekosBest,
+    dancePurrbot,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -42,6 +46,12 @@ async function danceNekosBest() {
   return await axios
     .get("https://nekos.best/dance")
     .then((req) => req.data.url);
+}
+
+async function dancePurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/dance/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

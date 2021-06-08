@@ -29,6 +29,7 @@ async function kiss(msg, [user], locale) {
     kissNekoChxdn,
     kissShiro,
     kissNekosFun,
+    kissPurrbot,
   ]);
   let imageUrl;
   try {
@@ -66,9 +67,7 @@ async function kissNekoChxdn() {
     .then((req) => req.data.url);
 }
 async function kissNekosBest() {
-  return await axios
-    .get("https://nekos.best/kiss")
-    .then((req) => req.data.url);
+  return await axios.get("https://nekos.best/kiss").then((req) => req.data.url);
 }
 async function kissNekosFun() {
   return await axios
@@ -79,6 +78,11 @@ async function kissShiro() {
   return await axios
     .get("https://shiro.gg/api/images/kiss")
     .then((req) => (req.data.fileType === "gif" ? req.data.url : kissShiro()));
+}
+async function kissPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/kiss/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

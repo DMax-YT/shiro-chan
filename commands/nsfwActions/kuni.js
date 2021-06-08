@@ -28,7 +28,7 @@ async function kuni(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([kuniNeko, kuniNekoChxdn]);
+  const provider = getRandomItem([kuniNeko, kuniNekoChxdn, kuniPurrbot]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -63,6 +63,11 @@ async function kuniNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/pussylick/img")
     .then((req) => req.data.url);
+}
+async function kuniPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/nsfw/pussylick/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

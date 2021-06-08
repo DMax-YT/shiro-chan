@@ -7,7 +7,12 @@ const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
 async function cry(msg, args, locale) {
-  const provider = getRandomItem([cryNekoChxdn, cryShiro, cryNekosBest]);
+  const provider = getRandomItem([
+    cryNekoChxdn,
+    cryShiro,
+    cryNekosBest,
+    cryPurrbot,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -46,6 +51,12 @@ async function cryShiro() {
 
 async function cryNekosBest() {
   return await axios.get("https://nekos.best/cry").then((req) => req.data.url);
+}
+
+async function cryPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/cry/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

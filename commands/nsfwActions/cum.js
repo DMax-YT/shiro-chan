@@ -28,7 +28,12 @@ async function cum(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([cumNeko, cumNekoChxdn, cumNekosFun]);
+  const provider = getRandomItem([
+    cumNeko,
+    cumNekoChxdn,
+    cumNekosFun,
+    cumPurrbot,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -68,6 +73,11 @@ async function cumNekosFun() {
   return await axios
     .get("http://api.nekos.fun:8080/api/cum")
     .then((req) => req.data.image);
+}
+async function cumPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/nsfw/cum/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

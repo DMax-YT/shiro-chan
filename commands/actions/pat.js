@@ -30,6 +30,7 @@ async function pat(msg, [user], locale) {
     patNekosFun,
     patSra,
     patShiro,
+    patPurrbot,
   ]);
   let imageUrl;
   try {
@@ -83,6 +84,11 @@ async function patShiro() {
   return await axios
     .get("https://shiro.gg/api/images/pat")
     .then((req) => (req.data.fileType === "gif" ? req.data.url : patShiro()));
+}
+async function patPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/pat/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

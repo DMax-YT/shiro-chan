@@ -28,6 +28,7 @@ async function feed(msg, [user], locale) {
     feedNekoChxdn,
     feedNekosFun,
     feedNekosBest,
+    feedPurrbot,
   ]);
   let imageUrl;
   try {
@@ -65,14 +66,17 @@ async function feedNekoChxdn() {
     .then((req) => req.data.url);
 }
 async function feedNekosBest() {
-  return await axios
-    .get("https://nekos.best/feed")
-    .then((req) => req.data.url);
+  return await axios.get("https://nekos.best/feed").then((req) => req.data.url);
 }
 async function feedNekosFun() {
   return await axios
     .get("http://api.nekos.fun:8080/api/feed")
     .then((req) => req.data.image);
+}
+async function feedPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/feed/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

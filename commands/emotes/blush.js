@@ -7,7 +7,7 @@ const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
 async function blush(msg, args, locale) {
-  const provider = getRandomItem([blushShiro, blushNekoChxdn]);
+  const provider = getRandomItem([blushShiro, blushNekoChxdn, blushPurrbot]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -42,6 +42,12 @@ async function blushShiro() {
   return await axios
     .get("https://shiro.gg/api/images/blush")
     .then((req) => (req.data.fileType === "gif" ? req.data.url : blushShiro()));
+}
+
+async function blushPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/blush/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

@@ -28,7 +28,12 @@ async function anal(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([analNeko, analNekoChxdn, analNekosFun]);
+  const provider = getRandomItem([
+    analNeko,
+    analNekoChxdn,
+    analNekosFun,
+    analPurrbot,
+  ]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -70,6 +75,11 @@ async function analNekosFun() {
   return await axios
     .get("http://api.nekos.fun:8080/api/anal")
     .then((req) => req.data.image);
+}
+async function analPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/nsfw/anal/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

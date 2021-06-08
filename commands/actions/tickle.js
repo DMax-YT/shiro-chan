@@ -29,6 +29,7 @@ async function tickle(msg, [user], locale) {
     tickleNekoChxdn,
     tickleNekosFun,
     tickleShiro,
+    ticklePurrbot,
   ]);
   let imageUrl;
   try {
@@ -81,6 +82,11 @@ async function tickleShiro() {
     .then((req) =>
       req.data.fileType === "gif" ? req.data.url : tickleShiro()
     );
+}
+async function ticklePurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/tickle/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

@@ -28,7 +28,7 @@ async function fuck(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([fuckNeko, fuckNekoChxdn]);
+  const provider = getRandomItem([fuckNeko, fuckNekoChxdn, fuckPurrbot]);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -63,6 +63,11 @@ async function fuckNekoChxdn() {
   return await axios
     .get("https://api.neko-chxn.xyz/v1/fuck/img")
     .then((req) => req.data.url);
+}
+async function fuckPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/nsfw/fuck/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

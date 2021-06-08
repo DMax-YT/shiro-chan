@@ -29,6 +29,7 @@ async function poke(msg, [user], locale) {
     pokeNekoChxdn,
     pokeNekosFun,
     pokeShiro,
+    pokePurrbot,
   ]);
   let imageUrl;
   try {
@@ -76,9 +77,12 @@ async function pokeNekosFun() {
     .then((req) => req.data.image);
 }
 async function pokeNekosBest() {
+  return await axios.get("https://nekos.best/poke").then((req) => req.data.url);
+}
+async function pokePurrbot() {
   return await axios
-    .get("https://nekos.best/poke")
-    .then((req) => req.data.url);
+    .get("https://purrbot.site/api/img/sfw/poke/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {

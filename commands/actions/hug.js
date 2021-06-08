@@ -30,10 +30,12 @@ async function hug(msg, [user], locale) {
     hugNekosFun,
     hugSra,
     hugShiro,
+    hugPurrbot,
     cuddleNeko,
     cuddleNekosBest,
     cuddleNekoChxdn,
     cuddleNekosFun,
+    cuddlePurrbot,
   ]);
   let imageUrl;
   try {
@@ -88,6 +90,11 @@ async function hugShiro() {
     .get("https://shiro.gg/api/images/hug")
     .then((req) => (req.data.fileType === "gif" ? req.data.url : hugShiro()));
 }
+async function hugPurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/hug/gif")
+    .then((req) => req.data.link);
+}
 
 async function cuddleNeko() {
   return await neko.sfw.cuddle().then((r) => r.url);
@@ -106,6 +113,11 @@ async function cuddleNekosFun() {
   return await axios
     .get("http://api.nekos.fun:8080/api/cuddle")
     .then((req) => req.data.image);
+}
+async function cuddlePurrbot() {
+  return await axios
+    .get("https://purrbot.site/api/img/sfw/cuddle/gif")
+    .then((req) => req.data.link);
 }
 
 module.exports = {
