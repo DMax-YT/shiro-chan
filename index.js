@@ -8,9 +8,9 @@ let ready = false;
 
 //#region Stats posters
 const DBLPoster = require("./botlistapi/DiscordBotListPoster");
+const BotsServerDiscordPoster = require("./botlistapi/BotsServerDiscordPoster");
 const FateslistPoster = require("./botlistapi/FateslistPoster");
 const ListcordPoster = require("./botlistapi/ListcordPoster");
-const BotsServerDiscordPoster = require("./botlistapi/BotsServerDiscordPoster");
 const BotsForDiscordPoster = require("./botlistapi/BotsForDiscordPoster");
 const BoticordPoster = require("./botlistapi/BoticordPoster");
 const tokens = require("./tokens.json");
@@ -22,14 +22,14 @@ const initPosters = (clientId) => {
       new DBLPoster({
         id: clientId,
         token: tokens.discordbotlist,
-      })
-      /*
+      }),
       new BotsServerDiscordPoster({
         id: clientId,
         token: tokens.botsServerDiscord,
         availableQueries: 1,
         ratelimit: 2000,
-      }),
+      })
+      /*
       new FateslistPoster({
         id: clientId,
         token: tokens.fateslist,
