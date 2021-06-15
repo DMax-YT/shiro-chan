@@ -22,10 +22,6 @@ async function blowjob(msg, [user], locale) {
     msg.channel.send(translate("specifyUser", locale));
     return;
   }
-  if (userMention === msg.member) {
-    msg.channel.send(translate("blowjob.selfError", locale));
-    return;
-  }
 
   const provider = getRandomItem([
     blowjobNeko,
@@ -38,6 +34,7 @@ async function blowjob(msg, [user], locale) {
   try {
     imageUrl = await provider();
   } catch {
+    console.log("Error");
     blowjob(msg, [user], locale);
     return;
   }
@@ -47,18 +44,28 @@ async function blowjob(msg, [user], locale) {
     return;
   }
 
-  await msg.channel.send({
-    embed: {
-      description: translate("blowjob.action", locale, {
-        attacker: msg.member,
-        victim: userMention,
-      }),
-      image: {
-        url: imageUrl,
+  if (userMention === msg.member) {
+    await msg.channel.send({
+      content: translate("blowjob.alone", locale),
+    });
+  } else if (userMention === msg.guild.me) {
+    await msg.channel.send({
+      content: translate("blowjob.me", locale),
+    });
+  } else {
+    await msg.channel.send({
+      embed: {
+        description: translate("blowjob.action", locale, {
+          attacker: msg.member,
+          victim: userMention,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
-  });
+    });
+  }
 }
 
 async function blowjobNeko() {

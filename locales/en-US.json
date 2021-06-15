@@ -1,7 +1,8 @@
 {
   "bite": {
     "action": "{attacker} bites {victim}",
-    "selfError": "You can't bite yourself...",
+    "alone": "You wanna bite yourself? I won't let you do this. Lemme bite you instead",
+    "me": "Aww... it hurts :<",
 
     "description": "Allows you to bite someone",
     "usage": ["(@user)"],
@@ -9,7 +10,8 @@
   },
   "feed": {
     "action": "{attacker} feeds {victim}",
-    "selfError": "You can't feed yourself...",
+    "alone": "You are going to feed yourself? I think I can help you with that 😏",
+    "me": "*om-nom...*",
 
     "description": "Allows you to feed someone",
     "usage": ["(@user)"],
@@ -17,7 +19,8 @@
   },
   "hug": {
     "action": "{attacker} hugs {victim}",
-    "selfError": "You can't hug yourself...",
+    "alone": "I can't look at this without sadness... lemme give you a hug",
+    "me": "Oh yeah... gimmie this hug, I want it....",
 
     "description": "Allows you to hug someone",
     "usage": ["(@user)"],
@@ -25,7 +28,8 @@
   },
   "kick": {
     "action": "{attacker} kicks {victim}",
-    "selfError": "You can't kick yourself...",
+    "alone": "Did you try to kick yourself? What?",
+    "me": "ah... why?... 😖",
 
     "description": "Allows you to kick someone",
     "usage": ["(@user)"],
@@ -33,7 +37,8 @@
   },
   "kiss": {
     "action": "{attacker} kisses {victim}",
-    "selfError": "You can't kiss yourself...",
+    "alone": "You are so lonely.... you can't kiss somebody else... 😭",
+    "me": "What just happend? 😳",
 
     "description": "Allows you to kiss someone",
     "usage": ["(@user)"],
@@ -41,7 +46,8 @@
   },
   "lick": {
     "action": "{attacker} licks {victim}",
-    "selfError": "You can't lick yourself...",
+    "alone": "",
+    "me": "Did you just licked me? 😳",
 
     "description": "Allows you to lick someone",
     "usage": ["(@user)"],
@@ -49,7 +55,8 @@
   },
   "look": {
     "action": "{attacker} looks at {victim}",
-    "selfError": "You can't look at yourself...",
+    "alone": "",
+    "me": "*looks at you*",
 
     "description": "Allows you to look at someone",
     "usage": ["(@user)"],
@@ -57,7 +64,8 @@
   },
   "pat": {
     "action": "{attacker} pats {victim}",
-    "selfError": "You can't pat yourself...",
+    "alone": "Oh, lemme pat you :>",
+    "me": "*sounds of happy fox*",
 
     "description": "Allows you to pat someone",
     "usage": ["(@user)"],
@@ -65,7 +73,8 @@
   },
   "poke": {
     "action": "{attacker} pokes {victim}",
-    "selfError": "You can't poke yourself...",
+    "alone": "",
+    "me": "*disgruntled look*",
 
     "description": "Allows you to poke someone",
     "usage": ["(@user)"],
@@ -73,7 +82,8 @@
   },
   "tickle": {
     "action": "{attacker} tickles {victim}",
-    "selfError": "You can't tickle yourself...",
+    "alone": "I see, someone wants a tickles :>",
+    "me": "ahahaha, ticklish, ahaha ",
 
     "description": "Allows you to tickle someone",
     "usage": ["(@user)"],
@@ -81,7 +91,8 @@
   },
   "slap": {
     "action": "{attacker} slaps {victim}",
-    "selfError": "You can't slap yourself...",
+    "alone": "NO! I won't let you slap yourself!",
+    "me": "why did you slap me? *cry*",
 
     "description": "Allows you to slap someone",
     "usage": ["(@user)"],
@@ -90,7 +101,8 @@
 
   "anal": {
     "action": "{attacker} has anal sex with {victim}",
-    "selfError": "You can't have anal sex with yourself...",
+    "alone": "How'd you do that?",
+    "me": "NO! NO! AND NO AGAIN! *angry fox sounds*",
 
     "description": "Allows you to have anal sex with someone",
     "usage": ["(@user)"],
@@ -98,23 +110,26 @@
   },
   "blowjob": {
     "action": "{attacker} gives {victim} a blowjob",
-    "selfError": "You can't give yourself a blowjob...",
+    "alone": "To do this, you need to remove a couple of edges at least)",
+    "me": "Hey! I'm actually a girl :< *angry fox sounds*",
 
     "description": "Allows you to give blowjob someone",
     "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "cum": {
-    "action": "{attacker} cums into {victim}",
-    "selfError": "You can't cum into yourself...",
+    "action": "{attacker} cums inside {victim}",
+    "alone": "How'd you going to cum iside yourself?",
+    "me": "*an awkward silence* 😳",
 
-    "description": "Allows you to cum into someone",
+    "description": "Allows you to cum inside someone",
     "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
   "fuck": {
     "action": "{attacker} fucks {victim}",
-    "selfError": "You can't fuck yourself...",
+    "alone": "Fuck yourself? What?",
+    "me": "Of course I am already an adult, but no *sounds of fox embarrassment*",
 
     "description": "Allows you to fuck someone",
     "usage": ["(@user)"],
@@ -122,7 +137,8 @@
   },
   "kuni": {
     "action": "{attacker} makes kuni {victim}",
-    "selfError": "You can't make yourself kuni...",
+    "alone": "I can't imagine that",
+    "me": "I am of course love kuni, but not from you, thx",
 
     "description": "Allows you to make kuni someone",
     "usage": ["(@user)"],
@@ -130,7 +146,8 @@
   },
   "spank": {
     "action": "{attacker} spanks {victim}",
-    "selfError": "You can't spank yourself...",
+    "alone": "I don't wanna watch this",
+    "me": "no no no, I don't like that",
 
     "description": "Allows you to spank someone",
     "usage": ["(@user)"],

@@ -23,10 +23,6 @@ async function anal(msg, [user], locale) {
     msg.channel.send(translate("specifyUser", locale));
     return;
   }
-  if (userMention === msg.member) {
-    msg.channel.send(translate("anal.selfError", locale));
-    return;
-  }
 
   const provider = getRandomItem([
     analNeko,
@@ -47,18 +43,28 @@ async function anal(msg, [user], locale) {
     return;
   }
 
-  await msg.channel.send({
-    embed: {
-      description: translate("anal.action", locale, {
-        attacker: msg.member,
-        victim: userMention,
-      }),
-      image: {
-        url: imageUrl,
+  if (userMention === msg.member) {
+    await msg.channel.send({
+      content: translate("anal.alone", locale),
+    });
+  } else if (userMention === msg.guild.me) {
+    await msg.channel.send({
+      content: translate("anal.me", locale),
+    });
+  } else {
+    await msg.channel.send({
+      embed: {
+        description: translate("anal.action", locale, {
+          attacker: msg.member,
+          victim: userMention,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
-  });
+    });
+  }
 }
 
 async function analNeko() {

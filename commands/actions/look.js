@@ -15,10 +15,6 @@ async function look(msg, [user], locale) {
     msg.channel.send(translate("specifyUser", locale));
     return;
   }
-  if (userMention === msg.member) {
-    msg.channel.send(translate("look.selfError", locale));
-    return;
-  }
 
   let imageUrl;
   try {
@@ -33,18 +29,48 @@ async function look(msg, [user], locale) {
     return;
   }
 
-  await msg.channel.send({
-    embed: {
-      description: translate("look.action", locale, {
-        attacker: msg.member,
-        victim: userMention,
-      }),
-      image: {
-        url: imageUrl,
+  if (userMention === msg.member) {
+    await msg.channel.send({
+      content: translate("look.alone", locale),
+      embed: {
+        description: translate("look.action", locale, {
+          attacker: msg.member,
+          victim: msg.member,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
-  });
+    });
+  } else if (userMention === msg.guild.me) {
+    await msg.channel.send({
+      content: translate("look.me", locale),
+      embed: {
+        description: translate("look.action", locale, {
+          attacker: msg.member,
+          victim: userMention,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
+      },
+    });
+  } else {
+    await msg.channel.send({
+      embed: {
+        description: translate("look.action", locale, {
+          attacker: msg.member,
+          victim: userMention,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
+      },
+    });
+  }
 }
 
 async function lookNekoChxdn() {

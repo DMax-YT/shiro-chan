@@ -16,10 +16,6 @@ async function bite(msg, [user], locale) {
     msg.channel.send(translate("specifyUser", locale));
     return;
   }
-  if (userMention === msg.member) {
-    msg.channel.send(translate("bite.selfError", locale));
-    return;
-  }
 
   const provider = getRandomItem([biteNekoChxdn, bitePurrbot]);
   let imageUrl;
@@ -35,18 +31,48 @@ async function bite(msg, [user], locale) {
     return;
   }
 
-  await msg.channel.send({
-    embed: {
-      description: translate("bite.action", locale, {
-        attacker: msg.member,
-        victim: userMention,
-      }),
-      image: {
-        url: imageUrl,
+  if (userMention === msg.member) {
+    await msg.channel.send({
+      content: translate("bite.alone", locale),
+      embed: {
+        description: translate("bite.action", locale, {
+          attacker: msg.guild.me,
+          victim: msg.member,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
-  });
+    });
+  } else if (userMention === msg.guild.me) {
+    await msg.channel.send({
+      content: translate("bite.me", locale),
+      embed: {
+        description: translate("bite.action", locale, {
+          attacker: msg.member,
+          victim: userMention,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
+      },
+    });
+  } else {
+    await msg.channel.send({
+      embed: {
+        description: translate("bite.action", locale, {
+          attacker: msg.member,
+          victim: userMention,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
+      },
+    });
+  }
 }
 
 async function biteNekoChxdn() {

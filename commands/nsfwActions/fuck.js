@@ -23,10 +23,6 @@ async function fuck(msg, [user], locale) {
     msg.channel.send(translate("specifyUser", locale));
     return;
   }
-  if (userMention === msg.member) {
-    msg.channel.send(translate("fuck.selfError", locale));
-    return;
-  }
 
   const provider = getRandomItem([fuckNeko, fuckNekoChxdn, fuckPurrbot]);
   let imageUrl;
@@ -42,18 +38,28 @@ async function fuck(msg, [user], locale) {
     return;
   }
 
-  await msg.channel.send({
-    embed: {
-      description: translate("fuck.action", locale, {
-        attacker: msg.member,
-        victim: userMention,
-      }),
-      image: {
-        url: imageUrl,
+  if (userMention === msg.member) {
+    await msg.channel.send({
+      content: translate("fuck.alone", locale),
+    });
+  } else if (userMention === msg.guild.me) {
+    await msg.channel.send({
+      content: translate("fuck.me", locale),
+    });
+  } else {
+    await msg.channel.send({
+      embed: {
+        description: translate("fuck.action", locale, {
+          attacker: msg.member,
+          victim: userMention,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
-  });
+    });
+  }
 }
 
 async function fuckNeko() {

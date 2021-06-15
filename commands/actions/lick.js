@@ -16,10 +16,6 @@ async function lick(msg, [user], locale) {
     msg.channel.send(translate("specifyUser", locale));
     return;
   }
-  if (userMention === msg.member) {
-    msg.channel.send(translate("lick.selfError", locale));
-    return;
-  }
 
   const provider = getRandomItem([
     lickNekoChxdn,
@@ -40,18 +36,48 @@ async function lick(msg, [user], locale) {
     return;
   }
 
-  await msg.channel.send({
-    embed: {
-      description: translate("lick.action", locale, {
-        attacker: msg.member,
-        victim: userMention,
-      }),
-      image: {
-        url: imageUrl,
+  if (userMention === msg.member) {
+    await msg.channel.send({
+      content: translate("lick.alone", locale),
+      embed: {
+        description: translate("lick.action", locale, {
+          attacker: msg.member,
+          victim: msg.member,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
-  });
+    });
+  } else if (userMention === msg.guild.me) {
+    await msg.channel.send({
+      content: translate("lick.me", locale),
+      embed: {
+        description: translate("lick.action", locale, {
+          attacker: msg.member,
+          victim: userMention,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
+      },
+    });
+  } else {
+    await msg.channel.send({
+      embed: {
+        description: translate("lick.action", locale, {
+          attacker: msg.member,
+          victim: userMention,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
+      },
+    });
+  }
 }
 
 async function lickNekoChxdn() {
