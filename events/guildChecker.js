@@ -1,10 +1,5 @@
 async function guildChange(guild) {
-  const members = guild.memberCount;
-  const bots = await guild.members
-    .fetch({ cache: false })
-    .then((ms) => ms.filter((m) => m.user.bot));
-
-  if (guild.memberCount === 2 || bots === members - 1) {
+  if (guild.memberCount === 2) {
     await guild.channels.cache
       .find(
         (channel) =>
