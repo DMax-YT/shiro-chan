@@ -29,8 +29,13 @@ async function messageHandler(msg) {
       config: { prefix },
       commands,
       server,
+      guildBlacklist,
+      userBlacklist,
     },
   } = msg;
+
+  if (guildBlacklist.has(msg.guild.id) || userBlacklist.has(msg.author.id))
+    return;
 
   if (!mentions.length) {
     mentions.push(`<@${msg.guild.me.id}> `, `<@!${msg.guild.me.id}> `);

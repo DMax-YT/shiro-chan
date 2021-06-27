@@ -11,6 +11,14 @@ client.server = new Enmap({
   name: "serverSettings",
   dataDir: "./db",
 });
+client.guildBlacklist = new Enmap({
+  name: "guildBlacklist",
+  dataDir: "./db",
+});
+client.userBlacklist = new Enmap({
+  name: "guildBlacklist",
+  dataDir: "./db",
+});
 client.config = require("./config.json");
 const { token } = client.config;
 

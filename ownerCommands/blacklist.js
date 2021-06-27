@@ -90,13 +90,17 @@ async function addGuild(msg, [id, ...reason]) {
   try {
     const guild = await msg.client.guilds.fetch(id);
 
+    if (msg.client.guildBlacklist.has(id)) {
+      msg.channel.send(`\`${id}\` is already in the blacklist`);
+      return;
+    }
+
     msg.client.guildBlacklist.set(id, {
       name: guild.name,
       timestamp: Date.now(),
       reason: reason.join(" "),
     });
 
-    await guild.leave();
     await msg.channel.send(
       `\`${guild.name}\` (${id}) was added to the blacklist`
     );
@@ -165,7 +169,7 @@ module.exports = {
   subCommands: [
     {
       name: "user",
-      alais: ["u"],
+      alias: ["u"],
       isPrivate: false,
       subCommands: [
         {
@@ -187,7 +191,7 @@ module.exports = {
     },
     {
       name: "guild",
-      alais: ["server", "g"],
+      alias: ["server", "g"],
       isPrivate: false,
       subCommands: [
         {
