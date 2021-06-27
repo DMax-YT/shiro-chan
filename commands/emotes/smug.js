@@ -54,6 +54,7 @@ module.exports = {
   name: "smug",
   execute: smug,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

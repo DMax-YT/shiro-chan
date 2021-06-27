@@ -109,6 +109,7 @@ module.exports = {
   name: "feed",
   execute: feed,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Actions",
   isPrivate: false,

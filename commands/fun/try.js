@@ -45,6 +45,7 @@ module.exports = {
   name: "try",
   execute: tryCommand,
   alias: [],
+  cooldown: 2,
   argsRequired: 1,
   module: "Fun",
   isPrivate: false,

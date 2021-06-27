@@ -150,6 +150,7 @@ module.exports = {
   name: "hug",
   execute: hug,
   alias: ["cuddle"],
+  cooldown: 2,
   argsRequired: 0,
   module: "Actions",
   isPrivate: false,

@@ -40,6 +40,7 @@ module.exports = {
   name: "smirk",
   execute: smirk,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

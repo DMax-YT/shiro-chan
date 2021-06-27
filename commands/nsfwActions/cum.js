@@ -90,6 +90,7 @@ module.exports = {
   name: "cum",
   execute: cum,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Actions NSFW",
   isPrivate: false,

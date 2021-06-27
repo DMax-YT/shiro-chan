@@ -31,6 +31,7 @@ module.exports = {
   name: "donate",
   execute: donate,
   alias: [],
+  cooldown: 0,
   argsRequired: 0,
   module: "Misc",
   isPrivate: false,

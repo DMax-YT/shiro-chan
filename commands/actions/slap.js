@@ -98,6 +98,7 @@ module.exports = {
   name: "slap",
   execute: slap,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Actions",
   isPrivate: false,

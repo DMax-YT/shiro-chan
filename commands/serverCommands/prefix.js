@@ -37,6 +37,7 @@ module.exports = {
   name: "prefix",
   execute: prefix,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Server",
   isPrivate: false,

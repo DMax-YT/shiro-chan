@@ -56,6 +56,7 @@ module.exports = {
   name: "laugh",
   execute: laugh,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

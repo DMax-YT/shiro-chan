@@ -115,6 +115,7 @@ module.exports = {
   name: "poke",
   execute: poke,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Actions",
   isPrivate: false,

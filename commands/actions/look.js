@@ -83,6 +83,7 @@ module.exports = {
   name: "look",
   execute: look,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Actions",
   isPrivate: false,

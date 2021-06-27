@@ -40,6 +40,7 @@ module.exports = {
   name: "annoy",
   execute: annoy,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

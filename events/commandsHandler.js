@@ -1,10 +1,15 @@
-const mentions = [];
+const { Collection } = require("discord.js");
+const translate = require("../helpers/locale");
 
-const getSubCommand = (command, [commandName, ...args]) => {
+const mentions = [];
+const cooldown = new Map();
+
+const getSubCommand = (command, [commandName, ...args], id) => {
   if (!command.subCommands?.length)
     return {
       command,
       args: [commandName, ...args],
+      id,
     };
   const commandNamelowerCase = commandName.toLowerCase();
   const subCommand = command.subCommands.find(
@@ -16,9 +21,10 @@ const getSubCommand = (command, [commandName, ...args]) => {
     return {
       command,
       args: [commandName, ...args],
+      id: id + "." + command.name,
     };
   return {
-    ...getSubCommand(subCommand, args),
+    ...getSubCommand(subCommand, args, id + "." + command.name),
   };
 };
 
@@ -60,11 +66,34 @@ async function messageHandler(msg) {
 
   if (!command) return;
 
+  let id = command.name;
   if (args.length) {
-    const subCommand = getSubCommand(command, args);
+    const subCommand = getSubCommand(command, args, id);
     command = subCommand.command;
     args = subCommand.args;
+    id = subCommand.id;
   }
+
+  if (!cooldown.has(id)) {
+    cooldown.set(id, new Collection());
+  }
+
+  const timestamps = cooldown.get(id);
+  if (timestamps.has(msg.author.id)) {
+    const timeLeft = (timestamps.get(msg.author.id) - Date.now()) / 1000;
+    msg.channel.send(
+      translate("cooldown", serverConfig.locale, {
+        timeLeft: timeLeft.toFixed(1),
+      })
+    );
+    return;
+  }
+
+  timestamps.set(msg.author.id, Date.now() + command.cooldown * 1e3);
+
+  setTimeout(() => {
+    timestamps.delete(msg.author.id);
+  }, command.cooldown * 1e3);
 
   try {
     const executed = command.execute(msg, args, serverConfig.locale);

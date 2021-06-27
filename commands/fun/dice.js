@@ -54,6 +54,7 @@ module.exports = {
   name: "dice",
   execute: dice,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Fun",
   isPrivate: false,

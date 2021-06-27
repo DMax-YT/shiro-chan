@@ -92,6 +92,7 @@ module.exports = {
   name: "anal",
   execute: anal,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Actions NSFW",
   isPrivate: false,

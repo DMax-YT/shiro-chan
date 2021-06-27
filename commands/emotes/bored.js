@@ -40,6 +40,7 @@ module.exports = {
   name: "bored",
   execute: bored,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

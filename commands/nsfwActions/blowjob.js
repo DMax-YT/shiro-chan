@@ -98,6 +98,7 @@ module.exports = {
   name: "blowjob",
   execute: blowjob,
   alias: ["bj"],
+  cooldown: 2,
   argsRequired: 0,
   module: "Actions NSFW",
   isPrivate: false,

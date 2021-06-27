@@ -21,6 +21,7 @@ module.exports = {
   name: "invite",
   execute: invite,
   alias: [],
+  cooldown: 1,
   argsRequired: 0,
   module: "Misc",
   isPrivate: false,

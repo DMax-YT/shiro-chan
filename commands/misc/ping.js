@@ -17,6 +17,7 @@ module.exports = {
   name: "ping",
   execute: ping,
   alias: [],
+  cooldown: 5,
   argsRequired: 0,
   module: "Misc",
   isPrivate: false,

@@ -63,6 +63,7 @@ module.exports = {
   name: "cry",
   execute: cry,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

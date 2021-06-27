@@ -19,11 +19,9 @@ async function randomExecute(msg, args, locale) {
 
 module.exports = {
   name: "random",
-  description: "Выдаёт вам случайное число в заданном диапазоне",
   execute: randomExecute,
   alias: [],
-  usage: ["[мин] [макс]"],
-  examples: ["1 10"],
+  cooldown: 1,
   argsRequired: 0,
   module: "Fun",
   isPrivate: false,

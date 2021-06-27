@@ -90,6 +90,7 @@ module.exports = {
   name: "bite",
   execute: bite,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Actions",
   isPrivate: false,

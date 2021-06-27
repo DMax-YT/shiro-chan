@@ -48,6 +48,7 @@ module.exports = {
   name: "sleep",
   execute: sleep,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Emotes",
   isPrivate: false,

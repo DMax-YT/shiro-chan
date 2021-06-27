@@ -359,6 +359,7 @@
   "nsfwError": "I can't send this in SFW channel",
   "specifyUser": "Specify a user, please",
   "permsError": "You haven't enough permissions to use this command",
+  "cooldown": "Wait `{timeLeft} seconds` before using the command again",
 
   "error": "Error",
   "success": "Success",

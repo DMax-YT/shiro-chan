@@ -76,6 +76,7 @@ module.exports = {
   name: "spank",
   execute: spank,
   alias: [],
+  cooldown: 2,
   argsRequired: 0,
   module: "Actions NSFW",
   isPrivate: false,
