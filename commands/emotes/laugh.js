@@ -48,7 +48,7 @@ async function laughNekosFun() {
 }
 async function laughNekosBest() {
   return await axios
-    .get("https://nekos.best/laugh")
+    .get("https://nekos.best/api/v1/laugh")
     .then((req) => req.data.url);
 }
 

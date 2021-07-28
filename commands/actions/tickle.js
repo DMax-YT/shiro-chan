@@ -89,7 +89,7 @@ async function tickleNeko() {
 }
 async function tickleNekosBest() {
   return await axios
-    .get("https://nekos.best/tickle")
+    .get("https://nekos.best/api/v1/tickle")
     .then((req) => req.data.url);
 }
 async function tickleNekoChxdn() {

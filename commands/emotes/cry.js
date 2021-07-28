@@ -50,7 +50,7 @@ async function cryShiro() {
 }
 
 async function cryNekosBest() {
-  return await axios.get("https://nekos.best/cry").then((req) => req.data.url);
+  return await axios.get("https://nekos.best/api/v1/cry").then((req) => req.data.url);
 }
 
 async function cryPurrbot() {

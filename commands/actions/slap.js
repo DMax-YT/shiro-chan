@@ -76,7 +76,7 @@ async function slapNeko() {
   return await neko.sfw.slap().then((r) => r.url);
 }
 async function slapNekosBest() {
-  return await axios.get("https://nekos.best/slap").then((req) => req.data.url);
+  return await axios.get("https://nekos.best/api/v1/slap").then((req) => req.data.url);
 }
 async function slapShiro() {
   return await axios

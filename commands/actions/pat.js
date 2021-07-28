@@ -104,7 +104,7 @@ async function patSra() {
     .then((req) => req.data.link);
 }
 async function patNekosBest() {
-  return await axios.get("https://nekos.best/pat").then((req) => req.data.url);
+  return await axios.get("https://nekos.best/api/v1/pat").then((req) => req.data.url);
 }
 async function patShiro() {
   return await axios

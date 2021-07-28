@@ -94,7 +94,7 @@ async function hugNeko() {
   return await neko.sfw.hug().then((r) => r.url);
 }
 async function hugNekosBest() {
-  return await axios.get("https://nekos.best/hug").then((req) => req.data.url);
+  return await axios.get("https://nekos.best/api/v1/hug").then((req) => req.data.url);
 }
 async function hugNekoChxdn() {
   return await axios
@@ -127,7 +127,7 @@ async function cuddleNeko() {
 }
 async function cuddleNekosBest() {
   return await axios
-    .get("https://nekos.best/cuddle")
+    .get("https://nekos.best/api/v1/cuddle")
     .then((req) => req.data.url);
 }
 async function cuddleNekoChxdn() {

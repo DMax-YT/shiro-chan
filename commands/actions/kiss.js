@@ -83,7 +83,7 @@ async function kissNekoChxdn() {
     .then((req) => req.data.url);
 }
 async function kissNekosBest() {
-  return await axios.get("https://nekos.best/kiss").then((req) => req.data.url);
+  return await axios.get("https://nekos.best/api/v1/kiss").then((req) => req.data.url);
 }
 async function kissNekosFun() {
   return await axios

@@ -37,7 +37,7 @@ async function smug(msg, [user], locale) {
 }
 
 async function smugNekosBest() {
-  return await axios.get("https://nekos.best/smug").then((req) => req.data.url);
+  return await axios.get("https://nekos.best/api/v1/smug").then((req) => req.data.url);
 }
 async function smugShiro() {
   return await axios

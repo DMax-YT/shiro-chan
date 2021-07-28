@@ -103,7 +103,7 @@ async function pokeNekosFun() {
     .then((req) => req.data.image);
 }
 async function pokeNekosBest() {
-  return await axios.get("https://nekos.best/poke").then((req) => req.data.url);
+  return await axios.get("https://nekos.best/api/v1/poke").then((req) => req.data.url);
 }
 async function pokePurrbot() {
   return await axios

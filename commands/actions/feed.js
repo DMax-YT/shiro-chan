@@ -92,7 +92,7 @@ async function feedNekoChxdn() {
     .then((req) => req.data.url);
 }
 async function feedNekosBest() {
-  return await axios.get("https://nekos.best/feed").then((req) => req.data.url);
+  return await axios.get("https://nekos.best/api/v1/feed").then((req) => req.data.url);
 }
 async function feedNekosFun() {
   return await axios

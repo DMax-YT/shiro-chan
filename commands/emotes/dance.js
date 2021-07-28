@@ -44,7 +44,7 @@ async function danceNekoChxdn() {
 
 async function danceNekosBest() {
   return await axios
-    .get("https://nekos.best/dance")
+    .get("https://nekos.best/api/v1/dance")
     .then((req) => req.data.url);
 }
 
