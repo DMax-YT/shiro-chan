@@ -20,13 +20,13 @@ Hope that bot will have more needing features.
 
 You can check them with with `./help`
 
-![Help menu command](https://cdn.tixte.com/uploads/dmax.discowd.com/kpml1gdbe9a.png)
+![Help menu command](https://dmax.discowd.com/r/kpml1gdbe9a.png)
 
 ## Multilanguage
 
 Current supported languages:
 
-![Supported languages](https://cdn.tixte.com/uploads/dmax.discowd.com/kpml1oep49a.png)
+![Supported languages](https://dmax.discowd.com/r/kpml1oep49a.png)
 
 You can become a bot translator by contributing this repository.
 
