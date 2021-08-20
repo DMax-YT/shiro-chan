@@ -4,7 +4,7 @@ This is a roleplay bot for discord. It is created for roleplay servers, that nee
 
 ## Useful links
 
-[Invite bot](https://discord.com/oauth2/authorize?client_id=793544441863471134&permissions=321608&scope=bot) | [Join support server](https://discord.gg/Hr6Z9nNE2d)
+[Invite bot](https://discord.com/oauth2/authorize?client_id=793544441863471134&permissions=321608&scope=bot%20applications.commands) | [Join support server](https://discord.gg/Hr6Z9nNE2d)
 
 ## Features
 
