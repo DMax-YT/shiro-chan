@@ -1,4 +1,3 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
@@ -6,13 +5,14 @@ const getRandomItem = require("../../helpers/getRandomItem");
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
+const purrbotsite = require("../../api/purrbotsite");
+const shirogg = require("../../api/shirogg");
+const nekosbest = require("../../api/nekosbest");
+
+const providers = [shirogg.cry, purrbotsite.cry, nekosbest.cry];
+
 async function cry(msg, args, locale) {
-  const provider = getRandomItem([
-    cryNekoChxdn,
-    cryShiro,
-    cryNekosBest,
-    cryPurrbot,
-  ]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -27,36 +27,16 @@ async function cry(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("cry.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("cry.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
-}
-
-async function cryNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/cry/img")
-    .then((req) => req.data.url);
-}
-
-async function cryShiro() {
-  return await axios
-    .get("https://shiro.gg/api/images/cry")
-    .then((req) => (req.data.fileType === "gif" ? req.data.url : cryShiro()));
-}
-
-async function cryNekosBest() {
-  return await axios.get("https://nekos.best/api/v1/cry").then((req) => req.data.url);
-}
-
-async function cryPurrbot() {
-  return await axios
-    .get("https://purrbot.site/api/img/sfw/cry/gif")
-    .then((req) => req.data.link);
 }
 
 module.exports = {

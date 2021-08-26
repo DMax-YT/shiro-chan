@@ -66,14 +66,16 @@ async function showUser(msg, [id]) {
     }
 
     await msg.channel.send({
-      embed: {
-        author: {
-          name: user.tag,
-          icon_url: user.avatarURL(),
+      embeds: [
+        {
+          author: {
+            name: user.tag,
+            icon_url: user.avatarURL(),
+          },
+          timestamp: blockedUser.timestamp,
+          description: blockedUser.reason,
         },
-        timestamp: blockedUser.timestamp,
-        description: blockedUser.reason,
-      },
+      ],
     });
   } catch {
     await msg.channel.send(`Invalid ID: ${id}`);
@@ -153,13 +155,15 @@ async function showGuild(msg, [id]) {
   }
 
   await msg.channel.send({
-    embed: {
-      author: {
-        name: blockedGuild.name,
+    embeds: [
+      {
+        author: {
+          name: blockedGuild.name,
+        },
+        timestamp: blockedGuild.timestamp,
+        description: blockedGuild.reason,
       },
-      timestamp: blockedGuild.timestamp,
-      description: blockedGuild.reason,
-    },
+    ],
   });
 }
 

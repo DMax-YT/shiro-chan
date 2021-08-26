@@ -20,13 +20,15 @@ async function bored(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("bored.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("bored.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
 }
 
@@ -36,6 +38,7 @@ async function boredNekoChxdn() {
     .then((req) => req.data.url);
 }
 
+/*
 module.exports = {
   name: "bored",
   execute: bored,
@@ -46,3 +49,4 @@ module.exports = {
   isPrivate: false,
   nsfw: false,
 };
+*/

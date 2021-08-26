@@ -1,4 +1,3 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
@@ -6,12 +5,13 @@ const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 const getRandomItem = require("../../helpers/getRandomItem");
 
+const purrbotsite = require("../../api/purrbotsite");
+const nekosbest = require("../../api/nekosbest");
+
+const providers = [purrbotsite.dance, nekosbest.dance];
+
 async function dance(msg, args, locale) {
-  const provider = getRandomItem([
-    danceNekoChxdn,
-    danceNekosBest,
-    dancePurrbot,
-  ]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -26,32 +26,16 @@ async function dance(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("dance.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("dance.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
-}
-
-async function danceNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/dance/img")
-    .then((req) => req.data.url);
-}
-
-async function danceNekosBest() {
-  return await axios
-    .get("https://nekos.best/api/v1/dance")
-    .then((req) => req.data.url);
-}
-
-async function dancePurrbot() {
-  return await axios
-    .get("https://purrbot.site/api/img/sfw/dance/gif")
-    .then((req) => req.data.link);
 }
 
 module.exports = {

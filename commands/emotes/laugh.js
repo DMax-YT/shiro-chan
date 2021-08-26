@@ -6,12 +6,13 @@ const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const translate = require("../../helpers/locale");
 
+const nekosbest = require("../../api/nekosbest");
+const nekosfun = require("../../api/nekosfun");
+
+const providers = [nekosbest.laugh, nekosfun.laugh];
+
 async function laugh(msg, args, locale) {
-  const provider = getRandomItem([
-    laughNekosBest,
-    laughNekoChxdn,
-    laughNekosFun,
-  ]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -26,30 +27,16 @@ async function laugh(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("laugh.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("laugh.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
-}
-
-async function laughNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/laugh/img")
-    .then((req) => req.data.url);
-}
-async function laughNekosFun() {
-  return await axios
-    .get("http://api.nekos.fun:8080/api/laugh")
-    .then((req) => req.data.image);
-}
-async function laughNekosBest() {
-  return await axios
-    .get("https://nekos.best/api/v1/laugh")
-    .then((req) => req.data.url);
 }
 
 module.exports = {

@@ -21,23 +21,27 @@ async function tryCommand(msg, args, locale) {
   });
 
   const tryMessage = await msg.channel.send({
-    embed: {
-      description: embedDescription,
-      color: resolveColor(embedInvis),
-    },
+    embeds: [
+      {
+        description: embedDescription,
+        color: resolveColor(embedInvis),
+      },
+    ],
   });
   await sleep(randomFloat(0.5, 1.5) * 1000);
 
   const success = randomFloat(0, 100) >= 50 ? true : false;
   await tryMessage.edit({
-    embed: {
-      description: `${embedDescription} \\| ${
-        success
-          ? translate("try.success", locale)
-          : translate("try.failure", locale)
-      }`,
-      color: resolveColor(embedInvis),
-    },
+    embeds: [
+      {
+        description: `${embedDescription} \\| ${
+          success
+            ? translate("try.success", locale)
+            : translate("try.failure", locale)
+        }`,
+        color: resolveColor(embedInvis),
+      },
+    ],
   });
 }
 

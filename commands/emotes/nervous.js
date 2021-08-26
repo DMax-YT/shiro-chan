@@ -20,13 +20,17 @@ async function nervous(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("nervous.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("nervous.action", locale, {
+          caller: msg.member,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
 }
 
@@ -36,6 +40,7 @@ async function nervousNekoChxdn() {
     .then((req) => req.data.url);
 }
 
+/*
 module.exports = {
   name: "nervous",
   execute: nervous,
@@ -46,3 +51,4 @@ module.exports = {
   isPrivate: false,
   nsfw: false,
 };
+*/

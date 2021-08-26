@@ -1,17 +1,28 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
-const NekoClient = require("nekos.life");
-const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
 
+const purrbotsite = require("../../api/purrbotsite");
+const shirogg = require("../../api/shirogg");
+const nekoslife = require("../../api/nekoslife");
+const nekosbest = require("../../api/nekosbest");
+const nekosfun = require("../../api/nekosfun");
+
+const providers = [
+  purrbotsite.kiss,
+  shirogg.kiss,
+  nekoslife.kiss,
+  nekosbest.kiss,
+  nekosfun.kiss,
+];
+
 async function kiss(msg, [user], locale) {
-  const userMention = msg.reference?.messageID
+  const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
   if (!userMention) {
@@ -19,14 +30,7 @@ async function kiss(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([
-    kissNeko,
-    kissNekosBest,
-    kissNekoChxdn,
-    kissShiro,
-    kissNekosFun,
-    kissPurrbot,
-  ]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -47,58 +51,35 @@ async function kiss(msg, [user], locale) {
   } else if (userMention === msg.guild.me) {
     await msg.channel.send({
       content: translate("kiss.me", locale),
-      embed: {
-        description: translate("kiss.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("kiss.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   } else {
     await msg.channel.send({
-      embed: {
-        description: translate("kiss.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("kiss.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   }
-}
-
-async function kissNeko() {
-  return await neko.sfw.kiss().then((r) => r.url);
-}
-async function kissNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/kiss/img")
-    .then((req) => req.data.url);
-}
-async function kissNekosBest() {
-  return await axios.get("https://nekos.best/api/v1/kiss").then((req) => req.data.url);
-}
-async function kissNekosFun() {
-  return await axios
-    .get("http://api.nekos.fun:8080/api/kiss")
-    .then((req) => req.data.image);
-}
-async function kissShiro() {
-  return await axios
-    .get("https://shiro.gg/api/images/kiss")
-    .then((req) => (req.data.fileType === "gif" ? req.data.url : kissShiro()));
-}
-async function kissPurrbot() {
-  return await axios
-    .get("https://purrbot.site/api/img/sfw/kiss/gif")
-    .then((req) => req.data.link);
 }
 
 module.exports = {

@@ -20,13 +20,15 @@ async function smirk(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("smirk.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("smirk.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
 }
 
@@ -36,6 +38,7 @@ async function smirkNekoChxdn() {
     .then((req) => req.data.url);
 }
 
+/*
 module.exports = {
   name: "smirk",
   execute: smirk,
@@ -46,3 +49,4 @@ module.exports = {
   isPrivate: false,
   nsfw: false,
 };
+*/

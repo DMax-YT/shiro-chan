@@ -1,14 +1,17 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
-const NekoClient = require("nekos.life");
-const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
+
+const purrbotsite = require("../../api/purrbotsite");
+const nekoslife = require("../../api/nekoslife");
+const nekosfun = require("../../api/nekosfun");
+
+const providers = [purrbotsite.cum, nekoslife.cum, nekosfun.cum];
 
 async function cum(msg, [user], locale) {
   if (!msg.channel.nsfw) {
@@ -16,7 +19,7 @@ async function cum(msg, [user], locale) {
     return;
   }
 
-  const userMention = msg.reference?.messageID
+  const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
   if (!userMention) {
@@ -24,12 +27,7 @@ async function cum(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([
-    cumNeko,
-    cumNekoChxdn,
-    cumNekosFun,
-    cumPurrbot,
-  ]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -53,37 +51,20 @@ async function cum(msg, [user], locale) {
     });
   } else {
     await msg.channel.send({
-      embed: {
-        description: translate("cum.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("cum.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   }
-}
-
-async function cumNeko() {
-  return await neko.nsfw.cumsluts().then((r) => r.url);
-}
-async function cumNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/cum/img")
-    .then((req) => req.data.url);
-}
-async function cumNekosFun() {
-  return await axios
-    .get("http://api.nekos.fun:8080/api/cum")
-    .then((req) => req.data.image);
-}
-async function cumPurrbot() {
-  return await axios
-    .get("https://purrbot.site/api/img/nsfw/cum/gif")
-    .then((req) => req.data.link);
 }
 
 module.exports = {

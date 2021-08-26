@@ -8,8 +8,14 @@ const getMemberByMention = require("../../helpers/getMemberByMention");
 const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
 
+const purrbotsite = require("../../api/purrbotsite");
+const shirogg = require("../../api/shirogg");
+const nekosfun = require("../../api/nekosfun");
+
+const providers = [purrbotsite.lick, shirogg.lick, nekosfun.lick];
+
 async function lick(msg, [user], locale) {
-  const userMention = msg.reference?.messageID
+  const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
   if (!userMention) {
@@ -17,12 +23,7 @@ async function lick(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([
-    lickNekoChxdn,
-    lickShiro,
-    lickNekosFun,
-    lickPurrbot,
-  ]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -39,66 +40,51 @@ async function lick(msg, [user], locale) {
   if (userMention === msg.member) {
     await msg.channel.send({
       content: translate("lick.alone", locale),
-      embed: {
-        description: translate("lick.action", locale, {
-          attacker: msg.member,
-          victim: msg.member,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("lick.action", locale, {
+            attacker: msg.member,
+            victim: msg.member,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   } else if (userMention === msg.guild.me) {
     await msg.channel.send({
       content: translate("lick.me", locale),
-      embed: {
-        description: translate("lick.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("lick.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   } else {
     await msg.channel.send({
-      embed: {
-        description: translate("lick.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("lick.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   }
-}
-
-async function lickNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/lick/img")
-    .then((req) => req.data.url);
-}
-async function lickNekosFun() {
-  return await axios
-    .get("http://api.nekos.fun:8080/api/lick")
-    .then((req) => req.data.image);
-}
-async function lickShiro() {
-  return await axios
-    .get("https://shiro.gg/api/images/lick")
-    .then((req) => (req.data.fileType === "gif" ? req.data.url : lickShiro()));
-}
-async function lickPurrbot() {
-  return await axios
-    .get("https://purrbot.site/api/img/sfw/lick/gif")
-    .then((req) => req.data.link);
 }
 
 module.exports = {

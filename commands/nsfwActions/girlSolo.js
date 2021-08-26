@@ -34,13 +34,15 @@ async function anal(msg, [user], locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: `${msg.member} занимается анальным сексом с ${userMention}`,
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: `${msg.member} занимается анальным сексом с ${userMention}`,
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
 }
 

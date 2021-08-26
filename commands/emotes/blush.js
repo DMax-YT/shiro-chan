@@ -1,4 +1,3 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
@@ -6,8 +5,13 @@ const getRandomItem = require("../../helpers/getRandomItem");
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
+const purrbotsite = require("../../api/purrbotsite");
+const shirogg = require("../../api/shirogg");
+
+const providers = [shirogg.blush, purrbotsite.blush];
+
 async function blush(msg, args, locale) {
-  const provider = getRandomItem([blushShiro, blushNekoChxdn, blushPurrbot]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -22,32 +26,16 @@ async function blush(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("blush.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("blush.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
-}
-
-async function blushNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/blush/img")
-    .then((req) => req.data.url);
-}
-
-async function blushShiro() {
-  return await axios
-    .get("https://shiro.gg/api/images/blush")
-    .then((req) => (req.data.fileType === "gif" ? req.data.url : blushShiro()));
-}
-
-async function blushPurrbot() {
-  return await axios
-    .get("https://purrbot.site/api/img/sfw/blush/gif")
-    .then((req) => req.data.link);
 }
 
 module.exports = {

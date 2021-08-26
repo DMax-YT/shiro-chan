@@ -20,13 +20,15 @@ async function annoy(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("annoy.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("annoy.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
 }
 
@@ -36,6 +38,7 @@ async function annoyNekoChxdn() {
     .then((req) => req.data.url);
 }
 
+/*
 module.exports = {
   name: "annoy",
   execute: annoy,
@@ -46,3 +49,4 @@ module.exports = {
   isPrivate: false,
   nsfw: false,
 };
+*/

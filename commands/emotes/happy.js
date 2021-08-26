@@ -6,8 +6,12 @@ const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const translate = require("../../helpers/locale");
 
+const purrbotsite = require("../../api/purrbotsite");
+
+const providers = [purrbotsite.smile];
+
 async function happy(msg, args, locale) {
-  const provider = getRandomItem([happyNekoChxdn, happyPurrbot]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -22,25 +26,16 @@ async function happy(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("happy.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("happy.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
-}
-
-async function happyNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/happy/img")
-    .then((req) => req.data.url);
-}
-async function happyPurrbot() {
-  return await axios
-    .get("https://purrbot.site/api/img/sfw/smile/gif")
-    .then((req) => req.data.link);
 }
 
 module.exports = {

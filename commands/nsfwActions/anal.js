@@ -1,14 +1,17 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
-const NekoClient = require("nekos.life");
-const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
+
+const purrbotsite = require("../../api/purrbotsite");
+const nekoslife = require("../../api/nekoslife");
+const nekosfun = require("../../api/nekosfun");
+
+const providers = [purrbotsite.anal, nekoslife.anal, nekosfun.anal];
 
 async function anal(msg, [user], locale) {
   if (!msg.channel.nsfw) {
@@ -16,7 +19,7 @@ async function anal(msg, [user], locale) {
     return;
   }
 
-  const userMention = msg.reference?.messageID
+  const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
   if (!userMention) {
@@ -24,12 +27,7 @@ async function anal(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([
-    analNeko,
-    analNekoChxdn,
-    analNekosFun,
-    analPurrbot,
-  ]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -53,39 +51,20 @@ async function anal(msg, [user], locale) {
     });
   } else {
     await msg.channel.send({
-      embed: {
-        description: translate("anal.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("anal.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   }
-}
-
-async function analNeko() {
-  return await neko.nsfw
-    .anal()
-    .then((r) => (r.url.endsWith(".gif") ? r.url : analNeko()));
-}
-async function analNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/anal/img")
-    .then((req) => req.data.url);
-}
-async function analNekosFun() {
-  return await axios
-    .get("http://api.nekos.fun:8080/api/anal")
-    .then((req) => req.data.image);
-}
-async function analPurrbot() {
-  return await axios
-    .get("https://purrbot.site/api/img/nsfw/anal/gif")
-    .then((req) => req.data.link);
 }
 
 module.exports = {

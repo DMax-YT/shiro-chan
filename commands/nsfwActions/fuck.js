@@ -1,14 +1,16 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
-const NekoClient = require("nekos.life");
-const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
+
+const purrbotsite = require("../../api/purrbotsite");
+const nekoslife = require("../../api/nekoslife");
+
+const providers = [purrbotsite.fuck, nekoslife.classic];
 
 async function fuck(msg, [user], locale) {
   if (!msg.channel.nsfw) {
@@ -16,7 +18,7 @@ async function fuck(msg, [user], locale) {
     return;
   }
 
-  const userMention = msg.reference?.messageID
+  const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
   if (!userMention) {
@@ -24,7 +26,7 @@ async function fuck(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([fuckNeko, fuckNekoChxdn, fuckPurrbot]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -48,32 +50,20 @@ async function fuck(msg, [user], locale) {
     });
   } else {
     await msg.channel.send({
-      embed: {
-        description: translate("fuck.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("fuck.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   }
-}
-
-async function fuckNeko() {
-  return await neko.nsfw.classic().then((r) => r.url);
-}
-async function fuckNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/fuck/img")
-    .then((req) => req.data.url);
-}
-async function fuckPurrbot() {
-  return await axios
-    .get("https://purrbot.site/api/img/nsfw/fuck/gif")
-    .then((req) => req.data.link);
 }
 
 module.exports = {

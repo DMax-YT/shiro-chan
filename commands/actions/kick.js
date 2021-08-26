@@ -8,7 +8,7 @@ const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
 
 async function kick(msg, [user], locale) {
-  const userMention = msg.reference?.messageID
+  const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
   if (!userMention) {
@@ -36,29 +36,33 @@ async function kick(msg, [user], locale) {
   } else if (userMention === msg.guild.me) {
     await msg.channel.send({
       content: translate("kick.me", locale),
-      embed: {
-        description: translate("kick.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("kick.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   } else {
     await msg.channel.send({
-      embed: {
-        description: translate("kick.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("kick.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   }
 }

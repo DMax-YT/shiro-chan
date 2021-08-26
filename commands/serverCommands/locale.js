@@ -13,21 +13,23 @@ const locales = {
 
 async function showLocales(msg, args, locale) {
   msg.channel.send({
-    embed: {
-      fields: [
-        {
-          name: translate("locale.id", locale),
-          value: Object.keys(locales).join("\n"),
-          inline: true,
-        },
-        {
-          name: translate("locale.name", locale),
-          value: Object.values(locales).join("\n"),
-          inline: true,
-        },
-      ],
-      color: resolveColor(botOfficial),
-    },
+    embeds: [
+      {
+        fields: [
+          {
+            name: translate("locale.id", locale),
+            value: Object.keys(locales).join("\n"),
+            inline: true,
+          },
+          {
+            name: translate("locale.name", locale),
+            value: Object.values(locales).join("\n"),
+            inline: true,
+          },
+        ],
+        color: resolveColor(botOfficial),
+      },
+    ],
   });
 }
 

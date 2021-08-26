@@ -20,14 +20,16 @@ const error = (channel, text, locale) =>
         attachment: errorImage,
       },
     ],
-    embed: {
-      author: {
-        name: translate("error", locale),
-        icon_url: "attachment://error.png",
+    embeds: [
+      {
+        author: {
+          name: translate("error", locale),
+          icon_url: "attachment://error.png",
+        },
+        description: text,
+        color: 0xd24a43,
       },
-      description: text,
-      color: 0xd24a43,
-    },
+    ],
   });
 
 const invalidUsage = async (channel, commandName, locale) =>
@@ -38,16 +40,18 @@ const invalidUsage = async (channel, commandName, locale) =>
         attachment: errorImage,
       },
     ],
-    embed: {
-      author: {
-        name: translate("invalidUsage", locale),
-        icon_url: "attachment://error.png",
+    embeds: [
+      {
+        author: {
+          name: translate("invalidUsage", locale),
+          icon_url: "attachment://error.png",
+        },
+        description: translate(`${commandName}.usage`, locale)
+          .map((usage) => prefix + commandName + " " + usage)
+          .join("\n"),
+        color: 0xd24a43,
       },
-      description: translate(`${commandName}.usage`, locale)
-        .map((usage) => prefix + commandName + " " + usage)
-        .join("\n"),
-      color: 0xd24a43,
-    },
+    ],
   });
 
 const success = (channel, text, locale) =>
@@ -58,14 +62,16 @@ const success = (channel, text, locale) =>
         attachment: successImage,
       },
     ],
-    embed: {
-      author: {
-        name: translate("success", locale),
-        icon_url: "attachment://success.png",
+    embeds: [
+      {
+        author: {
+          name: translate("success", locale),
+          icon_url: "attachment://success.png",
+        },
+        description: text,
+        color: 0x99c45a,
       },
-      description: text,
-      color: 0x99c45a,
-    },
+    ],
   });
 
 module.exports = {

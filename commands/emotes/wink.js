@@ -1,14 +1,19 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const getRandomItem = require("../../helpers/getRandomItem");
 const translate = require("../../helpers/locale");
 
+const sra = require("../../api/somerandomapiml");
+
+const providers = [sra.wink];
+
 async function wink(msg, args, locale) {
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
-    imageUrl = await winkNekoChxdn();
+    imageUrl = await provider();
   } catch {
     wink(msg, args, locale);
     return;
@@ -20,20 +25,16 @@ async function wink(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("wink.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("wink.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
-}
-
-async function winkNekoChxdn() {
-  return await axios
-    .get("https://some-random-api.ml/animu/wink")
-    .then((req) => req.data.link);
 }
 
 module.exports = {

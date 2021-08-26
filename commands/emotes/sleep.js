@@ -1,4 +1,3 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
@@ -6,11 +5,15 @@ const getRandomItem = require("../../helpers/getRandomItem");
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
+const shirogg = require("../../api/shirogg");
+
+const providers = [shirogg.sleep];
+
 async function sleep(msg, args, locale) {
-  const provider = getRandomItem([sleepNekoChxdn, sleepShiro]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
-    imageUrl = await sleepNekoChxdn();
+    imageUrl = await provider();
   } catch {
     sleep(msg, args, locale);
     return;
@@ -22,26 +25,16 @@ async function sleep(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("sleep.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("sleep.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
-}
-
-async function sleepNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/sleep/img")
-    .then((req) => req.data.url);
-}
-
-async function sleepShiro() {
-  return await axios
-    .get("https://shiro.gg/api/images/sleep")
-    .then((req) => (req.data.fileType === "gif" ? req.data.url : sleepShiro()));
 }
 
 module.exports = {

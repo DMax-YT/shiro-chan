@@ -102,7 +102,7 @@ async function help(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: helpEmbed,
+    embeds: [helpEmbed],
   });
 }
 

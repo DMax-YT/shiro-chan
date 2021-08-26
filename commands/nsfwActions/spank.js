@@ -1,13 +1,16 @@
 const {
   Util: { resolveColor },
 } = require("discord.js");
-const NekoClient = require("nekos.life");
-const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
+
+const nekosfun = require("../../api/nekosfun");
+const nekoslife = require("../../api/nekoslife");
+
+const providers = [nekosfun.spank, nekoslife.spank];
 
 async function spank(msg, [user], locale) {
   if (!msg.channel.nsfw) {
@@ -15,7 +18,7 @@ async function spank(msg, [user], locale) {
     return;
   }
 
-  const userMention = msg.reference?.messageID
+  const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
   if (!userMention) {
@@ -23,7 +26,7 @@ async function spank(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([spankNeko, spankNekosFun]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -47,29 +50,20 @@ async function spank(msg, [user], locale) {
     });
   } else {
     await msg.channel.send({
-      embed: {
-        description: translate("spank.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("spank.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   }
-}
-
-async function spankNeko() {
-  return await neko.nsfw
-    .spank()
-    .then((r) => (r.url.endsWith(".gif") ? r.url : spankNeko()));
-}
-async function spankNekosFun() {
-  return await axios
-    .get("http://api.nekos.fun:8080/api/spank")
-    .then((req) => req.data.image);
 }
 
 module.exports = {

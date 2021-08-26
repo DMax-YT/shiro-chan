@@ -27,26 +27,30 @@ async function evalExecute(msg, args) {
       : [];
 
     msg.channel.send({
-      embed: {
-        title: "✅ Successfully evaluated",
-        description: hasFiels ? "" : `\`\`\`xl\n${evaled}\`\`\``,
-        footer: {
-          text: `Took ${Date.now() - start} ms to eval`,
+      embeds: [
+        {
+          title: "✅ Successfully evaluated",
+          description: hasFiels ? "" : `\`\`\`xl\n${evaled}\`\`\``,
+          footer: {
+            text: `Took ${Date.now() - start} ms to eval`,
+          },
+          color: green,
         },
-        color: green,
-      },
+      ],
       files,
     });
   } catch (e) {
     if (!e) {
       msg.channel.send({
-        embed: {
-          title: "❌ Something went wrong",
-          footer: {
-            text: `Took ${Date.now() - start} ms to eval`,
+        embeds: [
+          {
+            title: "❌ Something went wrong",
+            footer: {
+              text: `Took ${Date.now() - start} ms to eval`,
+            },
+            color: red,
           },
-          color: red,
-        },
+        ],
       });
       return;
     }
@@ -64,14 +68,16 @@ async function evalExecute(msg, args) {
       : [];
 
     msg.channel.send({
-      embed: {
-        title: "❌ Something went wrong",
-        description: hasFiels ? "" : `\`\`\`xl\n${errorResult}\`\`\``,
-        footer: {
-          text: `Took ${Date.now() - start} ms to eval`,
+      embeds: [
+        {
+          title: "❌ Something went wrong",
+          description: hasFiels ? "" : `\`\`\`xl\n${errorResult}\`\`\``,
+          footer: {
+            text: `Took ${Date.now() - start} ms to eval`,
+          },
+          color: red,
         },
-        color: red,
-      },
+      ],
       files,
     });
   }

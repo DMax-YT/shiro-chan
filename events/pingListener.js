@@ -33,11 +33,11 @@ async function messageHandler(msg) {
 }
 
 function load(client) {
-  client.on("message", messageHandler);
+  client.on("messageCreate", messageHandler);
 }
 
 function unload(client) {
-  client.off("message", messageHandler);
+  client.off("messageCreate", messageHandler);
 }
 
 module.exports = {

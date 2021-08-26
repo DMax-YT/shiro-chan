@@ -1,17 +1,34 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
-const NekoClient = require("nekos.life");
-const neko = new NekoClient();
 const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
 
+const purrbotsite = require("../../api/purrbotsite");
+const shirogg = require("../../api/shirogg");
+const nekoslife = require("../../api/nekoslife");
+const nekosbest = require("../../api/nekosbest");
+const nekosfun = require("../../api/nekosfun");
+const sra = require("../../api/somerandomapiml");
+
+const providers = [
+  purrbotsite.hug,
+  purrbotsite.cuddle,
+  shirogg.hug,
+  nekoslife.hug,
+  nekoslife.cuddle,
+  nekosbest.hug,
+  nekosbest.cuddle,
+  nekosfun.hug,
+  nekosfun.cuddle,
+  sra.hug,
+];
+
 async function hug(msg, [user], locale) {
-  const userMention = msg.reference?.messageID
+  const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
   if (!userMention) {
@@ -19,20 +36,7 @@ async function hug(msg, [user], locale) {
     return;
   }
 
-  const provider = getRandomItem([
-    hugNeko,
-    hugNekosBest,
-    hugNekoChxdn,
-    hugNekosFun,
-    hugSra,
-    hugShiro,
-    hugPurrbot,
-    cuddleNeko,
-    cuddleNekosBest,
-    cuddleNekoChxdn,
-    cuddleNekosFun,
-    cuddlePurrbot,
-  ]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -49,101 +53,51 @@ async function hug(msg, [user], locale) {
   if (userMention === msg.member) {
     await msg.channel.send({
       content: translate("hug.alone", locale),
-      embed: {
-        description: translate("hug.action", locale, {
-          attacker: msg.guild.me,
-          victim: msg.member,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("hug.action", locale, {
+            attacker: msg.guild.me,
+            victim: msg.member,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   } else if (userMention === msg.guild.me) {
     await msg.channel.send({
       content: translate("hug.me", locale),
-      embed: {
-        description: translate("hug.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("hug.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   } else {
     await msg.channel.send({
-      embed: {
-        description: translate("hug.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("hug.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   }
-}
-
-async function hugNeko() {
-  return await neko.sfw.hug().then((r) => r.url);
-}
-async function hugNekosBest() {
-  return await axios.get("https://nekos.best/api/v1/hug").then((req) => req.data.url);
-}
-async function hugNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/hug/img")
-    .then((req) => req.data.url);
-}
-async function hugSra() {
-  return await axios
-    .get("https://some-random-api.ml/animu/hug")
-    .then((req) => req.data.link);
-}
-async function hugNekosFun() {
-  return await axios
-    .get("http://api.nekos.fun:8080/api/hug")
-    .then((req) => req.data.image);
-}
-async function hugShiro() {
-  return await axios
-    .get("https://shiro.gg/api/images/hug")
-    .then((req) => (req.data.fileType === "gif" ? req.data.url : hugShiro()));
-}
-async function hugPurrbot() {
-  return await axios
-    .get("https://purrbot.site/api/img/sfw/hug/gif")
-    .then((req) => req.data.link);
-}
-
-async function cuddleNeko() {
-  return await neko.sfw.cuddle().then((r) => r.url);
-}
-async function cuddleNekosBest() {
-  return await axios
-    .get("https://nekos.best/api/v1/cuddle")
-    .then((req) => req.data.url);
-}
-async function cuddleNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/cuddle/img")
-    .then((req) => req.data.url);
-}
-async function cuddleNekosFun() {
-  return await axios
-    .get("http://api.nekos.fun:8080/api/cuddle")
-    .then((req) => req.data.image);
-}
-async function cuddlePurrbot() {
-  return await axios
-    .get("https://purrbot.site/api/img/sfw/cuddle/gif")
-    .then((req) => req.data.link);
 }
 
 module.exports = {

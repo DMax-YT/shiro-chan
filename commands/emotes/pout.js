@@ -1,4 +1,3 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
@@ -6,8 +5,12 @@ const getRandomItem = require("../../helpers/getRandomItem");
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
+const shirogg = require("../../api/shirogg");
+
+const providers = [shirogg.pout];
+
 async function pout(msg, args, locale) {
-  const provider = getRandomItem([poutNekoChxdn, poutShiro]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
@@ -22,26 +25,16 @@ async function pout(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("pout.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("pout.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
-}
-
-async function poutNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/pout/img")
-    .then((req) => req.data.url);
-}
-
-async function poutShiro() {
-  return await axios
-    .get("https://shiro.gg/api/images/pout")
-    .then((req) => (req.data.fileType === "gif" ? req.data.url : poutShiro()));
 }
 
 module.exports = {

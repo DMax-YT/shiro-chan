@@ -6,14 +6,18 @@ const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const translate = require("../../helpers/locale");
 
-let i = 1;
+const nekosbest = require("../../api/nekosbest");
+const nekosfun = require("../../api/nekosfun");
+const shirogg = require("../../api/shirogg");
+
+const providers = [nekosbest.smug, nekosfun.smug, shirogg.smug];
+
 async function smug(msg, [user], locale) {
-  const provider = getRandomItem([smugNekosBest, smugNekosFun, smugShiro]);
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
   } catch (e) {
-    console.log(i, e);
     smug(msg, [user], locale);
     return;
   }
@@ -24,30 +28,18 @@ async function smug(msg, [user], locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("smug.action", locale, {
-        caller: msg.member,
-      }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("smug.action", locale, {
+          caller: msg.member,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
-}
-
-async function smugNekosBest() {
-  return await axios.get("https://nekos.best/api/v1/smug").then((req) => req.data.url);
-}
-async function smugShiro() {
-  return await axios
-    .get("https://shiro.gg/api/images/smug")
-    .then((req) => (req.data.fileType === "gif" ? req.data.url : smugShiro()));
-}
-async function smugNekosFun() {
-  return await axios
-    .get("http://api.nekos.fun:8080/api/smug")
-    .then((req) => req.data.image);
 }
 
 module.exports = {

@@ -20,13 +20,17 @@ async function confused(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("confused.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("confused.action", locale, {
+          caller: msg.member,
+        }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
 }
 
@@ -36,6 +40,7 @@ async function confusedNekoChxdn() {
     .then((req) => req.data.url);
 }
 
+/*
 module.exports = {
   name: "confused",
   execute: confused,
@@ -46,3 +51,4 @@ module.exports = {
   isPrivate: false,
   nsfw: false,
 };
+*/

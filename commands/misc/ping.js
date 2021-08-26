@@ -1,15 +1,19 @@
 const translate = require("../../helpers/locale");
 
 async function ping(msg, args, locale) {
-  const m = await msg.channel.send(translate("ping.pinging", locale));
-  m.edit({
-    embed: {
-      description: translate("ping.pong", locale, {
-        ws: msg.client.ws.ping,
-        loopback: m.createdTimestamp - msg.createdTimestamp,
-      }),
-      color: 0x00ff00,
-    },
+  const loopbackMessage = await msg.channel.send(
+    translate("ping.pinging", locale)
+  );
+  await loopbackMessage.edit({
+    embeds: [
+      {
+        description: translate("ping.pong", locale, {
+          ws: msg.client.ws.ping,
+          loopback: loopbackMessage.createdTimestamp - msg.createdTimestamp,
+        }),
+        color: 0x00ff00,
+      },
+    ],
   });
 }
 

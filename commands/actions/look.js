@@ -8,7 +8,7 @@ const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
 
 async function look(msg, [user], locale) {
-  const userMention = msg.reference?.messageID
+  const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
   if (!userMention) {
@@ -32,43 +32,49 @@ async function look(msg, [user], locale) {
   if (userMention === msg.member) {
     await msg.channel.send({
       content: translate("look.alone", locale),
-      embed: {
-        description: translate("look.action", locale, {
-          attacker: msg.member,
-          victim: msg.member,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("look.action", locale, {
+            attacker: msg.member,
+            victim: msg.member,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   } else if (userMention === msg.guild.me) {
     await msg.channel.send({
       content: translate("look.me", locale),
-      embed: {
-        description: translate("look.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("look.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   } else {
     await msg.channel.send({
-      embed: {
-        description: translate("look.action", locale, {
-          attacker: msg.member,
-          victim: userMention,
-        }),
-        image: {
-          url: imageUrl,
+      embeds: [
+        {
+          description: translate("look.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
+          }),
+          image: {
+            url: imageUrl,
+          },
+          color: resolveColor(embedInvis),
         },
-        color: resolveColor(embedInvis),
-      },
+      ],
     });
   }
 }
@@ -79,6 +85,7 @@ async function lookNekoChxdn() {
     .then((req) => req.data.url);
 }
 
+/*
 module.exports = {
   name: "look",
   execute: look,
@@ -89,3 +96,4 @@ module.exports = {
   isPrivate: false,
   nsfw: false,
 };
+*/

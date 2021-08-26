@@ -20,13 +20,15 @@ async function angry(msg, args, locale) {
   }
 
   await msg.channel.send({
-    embed: {
-      description: translate("angry.action", locale, { caller: msg.member }),
-      image: {
-        url: imageUrl,
+    embeds: [
+      {
+        description: translate("angry.action", locale, { caller: msg.member }),
+        image: {
+          url: imageUrl,
+        },
+        color: resolveColor(embedInvis),
       },
-      color: resolveColor(embedInvis),
-    },
+    ],
   });
 }
 
@@ -36,6 +38,7 @@ async function angryNekoChxdn() {
     .then((req) => req.data.url);
 }
 
+/*
 module.exports = {
   name: "angry",
   execute: angry,
@@ -46,3 +49,4 @@ module.exports = {
   isPrivate: false,
   nsfw: false,
 };
+*/
