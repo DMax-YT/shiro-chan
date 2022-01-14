@@ -7,9 +7,9 @@
  */
 const buildRouter = (apiBase, routes, suffix = "/") => {
   const newRoutes = {};
-  for (const key in routes) {
+  for (const key of Object.keys(routes)) {
     newRoutes[key] = () =>
-      apiBase.get(apiBase, `${routes[key]}${suffix}`).then((res) => res.data);
+      apiBase.get(`${routes[key]}${suffix}`).then((res) => res.data);
   }
 
   return newRoutes;

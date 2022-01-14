@@ -1,6 +1,6 @@
 const axios = require("axios").default;
 const apiBase = axios.create({
-  baseURL: "https://shiro.gg/api/images/",
+  baseURL: "https://api.dbot.dev/images/",
   transformResponse: [(data) => JSON.parse(data).url],
 });
 const buildRouter = require("./routerBuilder");

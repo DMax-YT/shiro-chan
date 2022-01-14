@@ -20,4 +20,4 @@ const routes = {
   tickle: "tickle",
 };
 
-module.exports = buildRouter(apiBase, routes);
+module.exports = buildRouter(apiBase, routes, "");

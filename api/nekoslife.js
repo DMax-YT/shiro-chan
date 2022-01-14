@@ -25,4 +25,4 @@ const routes = {
   spank: "spank",
 };
 
-module.exports = buildRouter(apiBase, routes);
+module.exports = buildRouter(apiBase, routes, "");
