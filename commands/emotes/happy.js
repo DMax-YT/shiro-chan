@@ -1,4 +1,3 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
@@ -7,8 +6,9 @@ const getRandomItem = require("../../helpers/getRandomItem");
 const translate = require("../../helpers/locale");
 
 const purrbotsite = require("../../api/purrbotsite");
+const nekosbest = require("../../api/nekosbest");
 
-const providers = [purrbotsite.smile];
+const providers = [purrbotsite.smile, nekosbest.happy];
 
 async function happy(msg, args, locale) {
   const provider = getRandomItem(providers);

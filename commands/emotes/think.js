@@ -5,30 +5,29 @@ const getRandomItem = require("../../helpers/getRandomItem");
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
-const shirogg = require("../../api/shirogg");
 const nekosbest = require("../../api/nekosbest");
 
-const providers = [shirogg.pout, nekosbest.pout];
+const providers = [nekosbest.think];
 
-async function pout(msg, args, locale) {
+async function think(msg, args, locale) {
   const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
   } catch {
-    pout(msg, args, locale);
+    think(msg, args, locale);
     return;
   }
 
   if (!imageUrl) {
-    pout(msg, args, locale);
+    think(msg, args, locale);
     return;
   }
 
   await msg.channel.send({
     embeds: [
       {
-        description: translate("pout.action", locale, { caller: msg.member }),
+        description: translate("think.action", locale, { caller: msg.member }),
         image: {
           url: imageUrl,
         },
@@ -39,8 +38,8 @@ async function pout(msg, args, locale) {
 }
 
 module.exports = {
-  name: "pout",
-  execute: pout,
+  name: "think",
+  execute: think,
   alias: [],
   cooldown: 2,
   argsRequired: 0,

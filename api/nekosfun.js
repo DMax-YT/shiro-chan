@@ -19,11 +19,13 @@ const routes = {
   laugh: "laugh",
   lick: "lick",
   pat: "pat",
+  poke: "poke",
   slap: "slap",
   smug: "smug",
   tickle: "tickle",
 
   anal: "anal",
+  cum: "cum",
   bj: "bj",
   blowjob: "blowjob",
   spank: "spank",

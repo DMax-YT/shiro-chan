@@ -7,12 +7,11 @@ const getMemberByMention = require("../../helpers/getMemberByMention");
 const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
 
-const purrbotsite = require("../../api/purrbotsite");
 const nekosbest = require("../../api/nekosbest");
 
-const providers = [purrbotsite.bite, nekosbest.bite];
+const providers = [nekosbest.stare];
 
-async function bite(msg, [user], locale) {
+async function stare(msg, [user], locale) {
   const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
@@ -25,24 +24,23 @@ async function bite(msg, [user], locale) {
   let imageUrl;
   try {
     imageUrl = await provider();
-  } catch (e) {
-    console.error(e);
-    bite(msg, [user], locale);
+  } catch {
+    stare(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    bite(msg, [user], locale);
+    stare(msg, [user], locale);
     return;
   }
 
   if (userMention === msg.member) {
     await msg.channel.send({
-      content: translate("bite.alone", locale),
+      content: translate("stare.alone", locale),
       embeds: [
         {
-          description: translate("bite.action", locale, {
-            attacker: msg.guild.me,
+          description: translate("stare.action", locale, {
+            attacker: msg.member,
             victim: msg.member,
           }),
           image: {
@@ -54,10 +52,10 @@ async function bite(msg, [user], locale) {
     });
   } else if (userMention === msg.guild.me) {
     await msg.channel.send({
-      content: translate("bite.me", locale),
+      content: translate("stare.me", locale),
       embeds: [
         {
-          description: translate("bite.action", locale, {
+          description: translate("stare.action", locale, {
             attacker: msg.member,
             victim: userMention,
           }),
@@ -72,9 +70,9 @@ async function bite(msg, [user], locale) {
     await msg.channel.send({
       embeds: [
         {
-          description: translate("bite.action", locale, {
-            attacker: msg.member.toString(),
-            victim: userMention.toString(),
+          description: translate("stare.action", locale, {
+            attacker: msg.member,
+            victim: userMention,
           }),
           image: {
             url: imageUrl,
@@ -85,10 +83,9 @@ async function bite(msg, [user], locale) {
     });
   }
 }
-
 module.exports = {
-  name: "bite",
-  execute: bite,
+  name: "stare",
+  execute: stare,
   alias: [],
   cooldown: 2,
   argsRequired: 0,
@@ -96,3 +93,4 @@ module.exports = {
   isPrivate: false,
   nsfw: false,
 };
+

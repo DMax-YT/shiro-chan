@@ -6,8 +6,9 @@ const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
 const shirogg = require("../../api/shirogg");
+const nekosbest = require("../../api/nekosbest");
 
-const providers = [shirogg.sleep];
+const providers = [shirogg.sleep, nekosbest.sleep];
 
 async function sleep(msg, args, locale) {
   const provider = getRandomItem(providers);

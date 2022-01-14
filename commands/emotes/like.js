@@ -1,34 +1,35 @@
 const {
   Util: { resolveColor },
 } = require("discord.js");
-const getRandomItem = require("../../helpers/getRandomItem");
 const { embedInvis } = require("../../colors.json");
+const getRandomItem = require("../../helpers/getRandomItem");
+const getMemberByMention = require("../../helpers/getMemberByMention");
+const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
 
-const shirogg = require("../../api/shirogg");
 const nekosbest = require("../../api/nekosbest");
 
-const providers = [shirogg.pout, nekosbest.pout];
+const providers = [nekosbest.thumbsup];
 
-async function pout(msg, args, locale) {
+async function like(msg, [user], locale) {
   const provider = getRandomItem(providers);
   let imageUrl;
   try {
     imageUrl = await provider();
-  } catch {
-    pout(msg, args, locale);
+  } catch (e) {
+    like(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    pout(msg, args, locale);
+    like(msg, [user], locale);
     return;
   }
 
   await msg.channel.send({
     embeds: [
       {
-        description: translate("pout.action", locale, { caller: msg.member }),
+        description: translate("like.action", locale, { caller: msg.member }),
         image: {
           url: imageUrl,
         },
@@ -39,8 +40,8 @@ async function pout(msg, args, locale) {
 }
 
 module.exports = {
-  name: "pout",
-  execute: pout,
+  name: "like",
+  execute: like,
   alias: [],
   cooldown: 2,
   argsRequired: 0,

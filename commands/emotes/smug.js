@@ -1,7 +1,6 @@
 const {
   Util: { resolveColor },
 } = require("discord.js");
-const axios = require("axios").default;
 const { embedInvis } = require("../../colors.json");
 const getRandomItem = require("../../helpers/getRandomItem");
 const translate = require("../../helpers/locale");

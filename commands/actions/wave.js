@@ -7,12 +7,11 @@ const getMemberByMention = require("../../helpers/getMemberByMention");
 const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
 
-const purrbotsite = require("../../api/purrbotsite");
 const nekosbest = require("../../api/nekosbest");
 
-const providers = [purrbotsite.bite, nekosbest.bite];
+const providers = [nekosbest.wave];
 
-async function bite(msg, [user], locale) {
+async function wave(msg, [user], locale) {
   const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
@@ -27,21 +26,21 @@ async function bite(msg, [user], locale) {
     imageUrl = await provider();
   } catch (e) {
     console.error(e);
-    bite(msg, [user], locale);
+    wave(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    bite(msg, [user], locale);
+    wave(msg, [user], locale);
     return;
   }
 
   if (userMention === msg.member) {
     await msg.channel.send({
-      content: translate("bite.alone", locale),
+      content: translate("wave.alone", locale),
       embeds: [
         {
-          description: translate("bite.action", locale, {
+          description: translate("wave.action", locale, {
             attacker: msg.guild.me,
             victim: msg.member,
           }),
@@ -54,10 +53,10 @@ async function bite(msg, [user], locale) {
     });
   } else if (userMention === msg.guild.me) {
     await msg.channel.send({
-      content: translate("bite.me", locale),
+      content: translate("wave.me", locale),
       embeds: [
         {
-          description: translate("bite.action", locale, {
+          description: translate("wave.action", locale, {
             attacker: msg.member,
             victim: userMention,
           }),
@@ -72,7 +71,7 @@ async function bite(msg, [user], locale) {
     await msg.channel.send({
       embeds: [
         {
-          description: translate("bite.action", locale, {
+          description: translate("wave.action", locale, {
             attacker: msg.member.toString(),
             victim: userMention.toString(),
           }),
@@ -87,8 +86,8 @@ async function bite(msg, [user], locale) {
 }
 
 module.exports = {
-  name: "bite",
-  execute: bite,
+  name: "wave",
+  execute: wave,
   alias: [],
   cooldown: 2,
   argsRequired: 0,

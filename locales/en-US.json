@@ -8,12 +8,30 @@
     "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
+  "cringe": {
+    "action": "{attacker} cringes on {victim}",
+    "alone": "oh *cringe*",
+    "me": "Hey, I am not cringe! :<",
+
+    "description": "Allows you to cringe on someone",
+    "usage": ["(@user)"],
+    "examples": ["@DMax"]
+  },
   "feed": {
     "action": "{attacker} feeds {victim}",
     "alone": "You are going to feed yourself? I think I can help you with that 😏",
     "me": "*om-nom...*",
 
     "description": "Allows you to feed someone",
+    "usage": ["(@user)"],
+    "examples": ["@DMax"]
+  },
+  "highfive": {
+    "action": "{attacker} highives {victim}",
+    "alone": "let's highive together :>",
+    "me": "COol",
+
+    "description": "Allows you to highive someone",
     "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
@@ -53,15 +71,6 @@
     "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
-  "look": {
-    "action": "{attacker} looks at {victim}",
-    "alone": "",
-    "me": "*looks at you*",
-
-    "description": "Allows you to look at someone",
-    "usage": ["(@user)"],
-    "examples": ["@DMax"]
-  },
   "pat": {
     "action": "{attacker} pats {victim}",
     "alone": "Oh, lemme pat you :>",
@@ -74,9 +83,27 @@
   "poke": {
     "action": "{attacker} pokes {victim}",
     "alone": "",
-    "me": "*disgruntled look*",
+    "me": "*disgruntled stare*",
 
     "description": "Allows you to poke someone",
+    "usage": ["(@user)"],
+    "examples": ["@DMax"]
+  },
+  "slap": {
+    "action": "{attacker} slaps {victim}",
+    "alone": "NO! I won't let you slap yourself!",
+    "me": "why did you slap me? *cry*",
+
+    "description": "Allows you to slap someone",
+    "usage": ["(@user)"],
+    "examples": ["@DMax"]
+  },
+  "stare": {
+    "action": "{attacker} stares at {victim}",
+    "alone": "",
+    "me": "*stares at you*",
+
+    "description": "Allows you to stare at someone",
     "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
@@ -89,12 +116,12 @@
     "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
-  "slap": {
-    "action": "{attacker} slaps {victim}",
-    "alone": "NO! I won't let you slap yourself!",
-    "me": "why did you slap me? *cry*",
+  "wave": {
+    "action": "{attacker} waves to {victim}",
+    "alone": "hey, I'm here",
+    "me": "Hiii *Uwu*",
 
-    "description": "Allows you to slap someone",
+    "description": "Allows you to wave to someone",
     "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
@@ -217,6 +244,13 @@
     "usage": [""],
     "examples": [""]
   },
+  "like": {
+    "action": "{caller} shows like",
+
+    "description": "Allows you to like",
+    "usage": [""],
+    "examples": [""]
+  },
   "nervous": {
     "action": "{caller} is nervous",
 
@@ -228,6 +262,13 @@
     "action": "{caller} is sulking",
 
     "description": "Allows you to pout",
+    "usage": [""],
+    "examples": [""]
+  },
+  "shrug": {
+    "action": "{caller} shrugs",
+
+    "description": "Allows you to shrug",
     "usage": [""],
     "examples": [""]
   },
@@ -249,6 +290,13 @@
     "action": "{caller} looks smug",
 
     "description": "Allows you to look smug",
+    "usage": [""],
+    "examples": [""]
+  },
+  "think": {
+    "action": "{caller} is thinking",
+
+    "description": "Allows you to think",
     "usage": [""],
     "examples": [""]
   },

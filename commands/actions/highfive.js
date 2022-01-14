@@ -1,13 +1,17 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
 const { embedInvis } = require("../../colors.json");
+const getRandomItem = require("../../helpers/getRandomItem");
 const getMemberByMention = require("../../helpers/getMemberByMention");
 const getMemberByReply = require("../../helpers/getMemberByReply");
 const translate = require("../../helpers/locale");
 
-async function look(msg, [user], locale) {
+const nekosbest = require("../../api/nekosbest");
+
+const providers = [nekosbest.highfive];
+
+async function highfive(msg, [user], locale) {
   const userMention = msg.reference?.messageId
     ? await getMemberByReply(msg)
     : await getMemberByMention(msg.guild, user);
@@ -16,26 +20,28 @@ async function look(msg, [user], locale) {
     return;
   }
 
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
-    imageUrl = await lookNekoChxdn();
-  } catch {
-    look(msg, [user], locale);
+    imageUrl = await provider();
+  } catch (e) {
+    console.error(e);
+    highfive(msg, [user], locale);
     return;
   }
 
   if (!imageUrl) {
-    look(msg, [user], locale);
+    highfive(msg, [user], locale);
     return;
   }
 
   if (userMention === msg.member) {
     await msg.channel.send({
-      content: translate("look.alone", locale),
+      content: translate("highfive.alone", locale),
       embeds: [
         {
-          description: translate("look.action", locale, {
-            attacker: msg.member,
+          description: translate("highfive.action", locale, {
+            attacker: msg.guild.me,
             victim: msg.member,
           }),
           image: {
@@ -47,10 +53,10 @@ async function look(msg, [user], locale) {
     });
   } else if (userMention === msg.guild.me) {
     await msg.channel.send({
-      content: translate("look.me", locale),
+      content: translate("highfive.me", locale),
       embeds: [
         {
-          description: translate("look.action", locale, {
+          description: translate("highfive.action", locale, {
             attacker: msg.member,
             victim: userMention,
           }),
@@ -65,9 +71,9 @@ async function look(msg, [user], locale) {
     await msg.channel.send({
       embeds: [
         {
-          description: translate("look.action", locale, {
-            attacker: msg.member,
-            victim: userMention,
+          description: translate("highfive.action", locale, {
+            attacker: msg.member.toString(),
+            victim: userMention.toString(),
           }),
           image: {
             url: imageUrl,
@@ -79,16 +85,9 @@ async function look(msg, [user], locale) {
   }
 }
 
-async function lookNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/look/img")
-    .then((req) => req.data.url);
-}
-
-/*
 module.exports = {
-  name: "look",
-  execute: look,
+  name: "highfive",
+  execute: highfive,
   alias: [],
   cooldown: 2,
   argsRequired: 0,
@@ -96,4 +95,3 @@ module.exports = {
   isPrivate: false,
   nsfw: false,
 };
-*/

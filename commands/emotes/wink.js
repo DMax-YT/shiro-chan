@@ -6,8 +6,9 @@ const getRandomItem = require("../../helpers/getRandomItem");
 const translate = require("../../helpers/locale");
 
 const sra = require("../../api/somerandomapiml");
+const nekosbest = require("../../api/nekosbest");
 
-const providers = [sra.wink];
+const providers = [sra.wink, nekosbest.wink];
 
 async function wink(msg, args, locale) {
   const provider = getRandomItem(providers);

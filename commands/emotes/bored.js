@@ -1,14 +1,19 @@
-const axios = require("axios").default;
 const {
   Util: { resolveColor },
 } = require("discord.js");
+const getRandomItem = require("../../helpers/getRandomItem");
 const { embedInvis } = require("../../colors.json");
 const translate = require("../../helpers/locale");
 
+const nekosbest = require("../../api/nekosbest");
+
+const providers = [nekosbest.blush];
+
 async function bored(msg, args, locale) {
+  const provider = getRandomItem(providers);
   let imageUrl;
   try {
-    imageUrl = await boredNekoChxdn();
+    imageUrl = await provider();
   } catch {
     bored(msg, args, locale);
     return;
@@ -32,13 +37,6 @@ async function bored(msg, args, locale) {
   });
 }
 
-async function boredNekoChxdn() {
-  return await axios
-    .get("https://api.neko-chxn.xyz/v1/bored/img")
-    .then((req) => req.data.url);
-}
-
-/*
 module.exports = {
   name: "bored",
   execute: bored,
@@ -49,4 +47,3 @@ module.exports = {
   isPrivate: false,
   nsfw: false,
 };
-*/
