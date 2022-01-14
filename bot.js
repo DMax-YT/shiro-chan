@@ -3,7 +3,7 @@ const Enmap = require("enmap");
 const recursiveRead = require("./helpers/recursiveReader");
 
 const client = new Client({
-  intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
+  intents: ["GUILDS", "GUILD_MESSAGES"],
 });
 client.events = new Collection();
 client.commands = new Collection();
