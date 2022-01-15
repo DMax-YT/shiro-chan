@@ -1,0 +1,6 @@
+{
+  "prefix": "./",
+  "token": "YOUR BOT TOKEN",
+  "owners": ["YOUR DISCORD ID"],
+  "beta": true
+}
