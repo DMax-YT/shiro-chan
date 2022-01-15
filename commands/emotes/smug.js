@@ -6,7 +6,7 @@ const shirogg = require("../../api/shirogg");
 
 const providers = [nekosbest.smug, nekosfun.smug, shirogg.smug];
 
-async function smug(msg, [user], locale) {
+async function smug(msg, args, locale) {
   await sendEmotion({
     msg,
     locale,
