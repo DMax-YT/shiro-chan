@@ -181,20 +181,6 @@
     "examples": ["@DMax"]
   },
 
-  "angry": {
-    "action": "{caller} злится",
-
-    "description": "Позволяет вам разозлится",
-    "usage": [""],
-    "examples": [""]
-  },
-  "annoy": {
-    "action": "{caller} раздражается",
-
-    "description": "Позволяет вам раздражаться",
-    "usage": [""],
-    "examples": [""]
-  },
   "blush": {
     "action": "{caller} смущается",
 
@@ -206,13 +192,6 @@
     "action": "{caller} скучает",
 
     "description": "Позволяет вам заскучать",
-    "usage": [""],
-    "examples": [""]
-  },
-  "confused": {
-    "action": "{caller} в растерянности",
-
-    "description": "Позволяет вам растеряться",
     "usage": [""],
     "examples": [""]
   },
@@ -251,13 +230,6 @@
     "usage": [""],
     "examples": [""]
   },
-  "nervous": {
-    "action": "{caller} нервничает",
-
-    "description": "Позволяет вам занервничать",
-    "usage": [""],
-    "examples": [""]
-  },
   "pout": {
     "action": "{caller} дуется",
 
@@ -276,13 +248,6 @@
     "action": "{caller} спит",
 
     "description": "Позволяет вам поспать",
-    "usage": [""],
-    "examples": [""]
-  },
-  "smirk": {
-    "action": "{caller} ухмыляется",
-
-    "description": "Позволяет вам ухмыльнуться",
     "usage": [""],
     "examples": [""]
   },
