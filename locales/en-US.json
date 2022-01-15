@@ -44,15 +44,6 @@
     "usage": ["(@user)"],
     "examples": ["@DMax"]
   },
-  "kick": {
-    "action": "{attacker} kicks {victim}",
-    "alone": "Did you try to kick yourself? What?",
-    "me": "ah... why?... 😖",
-
-    "description": "Allows you to kick someone",
-    "usage": ["(@user)"],
-    "examples": ["@DMax"]
-  },
   "kiss": {
     "action": "{attacker} kisses {victim}",
     "alone": "You are so lonely.... you can't kiss somebody else... 😭",
