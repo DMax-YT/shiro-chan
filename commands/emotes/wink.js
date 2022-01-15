@@ -1,9 +1,4 @@
-const {
-  Util: { resolveColor },
-} = require("discord.js");
-const { embedInvis } = require("../../colors.json");
-const getRandomItem = require("../../helpers/getRandomItem");
-const translate = require("../../helpers/locale");
+const { sendEmotion } = require("../../helpers/roleplayMessages");
 
 const sra = require("../../api/somerandomapiml");
 const nekosbest = require("../../api/nekosbest");
@@ -11,30 +6,11 @@ const nekosbest = require("../../api/nekosbest");
 const providers = [sra.wink, nekosbest.wink];
 
 async function wink(msg, args, locale) {
-  const provider = getRandomItem(providers);
-  let imageUrl;
-  try {
-    imageUrl = await provider();
-  } catch {
-    wink(msg, args, locale);
-    return;
-  }
-
-  if (!imageUrl) {
-    wink(msg, args, locale);
-    return;
-  }
-
-  await msg.channel.send({
-    embeds: [
-      {
-        description: translate("wink.action", locale, { caller: msg.member }),
-        image: {
-          url: imageUrl,
-        },
-        color: resolveColor(embedInvis),
-      },
-    ],
+  await sendEmotion({
+    msg,
+    locale,
+    providers,
+    emote: "wink",
   });
 }
 

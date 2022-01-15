@@ -1,9 +1,4 @@
-const {
-  Util: { resolveColor },
-} = require("discord.js");
-const getRandomItem = require("../../helpers/getRandomItem");
-const { embedInvis } = require("../../colors.json");
-const translate = require("../../helpers/locale");
+const { sendEmotion } = require("../../helpers/roleplayMessages");
 
 const shirogg = require("../../api/shirogg");
 const nekosbest = require("../../api/nekosbest");
@@ -11,30 +6,11 @@ const nekosbest = require("../../api/nekosbest");
 const providers = [shirogg.pout, nekosbest.pout];
 
 async function pout(msg, args, locale) {
-  const provider = getRandomItem(providers);
-  let imageUrl;
-  try {
-    imageUrl = await provider();
-  } catch {
-    pout(msg, args, locale);
-    return;
-  }
-
-  if (!imageUrl) {
-    pout(msg, args, locale);
-    return;
-  }
-
-  await msg.channel.send({
-    embeds: [
-      {
-        description: translate("pout.action", locale, { caller: msg.member }),
-        image: {
-          url: imageUrl,
-        },
-        color: resolveColor(embedInvis),
-      },
-    ],
+  await sendEmotion({
+    msg,
+    locale,
+    providers,
+    emote: "pout",
   });
 }
 
