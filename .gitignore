@@ -103,8 +103,13 @@ dist
 # TernJS port file
 .tern-port
 
+# Config and token files
 config.json
 tokens.json
+
+# Lock files
 yarn.lock
 package-lock.json
-/db
+
+# Direcotry with SQLite
+db/
