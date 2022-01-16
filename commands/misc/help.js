@@ -1,17 +1,15 @@
+const { MessageEmbed } = require("discord.js");
 const { error } = require("../../helpers/result");
 const translate = require("../../helpers/locale");
 
-const {
-  Util: { resolveColor },
-} = require("discord.js");
 const { botOfficial } = require("../../colors.json");
 
 async function help(msg, args, locale) {
   const prefix = msg.client.server.get(msg.guild.id, "prefix");
-  let helpEmbed = {
+  let helpEmbed = new MessageEmbed({
     title: translate("help.title", locale),
-    color: resolveColor(botOfficial),
-  };
+    color: botOfficial,
+  });
 
   if (args.length) {
     const name = args.join(" ").toLowerCase();
@@ -21,7 +19,7 @@ async function help(msg, args, locale) {
       msg.client.commands.find((cmd) => cmd.alias.includes(name));
 
     if (!command || command.isPrivate) {
-      error(
+      await error(
         msg.channel,
         translate("help.command.notExist", locale, {
           command: name,
@@ -32,42 +30,42 @@ async function help(msg, args, locale) {
     }
 
     if (!msg.channel.nsfw && command.nsfw) {
-      error(msg.channel, translate("help.command.nsfwError", locale), locale);
+      await error(
+        msg.channel,
+        translate("help.command.nsfwError", locale),
+        locale
+      );
       return;
     }
 
-    helpEmbed = {
-      ...helpEmbed,
-      fields: [
-        {
-          name: translate("help.command.description", locale),
-          value: translate(`${command.name}.description`, locale),
-        },
-        {
-          name: translate("help.command.usage", locale),
-          value: translate(`${command.name}.usage`, locale)
-            .map((usage) => prefix + name + " " + usage)
-            .join("\n"),
-          inline: true,
-        },
-        {
-          name: translate("help.command.alias", locale),
-          value: command.alias.length
-            ? command.alias.map((alias) => `\`${alias}\``).join(" ")
-            : translate("help.command.noAlias", locale),
-          inline: true,
-        },
-        {
-          name: translate("help.command.examples", locale),
-          value: translate(`${command.name}.examples`, locale)
-            .map((example) => prefix + name + " " + example)
-            .join("\n"),
-        },
-      ],
-      footer: {
+    helpEmbed
+      .addField(
+        translate("help.command.description", locale),
+        translate(`${command.name}.description`, locale)
+      )
+      .addField(
+        translate("help.command.usage", locale),
+        translate(`${command.name}.usage`, locale)
+          .map((usage) => prefix + name + " " + usage)
+          .join("\n"),
+        true
+      )
+      .addField(
+        translate("help.command.alias", locale),
+        command.alias.length
+          ? command.alias.map((alias) => `\`${alias}\``).join(" ")
+          : translate("help.command.noAlias", locale),
+        true
+      )
+      .addField(
+        translate("help.command.examples", locale),
+        translate(`${command.name}.examples`, locale)
+          .map((example) => prefix + name + " " + example)
+          .join("\n")
+      )
+      .setFooter({
         text: translate("help.argsInfo", locale),
-      },
-    };
+      });
   } else {
     const fields = [];
     const modules = new Set(msg.client.commands.map((c) => c.module));
@@ -90,15 +88,13 @@ async function help(msg, args, locale) {
       }
     }
 
-    helpEmbed = {
-      ...helpEmbed,
-      fields: fields.sort((a, b) => a.name.localeCompare(b.name)),
-      footer: {
+    helpEmbed
+      .addFields(fields.sort((a, b) => a.name.localeCompare(b.name)))
+      .setFooter({
         text: translate("help.moreInfo", locale, {
           prefix,
         }),
-      },
-    };
+      });
   }
 
   await msg.channel.send({

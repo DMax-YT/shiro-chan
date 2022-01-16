@@ -6,15 +6,18 @@ async function randomExecute(msg, args, locale) {
   const min = parseInt(args[0]);
   const max = parseInt(args[1]);
   if (isNaN(min) || isNaN(max)) {
-    invalidUsage(msg.channel, this.name, locale);
+    await invalidUsage(msg.channel, this.name, locale);
     return;
   }
 
-  msg.channel.send(
-    translate("random.result", locale, {
+  await msg.reply({
+    content: translate("random.result", locale, {
       number: random(min, max),
-    })
-  );
+    }),
+    allowedMentions: {
+      repliedUser: false,
+    },
+  });
 }
 
 module.exports = {

@@ -4,6 +4,7 @@ async function ping(msg, args, locale) {
   const loopbackMessage = await msg.channel.send(
     translate("ping.pinging", locale)
   );
+
   await loopbackMessage.edit({
     embeds: [
       {

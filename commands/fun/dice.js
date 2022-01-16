@@ -1,6 +1,6 @@
 const sleep = require("../../helpers/sleep");
-const { random, randomFloat } = require("../../helpers/random");
 const { error } = require("../../helpers/result");
+const { random, randomFloat } = require("../../helpers/random");
 const translate = require("../../helpers/locale");
 
 const randomDice = "<a:dice_random:812758540624068608>";
@@ -17,37 +17,54 @@ const minTime = 0.25;
 const maxTime = 1.5;
 
 async function dice(msg, args, locale) {
-  const countOfRolls = parseInt(args[0]);
+  const rollsCount = parseInt(args[0]);
 
-  if (countOfRolls && countOfRolls > 0 && countOfRolls < 10) {
-    let allDices = [...Array(countOfRolls)].map(() => randomDice);
-    const rolling = await msg.channel.send(allDices.join(""));
-    for (const id of allDices.keys()) {
-      await sleep(randomFloat(minTime, maxTime) * 1000);
-      allDices[id] = random(0, 5);
-      await rolling.edit(
-        allDices.map((v) => numToDice[v] || randomDice).join("")
-      );
-    }
+  if (!rollsCount) {
+    const rolling = await msg.reply({
+      content: randomDice,
+      allowedMentions: {
+        repliedUser: false,
+      },
+    });
 
-    msg.channel.send(
-      translate("dice.rolled", locale, {
-        user: msg.member,
-        sum: allDices.reduce((v, a) => v + 1 + a, 0),
-      }),
-      {
-        allowedMentions: {
-          parse: [],
-        },
-      }
-    );
-  } else if (countOfRolls && countOfRolls >= 10) {
-    error(msg.channel, translate("dice.maxDicesError", locale), locale);
-  } else {
-    const rolling = await msg.channel.send(randomDice);
     await sleep(randomFloat(minTime, maxTime) * 1000);
-    rolling.edit(numToDice[random(0, 5)]);
+    await rolling.edit(numToDice[random(0, 5)]);
+
+    return;
   }
+
+  if (rollsCount >= 10) {
+    await error(msg.channel, translate("dice.maxDicesError", locale), locale);
+    return;
+  }
+
+  let allDices = [...Array(rollsCount)].map(() => randomDice);
+  const rolling = await msg.reply({
+    content: allDices.join(""),
+    allowedMentions: {
+      repliedUser: false,
+    },
+  });
+
+  for (const id of allDices.keys()) {
+    await sleep(randomFloat(minTime, maxTime) * 1000);
+    allDices[id] = random(0, 5);
+
+    await rolling.edit(
+      allDices.map((v) => numToDice[v] || randomDice).join("")
+    );
+  }
+
+  await msg.reply({
+    content: translate("dice.rolled", locale, {
+      user: msg.member,
+      sum: allDices.reduce((v, a) => v + a, rollsCount),
+    }),
+    allowedMentions: {
+      parse: [],
+      repliedUser: false,
+    },
+  });
 }
 
 module.exports = {

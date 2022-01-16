@@ -9,7 +9,7 @@ async function vote(msg, args, locale) {
         components: [
           {
             type: "BUTTON",
-            label: "discord.ly",
+            label: translate("vote.discord-ly", locale),
             style: 5,
             url: "https://discord.ly/shiro-chan",
           },

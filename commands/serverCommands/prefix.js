@@ -5,7 +5,7 @@ async function prefix(msg, args, locale) {
   const newPrefix = args.join(" ");
 
   if (!newPrefix) {
-    msg.channel.send(
+    await msg.channel.send(
       translate("prefix.current", locale, {
         prefix: msg.client.server.get(msg.guild.id, "prefix"),
       })
@@ -13,18 +13,18 @@ async function prefix(msg, args, locale) {
     return;
   }
 
-  if (!msg.member.hasPermission(["MANAGE_GUILD"])) {
-    error(msg.channel, translate("permsError", locale));
+  if (!msg.member.permissions.has(["MANAGE_GUILD"])) {
+    await error(msg.channel, translate("permsError", locale), locale);
     return;
   }
 
   if (newPrefix.length > 5) {
-    error(msg.channel, translate("prefix.tooLong", locale));
+    await error(msg.channel, translate("prefix.tooLong", locale), locale);
     return;
   }
 
   msg.client.server.set(msg.guild.id, newPrefix, "prefix");
-  success(
+  await success(
     msg.channel,
     translate("prefix.change", locale, {
       prefix: newPrefix,

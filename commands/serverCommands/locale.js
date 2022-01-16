@@ -1,9 +1,6 @@
-const { error, success } = require("../../helpers/result");
+const { error, success } = require("../../helpers/templateMessages");
 const translate = require("../../helpers/locale");
 
-const {
-  Util: { resolveColor },
-} = require("discord.js");
 const { botOfficial } = require("../../colors.json");
 
 const locales = {
@@ -12,7 +9,7 @@ const locales = {
 };
 
 async function showLocales(msg, args, locale) {
-  msg.channel.send({
+  await msg.channel.send({
     embeds: [
       {
         fields: [
@@ -27,7 +24,7 @@ async function showLocales(msg, args, locale) {
             inline: true,
           },
         ],
-        color: resolveColor(botOfficial),
+        color: botOfficial,
       },
     ],
   });
@@ -35,7 +32,7 @@ async function showLocales(msg, args, locale) {
 
 async function localeExecute(msg, args, locale) {
   if (!args.length) {
-    msg.channel.send(
+    await msg.channel.send(
       translate("locale.current", locale, {
         locale: locales[locale],
       })
@@ -43,24 +40,24 @@ async function localeExecute(msg, args, locale) {
     return;
   }
 
-  if (!msg.member.hasPermission(["MANAGE_GUILD"])) {
-    error(msg.channel, translate("permsError", locale));
+  if (!msg.member.permissions.has(["MANAGE_GUILD"])) {
+    await error(msg.channel, translate("permsError", locale), locale);
     return;
   }
 
   const [newLocale] = args;
   if (!Object.keys(locales).includes(newLocale)) {
-    error(msg.channel, translate("locale.unknown", locale));
+    await error(msg.channel, translate("locale.unknown", locale), locale);
     return;
   }
 
   msg.client.server.set(msg.guild.id, newLocale, "locale");
-  success(
+  await success(
     msg.channel,
     translate("locale.change", newLocale, {
       locale: locales[newLocale],
     }),
-    locale
+    newLocale
   );
 }
 
