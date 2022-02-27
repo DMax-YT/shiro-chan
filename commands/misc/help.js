@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { error } = require("../../helpers/result");
+const { error } = require("../../helpers/templateMessages");
 const translate = require("../../helpers/locale");
 
 const { botOfficial } = require("../../colors.json");

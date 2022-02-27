@@ -1,5 +1,5 @@
 const sleep = require("../../helpers/sleep");
-const { error } = require("../../helpers/result");
+const { error } = require("../../helpers/templateMessages");
 const { random, randomFloat } = require("../../helpers/random");
 const translate = require("../../helpers/locale");
 

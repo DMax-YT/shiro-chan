@@ -1,7 +1,7 @@
 const axios = require("axios").default;
 const apiBase = axios.create({
-  baseURL: "https://nekos.best/api/v1/",
-  transformResponse: [(data) => JSON.parse(data).url],
+  baseURL: "https://nekos.best/api/v2/",
+  transformResponse: [(data) => JSON.parse(data).results[0].url],
 });
 const buildRouter = require("./routerBuilder");
 

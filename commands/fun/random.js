@@ -1,5 +1,5 @@
 const { random } = require("../../helpers/random");
-const { invalidUsage } = require("../../helpers/result");
+const { invalidUsage } = require("../../helpers/templateMessages");
 const translate = require("../../helpers/locale");
 
 async function randomExecute(msg, args, locale) {
