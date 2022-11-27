@@ -2,6 +2,9 @@
 
 This is a roleplay bot for discord. It is created for roleplay servers, that needs some gifs to make RP easier; "turn off" your imagination for a second.
 
+## THIS REPOSITORY IS ARCHIVED, BOT IS OFFLINE (forever). MAYBE IN FUTURE I WILL MAKE SUCH BOT WITH C#
+This code is not bad and can be easily extended. *Fork it* if you want
+
 ## Useful links
 
 [Invite bot](https://discord.com/oauth2/authorize?client_id=793544441863471134&permissions=321608&scope=bot%20applications.commands) | [Join support server](https://discord.gg/Hr6Z9nNE2d)
